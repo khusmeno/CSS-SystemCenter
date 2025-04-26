@@ -1,1 +1,10 @@
-
+<ManagementPack xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" ContentReadable="true" SchemaVersion="2.0" OriginalSchemaVersion="1.1">
+  <Manifest>
+    <Identity>
+      <ID>khSystem.Library</ID>
+      <Version>kh7.5.8501.0</Version>
+    </Identity>
+    <Name>khSystem Library</Name>
+    <References />
+  </Manifest>
+</ManagementPack>
