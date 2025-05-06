@@ -183,34 +183,47 @@ tbody tr:nth-child(even) {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 1em 0;
-    display: flex;
-    gap: 1em;
-    flex-wrap: wrap;
+nav {
+    margin-top: 1.5em; /* Add vertical space above the <nav> */
 }
 
-    nav ul li {
-        margin: 0;
+    nav ul {
+        list-style: none;
+        padding: 0.3em;
+        margin: 0.5em 0;
+        display: flex;
+        gap: 1em;
+        flex-wrap: wrap;
+        flex-direction: column; /* Stack links vertically on smaller screens */
+        align-items: flex-start; /* Align links to the left */
     }
 
-        nav ul li a {
-            text-decoration: none;
-            color: #0056a3;
-            font-weight: bold;
-            padding: 0.5em 1em;
-            border: 1px solid #0056a3;
-            border-radius: 5px;
-            background-color: #f0f8ff;
-            transition: background-color 0.3s, color 0.3s;
-        }
+@media (min-width: 600px) {
+    nav ul {
+        flex-direction: row; /* Display links in a row on larger screens */
+        justify-content: center; /* Center-align the links */
+    }
+}
 
-            nav ul li a:hover {
-                background-color: #0056a3;
-                color: white;
-            }
+nav ul li {
+    margin: 0;
+}
+
+    nav ul li a {
+        text-decoration: none;
+        color: #0056a3;
+        font-weight: bold;
+        padding: 0.5em 1em;
+        border: 1px solid #0056a3;
+        border-radius: 5px;
+        background-color: #f0f8ff;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        nav ul li a:hover {
+            background-color: #0056a3;
+            color: white;
+        }
 
 html {
     scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
@@ -240,6 +253,9 @@ caption .back-to-top {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
         }
 
-nav {
-    margin-top: 1.5em; /* Add vertical space above the <nav> */
+#mpDetailsLine {
+    margin-top: 0.5em; /* Reduce the vertical spacing above the element */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Vertically align items */
+    gap: 1em; /* Add spacing between elements */
 }
