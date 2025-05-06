@@ -1,4 +1,4 @@
-﻿const productNameInHeader = "MP Explorer";
+﻿const productNameInHeader = "MP Buddy";
 const productNameInTitle = productNameInHeader; // Name of the product for the Title
 const teamName = "Microsoft System Center Support team"; // Name of the team for the Footer
 const teamSupportUrl = "https://microsoft.github.io/CSS-SystemCenter/"

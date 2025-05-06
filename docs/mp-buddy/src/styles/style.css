@@ -20,11 +20,13 @@ header, footer {
 }
 
 #filterByText {
-    padding: 0.5em;
-    width: 50%;
+    font-size: 1.1em; /* Increase the font size slightly */
+    padding: 0.6em; /* Adjust padding for better spacing */
+    width: 50%; /* Keep the width consistent */
     display: block;
-    margin: 0 auto;
+    margin: 0.5em auto; /* Add some vertical spacing */
 }
+
 
 main {
     padding: 1em;
@@ -91,3 +93,23 @@ header a, footer a {
     header a:hover, footer a:hover {
         text-decoration: underline; /* Add underline on hover for better visibility */
     }
+
+#versionSelect {
+    font-size: 0.7em; /* Increase the font size for better visibility */
+    padding: 0.4em; /* Add padding inside the select element */
+    margin: 0.3em 0; /* Add vertical spacing around the select element */
+    min-width: 170px; /* Set a minimum width to make it larger */
+}
+
+#mpHeader {
+    font-size: 1.5em; /* Increase the font size for emphasis */
+    font-weight: bold; /* Make the text bold */
+    color: #0056a3; /* Set a nice blue color for the text */
+    background-color: #f0f8ff; /* Add a light background color */
+    padding: 0.5em; /* Add padding for spacing inside the element */
+    text-align: left; /* Center-align the text */
+    border: 2px solid #0056a3; /* Add a border with the same blue color */
+    border-radius: 10px; /* Round the corners of the border */
+    margin: 1em 0; /* Add vertical spacing around the element */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
