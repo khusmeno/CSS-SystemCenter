@@ -112,7 +112,7 @@ function parseSection(xmlDoc, tagName, title, type) {
     const nodes = xmlDoc.querySelectorAll(tagName);
     if (nodes.length === 0) return '';
 
-    let html = `<h2>${title} (${nodes.length})</h2>`;
+    //let html = `<h2>${title} (${nodes.length})</h2>`;
 
     // Collect all unique attribute names from the nodes
     const allAttributes = new Set();
@@ -126,11 +126,11 @@ function parseSection(xmlDoc, tagName, title, type) {
     const attributeList = ['ID', 'DisplayName', 'Description', ...Array.from(allAttributes).filter(attr => attr !== 'ID')];
 
     // Create table headers dynamically based on the attributes
-    html += `<table style="width: auto"><thead><tr>`;
+    let html = `<table class="table-section"><caption>${title} (${nodes.length})</caption><thead><tr>`;
     attributeList.forEach(attr => {
         html += `<th>${attr}</th>`;
     });
-    html += `</tr></thead><tbody>`;
+    html += `</tr></thead><tbody>`; // Ensure <tbody> is explicitly added
 
     // Populate table rows with attribute values
     nodes.forEach(node => {

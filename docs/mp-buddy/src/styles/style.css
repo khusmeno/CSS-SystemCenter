@@ -1,4 +1,4 @@
-body {
+﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -63,27 +63,28 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1em;
+    font-size: 1em;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    display: block; /* Make the table a block element */
 }
 
-table, th, td {
-    border: 1px solid #ccc;
-}
 
 th, td {
-    padding: 0.5em;
+    border: 1px solid #ccc; /* Add a light border */
+    padding: 0.75em; /* Add padding inside cells */
+    text-align: left; /* Align text to the left */
 }
 
-td {
-    background-color: #fff;
+th {
+    background-color: #f4f4f4; /* Add a light background to headers */
+    font-weight: bold; /* Make headers bold */
 }
 
 tbody tr:hover {
-    background-color: lightblue;
+    background-color: lightblue !important;
+    cursor: pointer;
 }
 
-tr:hover td {
-    background-color: transparent;
-}
 
 header a, footer a {
     color: white; /* Set the text color to white for better contrast */
@@ -95,10 +96,24 @@ header a, footer a {
     }
 
 #versionSelect {
-    font-size: 0.7em; /* Increase the font size for better visibility */
-    padding: 0.4em; /* Add padding inside the select element */
-    margin: 0.3em 0; /* Add vertical spacing around the select element */
-    min-width: 170px; /* Set a minimum width to make it larger */
+    font-size: 1em; /* Match the font size with .versionText */
+    padding: 0.3em; /* Reduce padding to match .versionText */
+    margin: 0.3em 0; /* Keep the vertical spacing consistent */
+    min-width: 150px; /* Ensure consistent width */
+    border: 1px solid #ccc; /* Add a subtle border for consistency */
+    border-radius: 4px; /* Match the border radius with .versionText */
+    background-color: #fff; /* Ensure a clean background */
+}
+
+.versionText {
+    font-size: 1em; /* Match the font size with the dropdown */
+    padding: 0.3em; /* Add padding for consistency */
+    border: 1px solid #ccc; /* Add a subtle border */
+    border-radius: 4px; /* Round the corners */
+    background-color: #fff; /* Ensure a clean background */
+    display: inline-block; /* Make it behave like a dropdown */
+    min-width: 150px; /* Ensure consistent width */
+    text-align: center; /* Center-align the text */
 }
 
 #mpHeader {
@@ -133,13 +148,38 @@ header a, footer a {
         min-width: 150px; /* Ensure the dropdown is wide enough */
     }
 
-.versionText {
-    font-size: 1em; /* Match the font size with the dropdown */
-    padding: 0.5em; /* Add padding for consistency */
-    border: 1px solid #ccc; /* Add a subtle border */
-    border-radius: 4px; /* Round the corners */
-    background-color: #fff; /* Ensure a clean background */
-    display: inline-block; /* Make it behave like a dropdown */
-    min-width: 150px; /* Ensure consistent width */
-    text-align: center; /* Center-align the text */
+thead th {
+    background-color: #0056a3; /* Use a blue background for the header */
+    color: white; /* Use white text for contrast */
 }
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Light gray for odd rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #ffffff; /* White for even rows */
+}
+
+.table-section {
+    width: auto; /* Keep the table width flexible */
+    margin-top: 1em; /* Add spacing above the table */
+    font-size: 1em; /* Ensure consistent font size */
+    border-collapse: collapse; /* Remove double borders */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    display: block; /* Make the table a block element */
+}
+
+    .table-section caption {
+        font-size: 1.3em; /* Slightly larger font size for emphasis */
+        font-weight: bold; /* Make the text bold */
+        color: #0056a3; /* Use a blue color to match the theme */
+        background-color: lightgray; /* Add a light blue background */
+        padding: 0.5em; /* Add padding for spacing */
+        text-align: left; /* Align the text to the left */
+        border: 1px solid #ccc; /* Add a subtle border */
+        border-radius: 5px; /* Round the corners */
+        margin: 1em 0 0.5em; /* Add spacing above and below the caption */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    }
+
