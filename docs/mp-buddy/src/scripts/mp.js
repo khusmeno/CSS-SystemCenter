@@ -91,7 +91,8 @@ async function displayMP(xmlDoc, filename) {
     });
 
 }
-
+/// Function to parse sections of the XML and generate HTML
+/// This function takes the XML document, the tag name to search for, the title for the section, and the type of element to be passed to element.html
 function parseSection(xmlDoc, tagName, title, type) {
     const nodes = xmlDoc.querySelectorAll(tagName);
     if (nodes.length === 0) return '';
