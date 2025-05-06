@@ -34,7 +34,7 @@ async function displayMP(xmlDoc, filename) {
 
     const sections = [];
 
-    sections.push(`<a href="../_data/${filename}/${mpVersion}/MP.xml" target="_blank">Show MP XML</a>`);
+    sections.push(`<a href="../MP_data/${filename}/${mpVersion}/MP.xml" target="_blank">Show MP XML</a>`);
 
     sections.push(`<h1>${filename}</h1>`);
     sections.push(`<h2>${displayName}</h2>`);
