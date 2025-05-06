@@ -2,8 +2,11 @@ import * as Functions from './functions.js';
 
 const mainContent = document.getElementById('mpDetails');
 const loading = document.getElementById('loading');
-
 const params = new URLSearchParams(window.location.search);
+
+Functions.setupHeaderFooterStyleTitleSearch(mainContent);
+//////////////////////////////////////////////////////////////////////////////
+
 const file = params.get('file');
 const mpVersion = params.get('version');
 
@@ -91,6 +94,7 @@ async function displayMP(xmlDoc, filename) {
     });
 
 }
+
 /// Function to parse sections of the XML and generate HTML
 /// This function takes the XML document, the tag name to search for, the title for the section, and the type of element to be passed to element.html
 function parseSection(xmlDoc, tagName, title, type) {
@@ -98,17 +102,101 @@ function parseSection(xmlDoc, tagName, title, type) {
     if (nodes.length === 0) return '';
 
     let html = `<h2>${title} (${nodes.length})</h2>`;
-    html += `<table style="width: auto"><thead><tr><th>ID</th><th>Description</th></tr></thead><tbody>`;
 
+    // Collect all unique attribute names from the nodes
+    const allAttributes = new Set();
     nodes.forEach(node => {
-        const id = node.getAttribute('ID') || '';
-        const name = node.getAttribute('DisplayName') || id;
-        const description = node.getAttribute('Description') || '';
-        html += `<tr><td><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${name}">${name}</a></td><td>${description}</td></tr>`;
+        Array.from(node.attributes).forEach(attr => {
+            allAttributes.add(attr.name);
+        });
+    });
+
+    // Ensure "ID" is the first column, followed by "DisplayName" and "Description", and then other attributes
+    const attributeList = ['ID', 'DisplayName', 'Description', ...Array.from(allAttributes).filter(attr => attr !== 'ID')];
+
+    // Create table headers dynamically based on the attributes
+    html += `<table style="width: auto"><thead><tr>`;
+    attributeList.forEach(attr => {
+        html += `<th>${attr}</th>`;
+    });
+    html += `</tr></thead><tbody>`;
+
+    // Populate table rows with attribute values
+    nodes.forEach(node => {
+        html += `<tr>`;
+
+        // Extract ID, DisplayName, and Description first
+        const idValue = node.getAttribute('ID') || '';
+        let displayName = '';
+        let description = '';
+
+        if (idValue) {
+            // Search for LanguagePack with ID="ENU"
+            let displayNode = xmlDoc.evaluate(
+                `/ManagementPack/LanguagePacks/LanguagePack[@ID='ENU']/DisplayStrings/DisplayString[@ElementID='${idValue}']`,
+                xmlDoc,
+                null,
+                XPathResult.FIRST_ORDERED_NODE_TYPE,
+                null
+            ).singleNodeValue;
+
+            // If not found, search for LanguagePack with IsDefault="true"
+            if (!displayNode) {
+                displayNode = xmlDoc.evaluate(
+                    `/ManagementPack/LanguagePacks/LanguagePack[@IsDefault='true']/DisplayStrings/DisplayString[@ElementID='${idValue}']`,
+                    xmlDoc,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue;
+            }
+
+            // Extract the DisplayName and Description values if found
+            if (displayNode) {
+                displayName = displayNode.querySelector('Name')?.textContent || '';
+                description = displayNode.querySelector('Description')?.textContent || '';
+            }
+        }
+
+        // Add ID column
+        html += `<td><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
+
+        // Add DisplayName and Description columns
+        html += `<td>${displayName}</td>`;
+        html += `<td>${description}</td>`;
+
+        // Add other attributes to the row
+        Array.from(allAttributes)
+            .filter(attr => attr !== 'ID')
+            .forEach(attr => {
+                const value = node.getAttribute(attr) || '';
+
+                if (value.includes('!')) {
+                    // Handle "MPalias!elementName" format
+                    const [alias, elementName] = value.split('!');
+                    const referenceNode = xmlDoc.evaluate(
+                        `/ManagementPack/Manifest/References/Reference[@Alias='${alias}']`,
+                        xmlDoc,
+                        null,
+                        XPathResult.FIRST_ORDERED_NODE_TYPE,
+                        null
+                    ).singleNodeValue;
+
+                    if (referenceNode) {
+                        html += `<td>${referenceNode.querySelector("ID").textContent}!<a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a></td>`;
+                    } else {
+                        html += `<td>${value}</td>`; // should never happen
+                    }
+                } else {
+                    // Display value as is if it doesn't contain "!"
+                    html += `<td>${value}</td>`;
+                }
+            });
+
+        html += `</tr>`;
     });
 
     html += '</tbody></table>';
     return html;
 }
 
-Functions.setupHeaderFooterStyleTitleSearch(mainContent);
