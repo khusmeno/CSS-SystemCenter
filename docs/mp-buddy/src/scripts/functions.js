@@ -30,7 +30,7 @@ export function createHeaderAndFooter() {
 }
 
 export async function loadXMLfile(relativePath) {
-    const filePath = `../_data/${relativePath}`; // Prepend the "_data" folder path
+    const filePath = `../MP_data/${relativePath}`; 
     try {
         const response = await fetch(filePath);
         const xmlText = await response.text();
