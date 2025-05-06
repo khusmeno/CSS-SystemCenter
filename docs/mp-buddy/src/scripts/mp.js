@@ -1,11 +1,11 @@
-import * as Functions from './functions.js';
+﻿import * as Functions from './functions.js';
 
 const mainContent = document.getElementById('mpDetails');
 const loading = document.getElementById('loading');
 const params = new URLSearchParams(window.location.search);
 
 Functions.setupHeaderFooterStyleTitleSearch(mainContent);
-//////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////
 
 const file = params.get('file');
 const mpVersion = params.get('version');
@@ -70,6 +70,22 @@ async function displayMP(xmlDoc, filename) {
     `);
     }
 
+    const tableLinks = `
+    <nav>
+        <ul>
+            <li><a href="#class-types">Class Types</a></li>
+            <li><a href="#relationship-types">Relationship Types</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="#monitors">Monitors</a></li>
+            <li><a href="#discoveries">Discoveries</a></li>
+            <li><a href="#views">Views</a></li>
+            <li><a href="#overrides">Overrides</a></li>
+            <li><a href="#schema-types">Schema Types</a></li>
+            <li><a href="#data-source-module-types">Data Source Module Types</a></li>
+        </ul>
+    </nav>
+`;
+    sections.push(tableLinks);
 
     /*
     //*[@ID]   ==> returns the "parent" node of the ID attribute
@@ -86,8 +102,7 @@ async function displayMP(xmlDoc, filename) {
     sections.push(parseSection(xmlDoc, 'View', 'Views', 'View'));
     sections.push(parseSection(xmlDoc, 'Override', 'Overrides', 'Override'));
     sections.push(parseSection(xmlDoc, 'SchemaTypes SchemaType', 'Schema Types', 'SchemaType'));
-    sections.push(parseSection(xmlDoc, 'DataSourceModuleType', 'DataSource Module Types', 'DataSourceModuleType'));
-
+    sections.push(parseSection(xmlDoc, 'DataSourceModuleType', 'Data Source Module Types', 'DataSourceModuleType'));
 
     mainContent.innerHTML = sections.join('');
 
@@ -112,9 +127,16 @@ function parseSection(xmlDoc, tagName, title, type) {
     const nodes = xmlDoc.querySelectorAll(tagName);
     if (nodes.length === 0) return '';
 
-    //let html = `<h2>${title} (${nodes.length})</h2>`;
+    // Generate a unique id for the table based on the title
+    const tableId = title.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with dashes and convert to lowercase
 
-    // Collect all unique attribute names from the nodes
+    // Create table headers dynamically based on the attributes
+    let html = `<table id="${tableId}" class="table-section">
+        <caption>
+            ${title} (${nodes.length})
+            <div class="back-to-top"><a href="#top" title="Back to Top">⬆ Back to Top</a></div>
+        </caption>
+        <thead><tr>`;
     const allAttributes = new Set();
     nodes.forEach(node => {
         Array.from(node.attributes).forEach(attr => {
@@ -122,27 +144,20 @@ function parseSection(xmlDoc, tagName, title, type) {
         });
     });
 
-    // Ensure "ID" is the first column, followed by "DisplayName" and "Description", and then other attributes
     const attributeList = ['ID', 'DisplayName', 'Description', ...Array.from(allAttributes).filter(attr => attr !== 'ID')];
-
-    // Create table headers dynamically based on the attributes
-    let html = `<table class="table-section"><caption>${title} (${nodes.length})</caption><thead><tr>`;
     attributeList.forEach(attr => {
         html += `<th>${attr}</th>`;
     });
-    html += `</tr></thead><tbody>`; // Ensure <tbody> is explicitly added
+    html += `</tr></thead><tbody>`;
 
     // Populate table rows with attribute values
     nodes.forEach(node => {
         html += `<tr>`;
-
-        // Extract ID, DisplayName, and Description first
         const idValue = node.getAttribute('ID') || '';
         let displayName = '';
         let description = '';
 
         if (idValue) {
-            // Search for LanguagePack with ID="ENU"
             let displayNode = xmlDoc.evaluate(
                 `/ManagementPack/LanguagePacks/LanguagePack[@ID='ENU']/DisplayStrings/DisplayString[@ElementID='${idValue}']`,
                 xmlDoc,
@@ -151,7 +166,6 @@ function parseSection(xmlDoc, tagName, title, type) {
                 null
             ).singleNodeValue;
 
-            // If not found, search for LanguagePack with IsDefault="true"
             if (!displayNode) {
                 displayNode = xmlDoc.evaluate(
                     `/ManagementPack/LanguagePacks/LanguagePack[@IsDefault='true']/DisplayStrings/DisplayString[@ElementID='${idValue}']`,
@@ -162,28 +176,21 @@ function parseSection(xmlDoc, tagName, title, type) {
                 ).singleNodeValue;
             }
 
-            // Extract the DisplayName and Description values if found
             if (displayNode) {
                 displayName = displayNode.querySelector('Name')?.textContent || '';
                 description = displayNode.querySelector('Description')?.textContent || '';
             }
         }
 
-        // Add ID column
         html += `<td><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
-
-        // Add DisplayName and Description columns
         html += `<td>${displayName}</td>`;
         html += `<td>${description}</td>`;
 
-        // Add other attributes to the row
         Array.from(allAttributes)
             .filter(attr => attr !== 'ID')
             .forEach(attr => {
                 const value = node.getAttribute(attr) || '';
-
                 if (value.includes('!')) {
-                    // Handle "MPalias!elementName" format
                     const [alias, elementName] = value.split('!');
                     const referenceNode = xmlDoc.evaluate(
                         `/ManagementPack/Manifest/References/Reference[@Alias='${alias}']`,
@@ -196,10 +203,9 @@ function parseSection(xmlDoc, tagName, title, type) {
                     if (referenceNode) {
                         html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a> in ${referenceNode.querySelector("ID").textContent}(${referenceNode.querySelector("Version").textContent})</td>`;
                     } else {
-                        html += `<td>${value}</td>`; // should never happen
+                        html += `<td>${value}</td>`;
                     }
                 } else {
-                    // Display value as is if it doesn't contain "!"
                     html += `<td>${value}</td>`;
                 }
             });
@@ -207,7 +213,7 @@ function parseSection(xmlDoc, tagName, title, type) {
         html += `</tr>`;
     });
 
-    html += '</tbody></table>';
+    html += `</tbody></table>`;
+    html += `<div class="back-to-top"><a href="#top" title="Back to Top">⬆ Back to Top</a></div>`; // Add Back to Top link below the table
     return html;
 }
-

@@ -183,3 +183,63 @@ tbody tr:nth-child(even) {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     }
 
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0;
+    display: flex;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+
+    nav ul li {
+        margin: 0;
+    }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #0056a3;
+            font-weight: bold;
+            padding: 0.5em 1em;
+            border: 1px solid #0056a3;
+            border-radius: 5px;
+            background-color: #f0f8ff;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+            nav ul li a:hover {
+                background-color: #0056a3;
+                color: white;
+            }
+
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+}
+
+caption .back-to-top {
+    display: inline-block; /* Ensure it behaves like a block element */
+    float: right; /* Align it to the right */
+    font-size: 0.7em; /* Slightly reduce the font size */
+    vertical-align: middle; /* Align it vertically with the text */
+}
+
+    caption .back-to-top a {
+        text-decoration: none; /* Remove underline */
+        color: #0056a3; /* Use a blue color for the link */
+        font-weight: bold; /* Make the text bold */
+        padding: 0.3em 0.4em; /* Add padding for better clickability */
+        border: 1px solid #0056a3; /* Add a border */
+        border-radius: 4px; /* Round the corners */
+        background-color: #f0f8ff; /* Add a light blue background */
+        transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
+    }
+
+        caption .back-to-top a:hover {
+            background-color: #0056a3; /* Change background color on hover */
+            color: white; /* Change text color on hover */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+        }
+
+nav {
+    margin-top: 1.5em; /* Add vertical space above the <nav> */
+}
