@@ -10,7 +10,7 @@ export function createHeader() {
     header.innerHTML = `
         <div class="container">
             <a href="../index.html" style="text-decoration: none"><h1>${productNameInHeader}</h1></a>
-            <input type="text" id="filterByText" placeholder="Filter ..." />
+            <input type="text" id="filterByText" placeholder="Filter on any text..." />
         </div>
     `;
     document.body.prepend(header); // Add the header at the top of the body

@@ -113,3 +113,33 @@ header a, footer a {
     margin: 1em 0; /* Add vertical spacing around the element */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
 }
+
+#combinedHeader {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    gap: 1em; /* Add spacing between elements */
+    margin: 1em 0; /* Add vertical spacing around the header */
+    font-size: 1.2em; /* Ensure consistent font size */
+}
+
+    #combinedHeader h1 {
+        margin: 0; /* Remove default margin */
+        font-size: 1.5em; /* Make the MP ID more prominent */
+    }
+
+    #combinedHeader select {
+        font-size: 1em; /* Match the font size with the label */
+        padding: 0.5em; /* Add padding for better usability */
+        min-width: 150px; /* Ensure the dropdown is wide enough */
+    }
+
+.versionText {
+    font-size: 1em; /* Match the font size with the dropdown */
+    padding: 0.5em; /* Add padding for consistency */
+    border: 1px solid #ccc; /* Add a subtle border */
+    border-radius: 4px; /* Round the corners */
+    background-color: #fff; /* Ensure a clean background */
+    display: inline-block; /* Make it behave like a dropdown */
+    min-width: 150px; /* Ensure consistent width */
+    text-align: center; /* Center-align the text */
+}

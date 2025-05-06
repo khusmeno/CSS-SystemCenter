@@ -38,28 +38,38 @@ async function displayMP(xmlDoc, filename) {
 
     sections.push(`<a href="../MP_data/${filename}/${mpVersion}/MP.xml" target="_blank">Show MP XML</a>`);
 
-    sections.push(`<h1 title="The ID of the MP">${filename}</h1>`);
-
     // Fetch available versions and populate the <select> element
     const versionsXml = await Functions.getAvailableMPVersions(filename);
     const versions = Array.from(versionsXml.getElementsByTagName('MPVersion'))
         .map(versionNode => versionNode.getAttribute('Version'));
 
-    const versionSelect = versions.length > 1
-        ? `<h2>
-        <label for="versionSelect">Version:</label>
-        <select id="versionSelect" title="Other versions of this MP are available.">
-            ${versions.map(version => `<option value="${version}" ${version === mpVersion ? 'selected' : ''}>${version}</option>`).join('')}
-        </select></h2>
-    `
-        : `<p><h2>Version: ${versions[0]}</h2></p>`;
-    sections.push(versionSelect);
-
-    sections.push(`<h3 title="The English (ENU) Name of the MP. Fallback is the Name element in the MP Manifest.">${displayName}</h3>`);
+    const combinedHeader = `
+    <div id="combinedHeader">
+        <h1 title="The ID of the MP">${filename}</h1>
+        ${versions.length > 1
+            ? `<label for="versionSelect">Version:</label>
+               <select id="versionSelect" title="Other versions of this MP are available.">
+                   ${versions.map(version => `<option value="${version}" ${version === mpVersion ? 'selected' : ''}>${version}</option>`).join('')}
+               </select>`
+            : `<span class="versionText">Version: ${versions[0]}</span>`}
+    </div>`;
+    sections.push(combinedHeader);
 
     if (description) {
-        sections.push(`<p title="The English (ENU) Description of the MP.">${description}</p>`);
+        sections.push(`
+        <div id="mpDetailsLine" style="display: flex; align-items: center; gap: 1em;">
+            <h3 title="The English (ENU) Name of the MP. Fallback is the Name element in the MP Manifest." style="margin: 0;">${displayName}</h3>
+            <p title="The English (ENU) Description of the MP." style="margin: 0;">${description}</p>
+        </div>
+    `);
+    } else {
+        sections.push(`
+        <div id="mpDetailsLine" style="display: flex; align-items: center; gap: 1em;">
+            <h3 title="The English (ENU) Name of the MP. Fallback is the Name element in the MP Manifest." style="margin: 0;">${displayName}</h3>
+        </div>
+    `);
     }
+
 
     /*
     //*[@ID]   ==> returns the "parent" node of the ID attribute
