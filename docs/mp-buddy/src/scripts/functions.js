@@ -30,9 +30,15 @@ export function createHeaderAndFooter() {
 }
 
 export async function loadXMLfile(relativePath) {
-    const filePath = `../MP_data/${relativePath}`; 
+    const filePath = `../MP_data/${relativePath}`;
     try {
         const response = await fetch(filePath);
+
+        // Check if the response status is OK (status code 200-299)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+        }
+
         const xmlText = await response.text();
         const parser = new DOMParser();
         return parser.parseFromString(xmlText, "application/xml");
@@ -45,8 +51,62 @@ export async function loadXMLfile(relativePath) {
 // Function to load a Management Pack (MP) using loadXMLfile
 export async function loadMP(filename, mpVersion) {
     const relativePath = `${filename}/${mpVersion}/MP.xml`; // Construct relative path
-    return await loadXMLfile(relativePath);
+
+    try {
+        // Attempt to load the MP.xml file
+        return await loadXMLfile(relativePath);
+    } catch (err) {
+        console.warn(`Failed to load ${relativePath}. Attempting to load List_MPVersion.xml...`);
+
+        try {
+            // Attempt to load List_MPVersion.xml
+            const listXml = await loadXMLfile(`${filename}/List_MPVersion.xml`);
+
+            // Parse the List_MPVersion.xml to find the highest version
+            const mpVersions = Array.from(listXml.getElementsByTagName('MPVersion'));
+            if (mpVersions.length === 0) {
+                throw new Error("No MPVersion nodes found in List_MPVersion.xml.");
+            }
+
+            // Find the highest version by treating the Version attribute as a System.Version equivalent
+            const highestVersionNode = mpVersions.reduce((maxNode, currentNode) => {
+                const maxVersion = maxNode.getAttribute('Version');
+                const currentVersion = currentNode.getAttribute('Version');
+
+                // Compare versions using JavaScript's localeCompare for semantic versioning
+                if (compareVersions(currentVersion, maxVersion) > 0) {
+                    return currentNode;
+                }
+                return maxNode;
+            });
+
+            const highestVersion = highestVersionNode.getAttribute('Version');
+            console.info(`Highest version found: ${highestVersion}`);
+
+            // Attempt to load the MP.xml file for the highest version
+            return await loadXMLfile(`${filename}/${highestVersion}/MP.xml`);
+        } catch (fallbackErr) {
+            console.error(`Failed to load List_MPVersion.xml or the highest version MP.xml:`, fallbackErr);
+            throw fallbackErr; // Rethrow the error if fallback also fails
+        }
+    }
 }
+
+// Helper function to compare semantic version strings
+function compareVersions(versionA, versionB) {
+    const aParts = versionA.split('.').map(Number);
+    const bParts = versionB.split('.').map(Number);
+
+    for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+        const a = aParts[i] || 0; // Default to 0 if part is missing
+        const b = bParts[i] || 0; // Default to 0 if part is missing
+
+        if (a > b) return 1;
+        if (a < b) return -1;
+    }
+    return 0; // Versions are equal
+}
+
 
 export function setupSearchFilter(tableSelector) {
     const searchInput = document.getElementById("filterByText");
