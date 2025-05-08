@@ -82,7 +82,7 @@ th {
 
 tbody tr:hover {
     background-color: lightblue !important;
-    cursor: pointer;
+    cursor: default;
 }
 
 
