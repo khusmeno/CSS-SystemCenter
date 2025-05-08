@@ -62,18 +62,27 @@ export async function loadMP(filename, mpVersion) {
             // Attempt to load List_MPVersion.xml
             const listXml = await loadXMLfile(`${filename}/List_MPVersion.xml`);
 
-            // Parse the List_MPVersion.xml to find the highest version
+            // Parse the List_MPVersion.xml to find versions greater than mpVersion
             const mpVersions = Array.from(listXml.getElementsByTagName('MPVersion'));
             if (mpVersions.length === 0) {
                 throw new Error("No MPVersion nodes found in List_MPVersion.xml.");
             }
 
-            // Find the highest version by treating the Version attribute as a System.Version equivalent
-            const highestVersionNode = mpVersions.reduce((maxNode, currentNode) => {
+            // Filter versions greater than mpVersion
+            const validVersions = mpVersions.filter(node => {
+                const version = node.getAttribute('Version');
+                return compareVersions(version, mpVersion) > 0; // Keep only versions greater than mpVersion
+            });
+
+            if (validVersions.length === 0) {
+                throw new Error(`No versions greater than ${mpVersion} found in List_MPVersion.xml.`);
+            }
+
+            // Find the highest version among the valid versions
+            const highestVersionNode = validVersions.reduce((maxNode, currentNode) => {
                 const maxVersion = maxNode.getAttribute('Version');
                 const currentVersion = currentNode.getAttribute('Version');
 
-                // Compare versions using JavaScript's localeCompare for semantic versioning
                 if (compareVersions(currentVersion, maxVersion) > 0) {
                     return currentNode;
                 }
@@ -81,7 +90,7 @@ export async function loadMP(filename, mpVersion) {
             });
 
             const highestVersion = highestVersionNode.getAttribute('Version');
-            console.info(`Highest version found: ${highestVersion}`);
+            console.info(`Highest version greater than ${mpVersion} found: ${highestVersion}`);
 
             // Attempt to load the MP.xml file for the highest version
             return await loadXMLfile(`${filename}/${highestVersion}/MP.xml`);
