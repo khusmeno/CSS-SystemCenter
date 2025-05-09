@@ -70,39 +70,121 @@ async function displayMP(xmlDoc, filename) {
     `);
     }
 
+    const sectionTitles = []; // Track titles of sections that are successfully added
+    // Add all parseSection calls and track successful sections
+    const addSection = (tagName, title, type) => {
+        const section = parseSection(xmlDoc, tagName, title, type);
+        if (section) {
+            sections.push(section);
+            sectionTitles.push(title); // Track the title of the successfully added section
+        }
+    };
+    //ManagementPack Schema v2.0  https://learn.microsoft.com/en-us/system-center/scsm/work-mps-xml?#changes-to-the-system-center-common-schema
+    addSection('TypeDefinitions EntityTypes ClassTypes ClassType', 'ClassTypes', 'ClassType');
+    addSection('TypeDefinitions EntityTypes RelationshipTypes RelationshipType', 'RelationshipTypes', 'RelationshipType');
+    addSection('TypeDefinitions EnumerationTypes EnumerationValue', 'EnumerationTypes', 'EnumerationValue');
+    addSection('TypeDefinitions TypeProjections TypeProjection', 'TypeProjections', 'TypeProjection');
+    addSection('TypeDefinitions DataTypes DataType', 'DataTypes', 'DataType');
+    addSection('TypeDefinitions SchemaTypes SchemaType', 'SchemaTypes', 'SchemaType');
+    addSection('TypeDefinitions SecureReferences SecureReference', 'SecureReferences', 'SecureReference');
+    addSection('TypeDefinitions ModuleTypes DataSourceModuleType', 'DataSourceModuleTypes', 'DataSourceModuleType');
+    addSection('TypeDefinitions ModuleTypes ProbeActionModuleType', 'ProbeActionModuleTypes', 'ProbeActionModuleType');
+    addSection('TypeDefinitions ModuleTypes ConditionDetectionModuleType', 'ConditionDetectionModuleTypes', 'ConditionDetectionModuleType');
+    addSection('TypeDefinitions ModuleTypes WriteActionModuleType', 'WriteActionModuleTypes', 'WriteActionModuleType');
+    addSection('TypeDefinitions MonitorTypes UnitMonitorType', 'UnitMonitorTypes', 'UnitMonitorType');
+    //addSection('TypeDefinitions Extensions', 'Extensions?', 'Extension?');  //todo ?
+
+    addSection('Categories Category', 'Categories', 'Category');
+
+    addSection('Monitoring Discoveries Discovery', 'Discoveries', 'Discovery');
+    addSection('Monitoring Rules Rule', 'Rules', 'Rule');
+    addSection('Monitoring Tasks Rule', 'Tasks', 'Task');
+    addSection('Monitoring Monitors AggregateMonitor', 'AggregateMonitors', 'AggregateMonitor');
+    addSection('Monitoring Monitors UnitMonitor', 'UnitMonitors', 'UnitMonitor');
+    addSection('Monitoring Monitors DependencyMonitor', 'DependencyMonitors', 'DependencyMonitor');
+    addSection('Monitoring Diagnostics Diagnostic', 'Diagnostics', 'Diagnostic');
+    addSection('Monitoring Recoveries Diagnostic', 'Recoveries', 'Recovery');
+    addSection('Monitoring Overrides CategoryOverride', 'CategoryOverrides', 'CategoryOverride');
+    addSection('Monitoring Overrides MonitoringOverride', 'MonitoringOverrides', 'MonitoringOverride');
+    addSection('Monitoring Overrides RuleConfigurationOverride', 'RuleConfigurationOverrides', 'RuleConfigurationOverride');
+    addSection('Monitoring Overrides RulePropertyOverride', 'RulePropertyOverrides', 'RulePropertyOverride');
+    addSection('Monitoring Overrides MonitorConfigurationOverride', 'MonitorConfigurationOverrides', 'MonitorConfigurationOverride');
+    addSection('Monitoring Overrides MonitorPropertyOverride', 'MonitorPropertyOverrides', 'MonitorPropertyOverride');
+    addSection('Monitoring Overrides DiagnosticConfigurationOverride', 'DiagnosticConfigurationOverrides', 'DiagnosticConfigurationOverride');
+    addSection('Monitoring Overrides DiagnosticPropertyOverride', 'DiagnosticPropertyOverrides', 'DiagnosticPropertyOverride');
+    addSection('Monitoring Overrides RecoveryConfigurationOverride', 'RecoveryConfigurationOverrides', 'RecoveryConfigurationOverride');
+    addSection('Monitoring Overrides RecoveryPropertyOverride', 'RecoveryPropertyOverrides', 'RecoveryPropertyOverride');
+    addSection('Monitoring Overrides DiscoveryConfigurationOverride', 'DiscoveryConfigurationOverrides', 'DiscoveryConfigurationOverride');
+    addSection('Monitoring Overrides DiscoveryPropertyOverride', 'DiscoveryPropertyOverrides', 'DiscoveryPropertyOverride');
+    addSection('Monitoring Overrides SecureReferenceOverride', 'SecureReferenceOverrides', 'SecureReferenceOverride');
+    addSection('Monitoring ServiceLevelObjectives MonitorSLO', 'MonitorSLOs', 'MonitorSLO');
+    addSection('Monitoring ServiceLevelObjectives PerformanceCounterSLO', 'PerformanceCounterSLOs', 'PerformanceCounterSLO');
+    //addSection('Monitoring Extensions', 'Extensions?', 'Extension?');  //todo ?
+
+    addSection('ConfigurationGroups ConfigurationGroup', 'ConfigurationGroups', 'ConfigurationGroup');
+
+    addSection('Templates Template', 'Templates', 'Template');
+    addSection('Templates ObjectTemplate', 'ObjectTemplates', 'ObjectTemplate');
+
+    addSection('PresentationTypes ViewTypes ViewType', 'ViewTypes', 'ViewType');
+    addSection('PresentationTypes UIPages UIPage', 'UIPages', 'UIPage');
+    addSection('PresentationTypes UIPageSets UIPageSet', 'UIPageSets', 'UIPageSet');
+    //addSection('PresentationTypes Extensions', 'Extensions?', 'Extension?');  //todo ?
+
+    addSection('Presentation Forms Form', 'Forms', 'Form');
+    addSection('Presentation ConsoleTasks ConsoleTask', 'ConsoleTasks', 'ConsoleTask');
+    addSection('Presentation Views View', 'Views', 'View');
+    addSection('Presentation Folders Folder', 'Folders', 'Folder');
+    addSection('Presentation FolderItems FolderItem', 'FolderItems', 'FolderItem');
+    addSection('Presentation ImageReferences ImageReference', 'ImageReferences', 'ImageReference');
+    addSection('Presentation StringResources StringResource', 'StringResources', 'StringResource');
+    addSection('Presentation ComponentTypes ComponentType', 'ComponentTypes', 'ComponentType');
+    addSection('Presentation ComponentReferences ComponentReference', 'ComponentReferences', 'ComponentReference');
+    addSection('Presentation ComponentOverrides ComponentOverride', 'ComponentOverrides', 'ComponentOverride');
+    addSection('Presentation ComponentImplementations ComponentImplementation', 'ComponentImplementations', 'ComponentImplementation');
+    addSection('Presentation ComponentBehaviors ComponentBehavior', 'ComponentBehaviors', 'ComponentBehavior');
+    addSection('Presentation BehaviorTypes BehaviorType', 'BehaviorTypes', 'BehaviorType');
+    addSection('Presentation BehaviorImplementations BehaviorImplementation', 'BehaviorImplementations', 'BehaviorImplementationComponentType');
+    //addSection('Presentation Extensions', 'Extensions?', 'Extension?');  //todo ?
+
+    addSection('Warehouse Outriggers Outrigger', 'Outriggers', 'Outrigger');
+    addSection('Warehouse Dimensions Dimension', 'Dimensions', 'Dimension');
+    addSection('Warehouse Measures Measure', 'Measures', 'Measure');
+    addSection('Warehouse Facts Fact', 'Facts', 'Fact');
+    addSection('Warehouse Facts RelationshipFact', 'RelationshipFacts', 'RelationshipFact');
+    addSection('Warehouse WarehouseModules WarehouseModule', 'WarehouseModules', 'WarehouseModule');
+    //addSection('Warehouse Extensions', 'Extensions?', 'Extension?');  //todo ?
+
+    addSection('Reporting DataWarehouseScripts DataWarehouseScript', 'DataWarehouseScripts', 'DataWarehouseScript');
+    addSection('Reporting DataWarehouseDataSets DataWarehouseDataSet', 'DataWarehouseDataSets', 'DataWarehouseDataSet');
+    addSection('Reporting Reports Report', 'Reports', 'Report');
+    addSection('Reporting LinkedReports LinkedReport', 'LinkedReports', 'LinkedReport');
+    addSection('Reporting ReportParameterControls ReportParameterControl', 'ReportParameterControls', 'ReportParameterControl');
+    //addSection('Reporting Extensions', 'Extensions?', 'Extension?');  //todo ?
+
+    addSection('LanguagePacks LanguagePack', 'LanguagePacks', 'LanguagePack'); // todo: ???
+
+    addSection('Resources Resource', 'Resources', 'Resource');
+    addSection('Resources Assembly', 'Assemblies', 'Assembly');
+    addSection('Resources ReportResource', 'ReportResources', 'ReportResource');
+    addSection('Resources Image', 'Images', 'Image');
+    addSection('Resources DeployableResource', 'DeployableResources', 'DeployableResource');
+    addSection('Resources DeployableAssembly', 'DeployableAssemblies', 'DeployableAssembly');
+
+    // addSection('Extensions ?', 'Extensions?', 'Extension?'); //todo: e.g. ServiceOffering, RequestOffering ...
+
+    // Dynamically generate navigation based on sections that exist
     const tableLinks = `
     <nav>
         <ul>
-            <li><a href="#class-types">Class Types</a></li>
-            <li><a href="#relationship-types">Relationship Types</a></li>
-            <li><a href="#rules">Rules</a></li>
-            <li><a href="#monitors">Monitors</a></li>
-            <li><a href="#discoveries">Discoveries</a></li>
-            <li><a href="#views">Views</a></li>
-            <li><a href="#overrides">Overrides</a></li>
-            <li><a href="#schema-types">Schema Types</a></li>
-            <li><a href="#data-source-module-types">Data Source Module Types</a></li>
+            ${sectionTitles.map(title => `<li><a href="#${title.toLowerCase()}">${title}</a></li>`).join('')}
         </ul>
     </nav>
-`;
-    sections.push(tableLinks);
+    `;
 
-    /*
-    //*[@ID]   ==> returns the "parent" node of the ID attribute
-    //@ID      ==> returns "just" the ID attribute of the node
-    */
-    //const countOfIDs = xmlDoc.evaluate("//*[@ID]", xmlDoc, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null).snapshotLength;  
-    //sections.push(`<h3>ID attrs count: ${countOfIDs}</h3>`);
-
-    sections.push(parseSection(xmlDoc, 'ClassTypes ClassType', 'Class Types', 'ClassType'));
-    sections.push(parseSection(xmlDoc, 'RelationshipType', 'Relationship Types', 'RelationshipType'));
-    sections.push(parseSection(xmlDoc, 'Rule', 'Rules', 'Rule'));
-    sections.push(parseSection(xmlDoc, 'Monitor', 'Monitors', 'Monitor'));
-    sections.push(parseSection(xmlDoc, 'Discovery', 'Discoveries', 'Discovery'));
-    sections.push(parseSection(xmlDoc, 'View', 'Views', 'View'));
-    sections.push(parseSection(xmlDoc, 'Override', 'Overrides', 'Override'));
-    sections.push(parseSection(xmlDoc, 'SchemaTypes SchemaType', 'Schema Types', 'SchemaType'));
-    sections.push(parseSection(xmlDoc, 'DataSourceModuleType', 'Data Source Module Types', 'DataSourceModuleType'));
+    // Insert the navigation after mpDetailsLine
+    const mpDetailsLineIndex = sections.findIndex(section => section.includes('id="mpDetailsLine"'));
+    sections.splice(mpDetailsLineIndex + 1, 0, tableLinks);
 
     mainContent.innerHTML = sections.join('');
 
