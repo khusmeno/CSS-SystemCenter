@@ -190,15 +190,41 @@ async function displayMP(xmlDoc, filename) {
 
     // Add event listener for version change
     const versionSelectElement = document.getElementById('versionSelect');
-    versionSelectElement.addEventListener('change', (event) => {
-        const selectedVersion = event.target.value;
+    if (versionSelectElement) {
+        versionSelectElement.addEventListener('change', (event) => {
+            const selectedVersion = event.target.value;
 
-        // Update the URL with the new version parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('version', selectedVersion);
+            // Update the URL with the new version parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('version', selectedVersion);
 
-        // Refresh the page with the updated URL
-        window.location.search = urlParams.toString();
+            // Refresh the page with the updated URL
+            window.location.search = urlParams.toString();
+        });
+    }
+
+    // Add a floating "Back to Top" button
+    const backToTopButton = document.createElement('button');
+    backToTopButton.id = 'backToTop';
+    backToTopButton.title = 'Back to Top';
+    //backToTopButton.innerHTML = `<img src="../images/up-arrow.png" alt="Back to Top" style="width: 30px; height: 30px;">`;
+    backToTopButton.innerHTML = `⬆`; // Unicode up arrow
+    backToTopButton.style.fontSize = '30px'; // Adjust size
+
+    document.body.appendChild(backToTopButton);
+
+    // Add scroll event listener to show/hide the button
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    // Add click event listener to scroll to the top
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
 }
@@ -214,11 +240,10 @@ function parseSection(xmlDoc, tagName, title, type) {
 
     // Create table headers dynamically based on the attributes
     let html = `<table id="${tableId}" class="table-section">
-        <caption>
-            ${title} (${nodes.length})
-            <div class="back-to-top"><a href="#top" title="Back to Top">⬆ Back to Top</a></div>
-        </caption>
-        <thead><tr>`;
+           <caption>
+               ${title} (${nodes.length})
+           </caption>
+           <thead><tr>`;
     const allAttributes = new Set();
     nodes.forEach(node => {
         Array.from(node.attributes).forEach(attr => {
@@ -296,6 +321,5 @@ function parseSection(xmlDoc, tagName, title, type) {
     });
 
     html += `</tbody></table>`;
-    html += `<div class="back-to-top"><a href="#top" title="Back to Top">⬆ Back to Top</a></div>`; // Add Back to Top link below the table
-    return html;
+    return html; // Removed the "Back to Top" button
 }

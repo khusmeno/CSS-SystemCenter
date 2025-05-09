@@ -264,3 +264,27 @@ table tr {
     font-family: Verdana, sans-serif, Arial; /* Set the font family */
     font-size: 11px; /* Set the font size */
 }
+
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0056a3;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+    #backToTop:hover {
+        background-color: #003d7a;
+    }
+
+    #backToTop img {
+        display: block;
+        margin: 0 auto;
+    }
+   
