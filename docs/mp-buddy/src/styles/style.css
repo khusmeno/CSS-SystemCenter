@@ -7,6 +7,8 @@
 }
 
 header, footer {
+    padding: 0.2em; /* Reduce padding */
+    font-size: 0.5em; /* Reduce font size */
     background: #0056a3;
     color: white;
     padding: 1em;
@@ -77,7 +79,7 @@ th, td {
 
 th {
     background-color: #f4f4f4; /* Add a light background to headers */
-    font-weight: bold; /* Make headers bold */
+    font-weight: 550; /* Slightly lighter than bold */
 }
 
 tbody tr:hover {
@@ -96,23 +98,22 @@ header a, footer a {
     }
 
 #versionSelect {
-    font-size: 1em; /* Match the font size with .versionText */
-    padding: 0.3em; /* Reduce padding to match .versionText */
-    margin: 0.3em 0; /* Keep the vertical spacing consistent */
-    min-width: 150px; /* Ensure consistent width */
+    font-size: 0.9em; /* Reduce font size */
+    padding: 0.2em; /* Reduce padding */
+    min-width: 120px; /* Reduce minimum width */
     border: 1px solid #ccc; /* Add a subtle border for consistency */
     border-radius: 4px; /* Match the border radius with .versionText */
     background-color: #fff; /* Ensure a clean background */
 }
 
 .versionText {
-    font-size: 1em; /* Match the font size with the dropdown */
-    padding: 0.3em; /* Add padding for consistency */
+    font-size: 0.9em; /* Reduce font size */
+    padding: 0.2em; /* Reduce padding */
+    min-width: 120px; /* Reduce minimum width */
     border: 1px solid #ccc; /* Add a subtle border */
     border-radius: 4px; /* Round the corners */
     background-color: #fff; /* Ensure a clean background */
     display: inline-block; /* Make it behave like a dropdown */
-    min-width: 150px; /* Ensure consistent width */
     text-align: center; /* Center-align the text */
 }
 
@@ -130,16 +131,15 @@ header a, footer a {
 }
 
 #combinedHeader {
+    font-size: 1em; /* Reduce font size */
+    gap: 0.5em; /* Reduce spacing between elements */
+    margin: 0.5em 0; /* Reduce vertical spacing */
     display: flex;
     align-items: center; /* Vertically align items */
-    gap: 1em; /* Add spacing between elements */
-    margin: 1em 0; /* Add vertical spacing around the header */
-    font-size: 1.2em; /* Ensure consistent font size */
 }
 
     #combinedHeader h1 {
-        margin: 0; /* Remove default margin */
-        font-size: 1.5em; /* Make the MP ID more prominent */
+        font-size: 1.2em; /* Reduce the size of the MP ID */
     }
 
     #combinedHeader select {
@@ -149,42 +149,43 @@ header a, footer a {
     }
 
 thead th {
-    background-color: #0056a3; /* Use a blue background for the header */
-    color: white; /* Use white text for contrast */
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #f9f9f9; /* Light gray for odd rows */
+    background-color: #F4F4F4; /* Use a blue background for the header */
+    /*color: white;*/ /* Use white text for contrast */
 }
 
 tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray for odd rows */
+}
+
+tbody tr:nth-child(odd) {
     background-color: #ffffff; /* White for even rows */
 }
 
 .table-section {
     width: auto; /* Keep the table width flexible */
-    margin-top: 1em; /* Add spacing above the table */
-    font-size: 1em; /* Ensure consistent font size */
+    margin-top: 1.5em; /* Add vertical space before each table */
+    font-size: 0.9em; /* Ensure consistent font size */
     border-collapse: collapse; /* Remove double borders */
     overflow-x: auto; /* Enable horizontal scrolling */
     display: block; /* Make the table a block element */
 }
 
+
     .table-section caption {
-        font-size: 1.3em; /* Slightly larger font size for emphasis */
-        font-weight: bold; /* Make the text bold */
+        font-size: 1em; /* Reduce font size for the caption */
+        font-weight: bold; /* Keep the text bold */
         color: #0056a3; /* Use a blue color to match the theme */
-        background-color: lightgray; /* Add a light blue background */
-        padding: 0.5em; /* Add padding for spacing */
+        background-color: #F4F4F4; /* Add a light blue background */
+        padding: 0.3em; /* Reduce padding for spacing */
         text-align: left; /* Align the text to the left */
         border: 1px solid #ccc; /* Add a subtle border */
-        border-radius: 5px; /* Round the corners */
-        margin: 1em 0 0.5em; /* Add spacing above and below the caption */
+        border-radius: 5px 5px 0 0; /* Round the corners */
+        margin: 0.5em 0 0; /* Reduce spacing above and below the caption */
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     }
 
 nav {
-    margin-top: 1.5em; /* Add vertical space above the <nav> */
+    margin-top: 1em; /* Reduce vertical space above the <nav> */
 }
 
     nav ul {
@@ -192,7 +193,7 @@ nav {
         padding: 0.3em;
         margin: 0.5em 0;
         display: flex;
-        gap: 1em;
+        gap: 0.5em;
         flex-wrap: wrap;
         flex-direction: column; /* Stack links vertically on smaller screens */
         align-items: flex-start; /* Align links to the left */
@@ -202,6 +203,7 @@ nav {
     nav ul {
         flex-direction: row; /* Display links in a row on larger screens */
         justify-content: center; /* Center-align the links */
+        gap: 0.5em;
     }
 }
 
@@ -210,12 +212,13 @@ nav ul li {
 }
 
     nav ul li a {
+        font-size: 0.8em; /* Reduce font size */
         text-decoration: none;
         color: #0056a3;
         font-weight: bold;
-        padding: 0.5em 1em;
-        border: 1px solid #0056a3;
-        border-radius: 5px;
+        padding: 0.2em 0.5em; /* Reduce padding */
+        border-radius: 3px; /* Slightly reduce border radius */
+        border: 1px solid #0056a3; /* Keep the border for consistency */
         background-color: #f0f8ff;
         transition: background-color 0.3s, color 0.3s;
     }
@@ -254,11 +257,22 @@ caption .back-to-top {
         }
 
 #mpDetailsLine {
-    margin-top: 0.5em; /* Reduce the vertical spacing above the element */
+    margin-top: 0.3em; /* Reduce vertical spacing */
+    gap: 0.5em; /* Reduce spacing between elements */
     display: flex; /* Use flexbox for layout */
     align-items: center; /* Vertically align items */
-    gap: 1em; /* Add spacing between elements */
+    font-size: 0.9em; /*Reduce font size */
 }
+
+    #mpDetailsLine h3 {
+        font-size: 1em;  /*Reduce font size */
+        margin: 0; /* Keep margins consistent */
+    }
+
+    #mpDetailsLine p {
+        font-size: 0.9em; /* Reduce font size */
+        margin: 0; /* Keep margins consistent */
+    }
 
 table tr {
     font-family: Verdana, sans-serif, Arial; /* Set the font family */
@@ -286,5 +300,15 @@ table tr {
     #backToTop img {
         display: block;
         margin: 0 auto;
+    }
+
+a {
+    text-decoration: none; /* Remove underline */
+    color: #0056a3; /* Use a distinct blue color */
+}
+
+    a:hover {
+        border-bottom: 2px solid #0056a3; /* Add a bottom border on hover */
+        color: #003d7a; /* Darken the color on hover */
     }
    

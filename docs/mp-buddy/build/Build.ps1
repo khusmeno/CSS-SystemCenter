@@ -9,7 +9,8 @@ $dataFolder = "..\src\MP_data"
 
 # todo extract unsealed MP.xmls from mp and mpb files in staging into staging .......................
 # 1. MPB
-
+[reflection.assembly]::loadfrom((Get-ChildItem -Path "Microsoft.EnterpriseManagement.Packaging.dll").FullName)[reflection.assembly]::loadfrom((Get-ChildItem -Path "Microsoft.EnterpriseManagement.Core.dll").FullName)$mpbReader = [Microsoft.EnterpriseManagement.Packaging.ManagementPackBundleFactory]::CreateBundleReader()  $emg = new-object Microsoft.EnterpriseManagement.EnterpriseManagementGroup localhost  $mpb = $mpbReader.Read("$PWD\Administration.mpb", $emg) 
+$mpbReader.Read( (Get-ChildItem -Path "$stagingFolder\Microsoft.SystemCenter.MicrosoftAzure.mpb"), $null)
 
 # 2. MP
 
