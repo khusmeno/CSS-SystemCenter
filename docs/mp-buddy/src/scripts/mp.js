@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(waitForNav); // Stop checking once nav items and table sections are found
 
             // Define start and end colors for the gradient
-            const startColor = [255, 87, 51]; // RGB for #FF5733
+            const startColor = [255, 193, 161]; // RGB for #FFC1A1 (Softer peach tone)
             const endColor = [51, 255, 87]; // RGB for #33FF57
 
             // Generate gradient colors
