@@ -185,7 +185,7 @@ tbody tr:nth-child(odd) {
     }
 
 nav {
-    margin-top: 1em; /* Reduce vertical space above the <nav> */
+    margin-top: 0.1em; /* Reduce vertical space above the <nav> */
 }
 
     nav ul {
@@ -212,20 +212,22 @@ nav ul li {
 }
 
     nav ul li a {
-        font-size: 0.8em; /* Reduce font size */
+        font-size: 0.8em;
         text-decoration: none;
         color: #0056a3;
-        font-weight: bold;
-        padding: 0.2em 0.5em; /* Reduce padding */
-        border-radius: 3px; /* Slightly reduce border radius */
-        border: 1px solid #0056a3; /* Keep the border for consistency */
-        background-color: #f0f8ff;
-        transition: background-color 0.3s, color 0.3s;
+        padding: 0.4em 0.6em;
+        border-radius: 5px;
+        border: 1px solid #0056a3;
+        background-color: #f0f8ff; /* Light blue background */
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
     }
 
         nav ul li a:hover {
-            background-color: #0056a3;
-            color: white;
+            text-decoration: none; /* Remove underline */
+            background-color: #0056a3; /* Change background color on hover */
+            color: white; /* Change text color to white on hover */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effects */
         }
 
 html {
@@ -265,7 +267,7 @@ caption .back-to-top {
 }
 
     #mpDetailsLine h3 {
-        font-size: 1em;  /*Reduce font size */
+        font-size: 1em; /*Reduce font size */
         margin: 0; /* Keep margins consistent */
     }
 
@@ -281,8 +283,9 @@ table tr {
 
 #backToTop {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    top: 50%; /* Position the button in the middle vertically */
+    right: 20px; /* Keep it 20px from the right edge */
+    transform: translateY(-50%); /* Adjust for the button's height to center it */
     background-color: #0056a3;
     border: none;
     border-radius: 50%;
@@ -291,16 +294,21 @@ table tr {
     display: none; /* Initially hidden */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     z-index: 1000;
+    font-size: 30px; /* Adjust size of the arrow */
+    color: rgba(255, 255, 255, 0.5); /* Make the arrow semi-transparent */
 }
 
     #backToTop:hover {
         background-color: #003d7a;
+        color: rgba(255, 255, 255, 0.8); /* Make the arrow slightly more visible on hover */
     }
+
 
     #backToTop img {
         display: block;
         margin: 0 auto;
     }
+
 
 a {
     text-decoration: none; /* Remove underline */
@@ -311,4 +319,64 @@ a {
         border-bottom: 2px solid #0056a3; /* Add a bottom border on hover */
         color: #003d7a; /* Darken the color on hover */
     }
-   
+
+/* Tree View Styling */
+.tree-view {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    color: #0056a3;
+}
+
+    .tree-view li {
+        margin: 0.5em 0;
+    }
+
+        .tree-view li ul {
+            list-style: none;
+            margin-left: 1.5em; /* Indent subcategories */
+            padding-left: 0;
+        }
+
+        .tree-view li .tree-category {
+            font-weight: bold;
+            color: #003d7a;
+            margin-bottom: 0.2em;
+            display: none;            
+        }
+
+        .tree-view li a {
+            text-decoration: none;
+            color: #0056a3;
+        }
+
+            .tree-view li a:hover {
+                text-decoration: underline;
+                color: #003d7a;
+            }
+
+/* Sorted List Styling */
+.sorted-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 0.9em;
+    color: #0056a3;
+}
+
+    .sorted-list li {
+        margin: 0.5em 0;
+    }
+
+        .sorted-list li a {
+            text-decoration: none;
+            color: #0056a3;
+        }
+
+            .sorted-list li a:hover {
+                text-decoration: underline;
+                color: #003d7a;
+            }

@@ -71,14 +71,23 @@ async function displayMP(xmlDoc, filename) {
     }
 
     const sectionTitles = []; // Track titles of sections that are successfully added
-    // Add all parseSection calls and track successful sections
+    const sectionGroups = {}; // Object to group sections by category
     const addSection = (tagName, title, type) => {
         const section = parseSection(xmlDoc, tagName, title, type);
         if (section) {
             sections.push(section);
             sectionTitles.push(title); // Track the title of the successfully added section
+
+            // Dynamically group sections by their tagName prefix
+            const category = tagName.split(' ')[0]; // Extract the first part of the tagName
+            if (!sectionGroups[category]) {
+                sectionGroups[category] = [];
+            }
+            sectionGroups[category].push({ id: title.toLowerCase(), title });
         }
     };
+
+
     //ManagementPack Schema v2.0  https://learn.microsoft.com/en-us/system-center/scsm/work-mps-xml?#changes-to-the-system-center-common-schema
     addSection('TypeDefinitions EntityTypes ClassTypes ClassType', 'ClassTypes', 'ClassType');
     addSection('TypeDefinitions EntityTypes RelationshipTypes RelationshipType', 'RelationshipTypes', 'RelationshipType');
@@ -173,18 +182,31 @@ async function displayMP(xmlDoc, filename) {
 
     // addSection('Extensions ?', 'Extensions?', 'Extension?'); //todo: e.g. ServiceOffering, RequestOffering ...
 
-    // Dynamically generate navigation based on sections that exist
+    // Flatten and sort sections alphabetically by title
+    const sortedSections = Object.values(sectionGroups)
+        .flat() // Flatten the grouped sections into a single array
+        .sort((a, b) => a.title.localeCompare(b.title)); // Sort alphabetically by title
+
+    // Generate a flat, sorted list for navigation
     const tableLinks = `
-    <nav>
-        <ul>
-            ${sectionTitles.map(title => `<li><a href="#${title.toLowerCase()}">${title}</a></li>`).join('')}
-        </ul>
-    </nav>
-    `;
+<nav>
+    <ul class="sorted-list">
+        ${sortedSections
+            .map(
+                (section) =>
+                    `<li><a href="#${section.id}">${section.title}</a></li>`
+            )
+            .join('')}
+    </ul>
+</nav>
+`;
 
     // Insert the navigation after mpDetailsLine
-    const mpDetailsLineIndex = sections.findIndex(section => section.includes('id="mpDetailsLine"'));
+    const mpDetailsLineIndex = sections.findIndex((section) =>
+        section.includes('id="mpDetailsLine"')
+    );
     sections.splice(mpDetailsLineIndex + 1, 0, tableLinks);
+
 
     mainContent.innerHTML = sections.join('');
 
@@ -323,3 +345,63 @@ function parseSection(xmlDoc, tagName, title, type) {
     html += `</tbody></table>`;
     return html; // Removed the "Back to Top" button
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const waitForNav = setInterval(() => {
+        const navLinks = document.querySelectorAll('nav ul li a');
+        const tableSections = document.querySelectorAll('.table-section');
+
+        if (navLinks.length > 0 && tableSections.length > 0) {
+            clearInterval(waitForNav); // Stop checking once nav items and table sections are found
+
+            // Define start and end colors for the gradient
+            const startColor = [255, 87, 51]; // RGB for #FF5733
+            const endColor = [51, 255, 87]; // RGB for #33FF57
+
+            // Generate gradient colors
+            const gradientColors = generateGradientColors(startColor, endColor, navLinks.length);
+
+            navLinks.forEach((link, index) => {
+                const gradientColor = gradientColors[index];
+
+                // Convert RGB to hex
+                const hexColor = rgbToHex(gradientColor[0], gradientColor[1], gradientColor[2]);
+
+                // Apply solid background color to the navigation item
+                link.style.setProperty('background-color', hexColor, 'important');
+
+                // Calculate brightness to determine appropriate text color
+                const brightness = (gradientColor[0] * 299 + gradientColor[1] * 587 + gradientColor[2] * 114) / 1000;
+
+                // Apply text color to the navigation item
+                const textColor = brightness > 125 ? '#000000' : '#ffffff';
+                link.style.setProperty('color', textColor, 'important');
+
+                // Apply the gradient and text color to the <caption> of the corresponding table section
+                const caption = tableSections[index]?.querySelector('caption');
+                if (caption) {
+                    caption.style.setProperty('background', `linear-gradient(to right, ${hexColor}, #ffffff)`, 'important');
+                    caption.style.setProperty('color', textColor, 'important');
+                }
+            });
+        }
+    }, 100); // Check every 100ms
+});
+
+// Helper function to generate gradient colors
+function generateGradientColors(startColor, endColor, steps) {
+    const colors = [];
+    for (let i = 0; i < steps; i++) {
+        const r = Math.round(startColor[0] + ((endColor[0] - startColor[0]) * i) / (steps - 1));
+        const g = Math.round(startColor[1] + ((endColor[1] - startColor[1]) * i) / (steps - 1));
+        const b = Math.round(startColor[2] + ((endColor[2] - startColor[2]) * i) / (steps - 1));
+        colors.push([r, g, b]);
+    }
+    return colors;
+}
+
+// Helper function to convert RGB to hex
+function rgbToHex(r, g, b) {
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
+}
+
