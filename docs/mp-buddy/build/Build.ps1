@@ -59,6 +59,12 @@ function ProcessMpResource($resource, $resourceStream , $mpID, $mpVersion) {
     $resourceStream.CopyTo($fs);
     $fs.Flush();
     $fs.Close();
+    if ($resource.FileName.ToLower().EndsWith(".sh")) {
+        #crop everything after this line bcz it's binary and huge   #####>>- This must be the last line of this script, followed by a single empty line. -<<#####
+        $rawContent =  Get-Content -Path $newMpResourceFullPath -Raw
+        $newContent = $rawContent.Substring(0,  $rawContent.IndexOf('#####>>- This must be the last line of this script, followed by a single empty line. -<<#####') )
+        New-Item -Path $newMpResourceFullPath -Value $newContent -ItemType File -Force | Out-Null
+    }
 }
 function ProcessUnsealedMpXml([string]$MpXmlFullPath, [bool]$IsExtractedFromSealedMP) {
     [xml]$xmlDoc = [xml]::new()    
