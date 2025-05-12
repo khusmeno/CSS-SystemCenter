@@ -39,7 +39,14 @@ export async function loadXMLfile(relativePath) {
             throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
         }
 
-        const xmlText = await response.text();
+        // Read the response as a Uint8Array
+        const buffer = await response.arrayBuffer();
+
+        // Decode the buffer using the appropriate encoding
+        const decoder = new TextDecoder("utf-16"); // Change "utf-8" to the desired encoding if needed
+        const xmlText = decoder.decode(buffer);
+
+        // Parse the XML text
         const parser = new DOMParser();
         return parser.parseFromString(xmlText, "application/xml");
     } catch (err) {
@@ -47,6 +54,7 @@ export async function loadXMLfile(relativePath) {
         throw new Error("Error loading XML file.");
     }
 }
+
 
 // Function to load a Management Pack (MP) using loadXMLfile
 export async function loadMP(filename, mpVersion) {
@@ -75,7 +83,7 @@ export async function loadMP(filename, mpVersion) {
             });
 
             if (validVersions.length === 0) {
-                throw new Error(`No versions greater than ${mpVersion} found in List_MPVersion.xml.`);
+                throw new Error(`No version equal or greater than ${mpVersion} found for MP '${filename}''`);
             }
 
             // Find the highest version among the valid versions

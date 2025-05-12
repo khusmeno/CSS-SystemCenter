@@ -1,0 +1,3699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Image Name="banner_image">
+        <Source>External</Source>
+        <Value>../banner_portrait.jpg</Value>
+        <Top>0.15833in</Top>
+        <Left>0.15in</Left>
+        <Height>0.53958in</Height>
+        <Width>8.05in</Width>
+        <Style />
+      </Image>
+      <Rectangle Name="rectangle2">
+        <ReportItems>
+          <Textbox Name="textbox4">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatDateTime("g", Code.GetReportStartDate())</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>textbox4</rd:DefaultName>
+            <Top>0.25in</Top>
+            <Height>0.2in</Height>
+            <Width>0.05in</Width>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <DataElementName>StartDate</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox26">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.StartEndTimeLabel", "[Report Start/End Time Label]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.25in</Top>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>1.65in</Width>
+            <ZIndex>1</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox28">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.StartEndTimeFormat", "{0} - {1}"), Code.FormatDateTime("d", Code.GetReportStartDate()), Code.FormatDateTime("d", Code.GetReportEndDate()))</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.25in</Top>
+            <Left>1.95in</Left>
+            <Height>0.2in</Height>
+            <Width>6.05in</Width>
+            <ZIndex>2</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox1">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.GeneratedTimeLabel", "[Report Generated Time Label]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05in</Top>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>1.65in</Width>
+            <ZIndex>3</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox2">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>0.1in</Width>
+            <ZIndex>4</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox7">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.25in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>0.1in</Width>
+            <ZIndex>5</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ReportGeneratedTime">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatDateTime("g", Code.ToReportDate(DateTime.UtcNow))</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05in</Top>
+            <Left>1.95in</Left>
+            <Height>0.2in</Height>
+            <Width>6.05in</Width>
+            <ZIndex>6</ZIndex>
+            <DataElementName>Created</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Image Name="parameterBottomImage">
+            <Source>External</Source>
+            <Value>../gradient_portrait.gif</Value>
+            <Top>1.2875in</Top>
+            <Height>0.05in</Height>
+            <Width>8.05in</Width>
+            <ZIndex>7</ZIndex>
+            <Style />
+          </Image>
+          <Textbox Name="textbox9">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatDateTime("g", Code.GetReportEndDate())</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.25in</Top>
+            <Left>0.05in</Left>
+            <Height>0.2in</Height>
+            <Width>0.05in</Width>
+            <ZIndex>8</ZIndex>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <DataElementName>EndDate</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox17">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!TimeZoneName.Value</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.25in</Top>
+            <Left>0.1in</Left>
+            <Height>0.2in</Height>
+            <Width>0.05in</Width>
+            <ZIndex>9</ZIndex>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
+            <DataElementName>TimeZone</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox40">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.85in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>0.1in</Width>
+            <ZIndex>10</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox11">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.ModeLabel", "[Mode]") 'copy fix</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.85in</Top>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>1.65in</Width>
+            <ZIndex>11</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox10">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!Mode.Label</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.85in</Top>
+            <Left>1.95in</Left>
+            <Height>0.2in</Height>
+            <Width>6.05in</Width>
+            <ZIndex>12</ZIndex>
+            <DataElementName>Rule</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox21">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.65in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>0.1in</Width>
+            <ZIndex>13</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox20">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.AlgLabel", "[Algorithm]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.65in</Top>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>1.65in</Width>
+            <ZIndex>14</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox13">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.AlgFormat", "{0} {1}"), IIF(Parameters!SortOrder.Value &lt; 0, Code.GetLocTable("LT_Report").GetString("R.AlgFormatTop", "Top"), Code.GetLocTable("LT_Report").GetString("R.AlgFormatBottom", "Bottom")), Parameters!TopCount.Value)</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.65in</Top>
+            <Left>1.95in</Left>
+            <Height>0.2in</Height>
+            <Width>6.05in</Width>
+            <ZIndex>15</ZIndex>
+            <DataElementName>Algorithm</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox30">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.45in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>0.1in</Width>
+            <ZIndex>16</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox29">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.MGroupLabel", "[Management Group]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.45in</Top>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>1.65in</Width>
+            <ZIndex>17</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox27">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ManagementGroupDefaultName.Value, "GroupProperties")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.45in</Top>
+            <Left>1.95in</Left>
+            <Height>0.2in</Height>
+            <Width>6.05in</Width>
+            <ZIndex>18</ZIndex>
+            <DataElementName>ManagementGroup</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox41">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.06667in</Top>
+            <Left>1.85in</Left>
+            <Height>0.2in</Height>
+            <Width>0.1in</Width>
+            <ZIndex>19</ZIndex>
+            <Visibility>
+              <Hidden>=Iif(Len(Parameters!OUFilter.Value)&gt;0,False,True)</Hidden>
+            </Visibility>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox12">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.OUFilterLabel", "[Organizational Unit filter]") 'copy fix</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.06667in</Top>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>1.65in</Width>
+            <ZIndex>20</ZIndex>
+            <Visibility>
+              <Hidden>=Iif(Len(Parameters!OUFilter.Value)&gt;0,False,True)</Hidden>
+            </Visibility>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox14">
+            <CanGrow>true</CanGrow>
+            <CanShrink>true</CanShrink>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!OUFilter.Value</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.06667in</Top>
+            <Left>1.95in</Left>
+            <Height>0.2in</Height>
+            <Width>6.05in</Width>
+            <ZIndex>21</ZIndex>
+            <Visibility>
+              <Hidden>=Iif(Len(Parameters!OUFilter.Value)&gt;0,False,True)</Hidden>
+            </Visibility>
+            <DataElementName>Rule</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <DataElementOutput>ContentsOnly</DataElementOutput>
+        <Top>1.45in</Top>
+        <Left>0.15in</Left>
+        <Height>1.35209in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>1</ZIndex>
+        <Style />
+      </Rectangle>
+      <Rectangle Name="rectangle3">
+        <ReportItems>
+          <Textbox Name="reportDescription">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.Description", "[Report Description]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Left>0.2in</Left>
+            <Height>0.2in</Height>
+            <Width>7.8in</Width>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <DataElementOutput>ContentsOnly</DataElementOutput>
+        <Top>1.2in</Top>
+        <Left>0.15in</Left>
+        <Height>0.2in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>2</ZIndex>
+        <Visibility>
+          <Hidden>true</Hidden>
+          <ToggleItem>reportDescriptionTitle</ToggleItem>
+        </Visibility>
+        <Style>
+          <BackgroundColor>Gainsboro</BackgroundColor>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="rectangle4">
+        <ReportItems>
+          <Textbox Name="reportTitle">
+            <CanGrow>true</CanGrow>
+            <DataElementStyle>Element</DataElementStyle>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.Title", "[Report Title]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.05in</Top>
+            <Left>0.2in</Left>
+            <Height>0.25in</Height>
+            <Width>7.8in</Width>
+            <DataElementName>Title</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="reportDescriptionTitle">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.DescriptionTitle", "[Report Description Title]")</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                      <Color>DimGray</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.3in</Top>
+            <Height>0.2in</Height>
+            <Width>8in</Width>
+            <ZIndex>1</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <DataElementOutput>ContentsOnly</DataElementOutput>
+        <Top>0.7in</Top>
+        <Left>0.15in</Left>
+        <Height>0.5in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <BackgroundColor>Gainsboro</BackgroundColor>
+        </Style>
+      </Rectangle>
+      <Rectangle Name="rectangle5">
+        <DataElementOutput>ContentsOnly</DataElementOutput>
+        <Top>1.4in</Top>
+        <Left>0.15in</Left>
+        <Height>0.05in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Color>DarkGray</Color>
+          </Border>
+          <BottomBorder>
+            <Style>Solid</Style>
+          </BottomBorder>
+          <BackgroundColor>Gainsboro</BackgroundColor>
+        </Style>
+      </Rectangle>
+      <Chart Name="Chart1">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart1_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!RowNo.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!RowNo.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!RowNo.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Total Item Size MB</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="TotalAverageValue">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Avg(Fields!TotalItemSizeMB.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <Style>
+                    <Color>#b400bfff</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ChartItemInLegend>
+                <Hidden>true</Hidden>
+              </ChartItemInLegend>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <MinFontSize>8pt</MinFontSize>
+                <MaxFontSize>8pt</MaxFontSize>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>=Code.GetLocTable("LT_Report").GetString("R.AxesTitleMB", "[MB]") '</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartLegends>
+          <ChartLegend Name="Default">
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontSize>8pt</FontSize>
+            </Style>
+            <ChartLegendTitle>
+              <Caption />
+              <Style>
+                <FontSize>8pt</FontSize>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </ChartLegendTitle>
+            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+          </ChartLegend>
+        </ChartLegends>
+        <ChartTitles>
+          <ChartTitle Name="Title1">
+            <Caption>=Code.GetLocTable("LT_Report").GetString("R.ChartTitleAvgMbxSizeByRank", "[Average mailbox size by rank]") '</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>SemiTransparent</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>Exchange2013_Report_MailboxStatsTopReportDataGet</DataSetName>
+        <Top>8.62015in</Top>
+        <Left>0.15in</Left>
+        <Height>2.62347in</Height>
+        <Width>4in</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Chart Name="Chart2">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart1_CategoryGroup2">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!RowNo.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!RowNo.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!RowNo.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Item Count</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="TotalAverageValue">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Avg(Fields!ItemCount.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <Style>
+                    <Color>#b400bfff</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ChartItemInLegend>
+                <Hidden>true</Hidden>
+              </ChartItemInLegend>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <MinFontSize>8pt</MinFontSize>
+                <MaxFontSize>8pt</MaxFontSize>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartLegends>
+          <ChartLegend Name="Default">
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontSize>8pt</FontSize>
+            </Style>
+            <ChartLegendTitle>
+              <Caption />
+              <Style>
+                <FontSize>8pt</FontSize>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </ChartLegendTitle>
+            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+          </ChartLegend>
+        </ChartLegends>
+        <ChartTitles>
+          <ChartTitle Name="Title1">
+            <Caption>=Code.GetLocTable("LT_Report").GetString("R.ChartTitleAvgMbxItemCntByRank", "[Average mailbox item count by rank]") '</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>SemiTransparent</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>Exchange2013_Report_MailboxStatsTopReportDataGet</DataSetName>
+        <Top>8.62015in</Top>
+        <Left>4.2in</Left>
+        <Height>2.62347in</Height>
+        <Width>4in</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Chart Name="Chart3">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart3_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!Database.Value</GroupExpression>
+                </GroupExpressions>
+                <Filters>
+                  <Filter>
+                    <FilterExpression>=Sum(Iif(InStr(Parameters!Mode.Value,"S"),Fields!TotalItemSizeMB.Value,Fields!ItemCount.Value))</FilterExpression>
+                    <Operator>TopN</Operator>
+                    <FilterValues>
+                      <FilterValue>5</FilterValue>
+                    </FilterValues>
+                  </Filter>
+                </Filters>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Sum(Iif(InStr(Parameters!Mode.Value,"S"),Fields!TotalItemSizeMB.Value,Fields!ItemCount.Value))</Value>
+                  <Direction>Descending</Direction>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!Database.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Item Count</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="TotalAverageValue">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Sum(Iif(InStr(Parameters!Mode.Value,"S"),Fields!TotalItemSizeMB.Value,Fields!ItemCount.Value))</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <Style>
+                    <Color>#b400bfff</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Bar</Type>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ChartItemInLegend>
+                <Hidden>true</Hidden>
+              </ChartItemInLegend>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <Reverse>true</Reverse>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <MinFontSize>8pt</MinFontSize>
+                <MaxFontSize>8pt</MaxFontSize>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>=Iif(InStr(Parameters!Mode.Value,"S"),
+	Code.GetLocTable("LT_Report").GetString("R.AxesTitleDatabasesWithBiggestMBXSize", "[Total size of biggest mailboxes (MB)]"),
+	Code.GetLocTable("LT_Report").GetString("R.AxesTitleDatabasesWithBiggestMBXItemCount", "[Total item count of biggest mailboxes]")
+) '</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartLegends>
+          <ChartLegend Name="Default">
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontSize>8pt</FontSize>
+            </Style>
+            <ChartLegendTitle>
+              <Caption />
+              <Style>
+                <FontSize>8pt</FontSize>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </ChartLegendTitle>
+            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+          </ChartLegend>
+        </ChartLegends>
+        <ChartTitles>
+          <ChartTitle Name="Title1">
+            <Caption>=Code.GetLocTable("LT_Report").GetString("R.ChartTitleDatabasesWithBiggestMBX", "[Databases with biggest mailboxes]") '</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontFamily>Tahoma</FontFamily>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>SemiTransparent</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>Exchange2013_Report_MailboxStatsTopReportDataGet</DataSetName>
+        <Top>3.24653in</Top>
+        <Left>0.15in</Left>
+        <Height>2.62347in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>7</ZIndex>
+        <Visibility>
+          <Hidden>=Iif(InStr(Parameters!Mode.Value,"G"),True,False)</Hidden>
+        </Visibility>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Chart Name="Chart4">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart4_CategoryGroup">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!OrganizationalUnit.Value</GroupExpression>
+                </GroupExpressions>
+                <Filters>
+                  <Filter>
+                    <FilterExpression>=Sum(Iif(InStr(Parameters!Mode.Value,"S"),Fields!TotalItemSizeMB.Value,Fields!ItemCount.Value))</FilterExpression>
+                    <Operator>TopN</Operator>
+                    <FilterValues>
+                      <FilterValue>5</FilterValue>
+                    </FilterValues>
+                  </Filter>
+                </Filters>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Sum(Iif(InStr(Parameters!Mode.Value,"S"),Fields!TotalItemSizeMB.Value,Fields!ItemCount.Value))</Value>
+                  <Direction>Descending</Direction>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!OrganizationalUnit.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Item Count</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="TotalAverageValue">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Sum(Microsoft.VisualBasic.Interaction.Iif(Microsoft.VisualBasic.Strings.InStr(Parameters!Mode.Value, "S"), Fields!TotalItemSizeMB.Value, Fields!ItemCount.Value))</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style />
+                  </ChartDataLabel>
+                  <Style>
+                    <Color>#b400bfff</Color>
+                  </Style>
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Bar</Type>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <ChartItemInLegend>
+                <Hidden>true</Hidden>
+              </ChartItemInLegend>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <Reverse>true</Reverse>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <MinFontSize>8pt</MinFontSize>
+                <MaxFontSize>8pt</MaxFontSize>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <Border>
+                    <Color>DimGray</Color>
+                  </Border>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>8pt</FontSize>
+                  <Color>DimGray</Color>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>=Iif(InStr(Parameters!Mode.Value,"S"),
+	Code.GetLocTable("LT_Report").GetString("R.AxesTitleDatabasesWithBiggestMBXSize", "[Total size of biggest mailboxes (MB)]"),
+	Code.GetLocTable("LT_Report").GetString("R.AxesTitleDatabasesWithBiggestMBXItemCount", "[Total item count of biggest mailboxes]")
+) '</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption>Axis Title</Caption>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+                <ChartAxisScaleBreak>
+                  <Style />
+                </ChartAxisScaleBreak>
+              </ChartAxis>
+            </ChartValueAxes>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <ChartLegends>
+          <ChartLegend Name="Default">
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontSize>8pt</FontSize>
+            </Style>
+            <ChartLegendTitle>
+              <Caption />
+              <Style>
+                <FontSize>8pt</FontSize>
+                <FontWeight>Bold</FontWeight>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </ChartLegendTitle>
+            <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+            <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+          </ChartLegend>
+        </ChartLegends>
+        <ChartTitles>
+          <ChartTitle Name="Title1">
+            <Caption>=Code.GetLocTable("LT_Report").GetString("R.ChartTitleOUsWithBiggestMBX", "[Organizational units with biggest mailboxes]") '</Caption>
+            <Style>
+              <BackgroundGradientType>None</BackgroundGradientType>
+              <FontFamily>Tahoma</FontFamily>
+              <FontWeight>Bold</FontWeight>
+              <TextAlign>General</TextAlign>
+              <VerticalAlign>Top</VerticalAlign>
+            </Style>
+          </ChartTitle>
+        </ChartTitles>
+        <Palette>SemiTransparent</Palette>
+        <ChartBorderSkin>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available</Caption>
+          <Style>
+            <BackgroundGradientType>None</BackgroundGradientType>
+            <TextAlign>General</TextAlign>
+            <VerticalAlign>Top</VerticalAlign>
+          </Style>
+        </ChartNoDataMessage>
+        <DataSetName>Exchange2013_Report_MailboxStatsTopReportDataGet</DataSetName>
+        <Top>5.93945in</Top>
+        <Left>0.15in</Left>
+        <Height>2.62347in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>8</ZIndex>
+        <Visibility>
+          <Hidden>=Microsoft.VisualBasic.Interaction.Iif(Microsoft.VisualBasic.Strings.InStr(Parameters!Mode.Value, "G"), True, False)</Hidden>
+        </Visibility>
+        <Style>
+          <Border>
+            <Color>LightGrey</Color>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+          <BackgroundGradientType>None</BackgroundGradientType>
+        </Style>
+      </Chart>
+      <Textbox Name="Textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Code.GetLocTable("LT_Report").GetString("R.SectionTitleSummary", "[Summary]") '</Value>
+                <Style>
+                  <FontFamily>Tahoma</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox6</rd:DefaultName>
+        <Top>2.85694in</Top>
+        <Left>0.15in</Left>
+        <Height>0.34722in</Height>
+        <Width>8in</Width>
+        <ZIndex>9</ZIndex>
+        <DocumentMapLabel>=Code.GetLocTable("LT_Report").GetString("R.SectionTitleSummary", "[Summary]")</DocumentMapLabel>
+        <Style>
+          <Border>
+            <Style>None</Style>
+            <Width>0.5pt</Width>
+          </Border>
+          <TopBorder>
+            <Color>Gray</Color>
+            <Style>None</Style>
+          </TopBorder>
+          <PaddingLeft>20pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>10pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.GetLocTable("LT_Report").GetString("R.SectionTitleDetails", "[Details]") '</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Height>0.34722in</Height>
+            <Width>8in</Width>
+            <DocumentMapLabel>=Code.GetLocTable("LT_Report").GetString("R.SectionTitleDetails", "[Details]")</DocumentMapLabel>
+            <Style>
+              <Border>
+                <Style>None</Style>
+                <Width>0.5pt</Width>
+              </Border>
+              <TopBorder>
+                <Color>Gray</Color>
+                <Style>Dotted</Style>
+              </TopBorder>
+              <PaddingLeft>20pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>10pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="DetailsTable">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>0.31769in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.34375in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.30939in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.07917in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.7in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.8in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.75in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.75in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.35in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox47">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.RowNumber", "[Row No]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox47</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>4pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox45">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.Rank", "[Rank]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox45</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>4pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox23">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.Mailbox", "[Mailbox]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox23</rd:DefaultName>
+                          <ZIndex>13</ZIndex>
+                          <DataElementOutput>NoOutput</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <LeftBorder>
+                              <Style>None</Style>
+                            </LeftBorder>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>4pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox15">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.MailboxLocation", "[Location]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox15</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox22">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.Size", "[Size (MB)]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox22</rd:DefaultName>
+                          <ZIndex>12</ZIndex>
+                          <DataElementOutput>NoOutput</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox16">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.SizeGrowth", "[Size growth (MB)]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>11</ZIndex>
+                          <DataElementOutput>NoOutput</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.ItemCount", "[Item Count]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox3</rd:DefaultName>
+                          <ZIndex>10</ZIndex>
+                          <DataElementOutput>NoOutput</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Table").GetString("RT.Column.ItemCountGrowth", "[Item Count Growth]") '</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>textbox5</rd:DefaultName>
+                          <ZIndex>9</ZIndex>
+                          <DataElementOutput>NoOutput</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DimGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>Gray</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="RowNo">
+                          <CanGrow>true</CanGrow>
+                          <DataElementStyle>Element</DataElementStyle>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=RowNumber("Exchange2013_Report_MailboxStatsTopReportDataGet")</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>RowNo</rd:DefaultName>
+                          <ZIndex>7</ZIndex>
+                          <DataElementName>Position</DataElementName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="RowNo1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!RowNo.Value</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>RowNo1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox38">
+                          <CanGrow>true</CanGrow>
+                          <DataElementStyle>Element</DataElementStyle>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Name.Value + Chr(13) + Chr(10) +
+Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.UPNFormatLine", "[UPN]: {0}"), Fields!UserPrincipalName.Value) + Chr(13) + Chr(10) +
+Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.OUFormatLine", "[OU]: {0}"), Fields!OrganizationalUnit.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>5</ZIndex>
+                          <DataElementName>Object</DataElementName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <LeftBorder>
+                              <Style>None</Style>
+                            </LeftBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="InstanceName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.DatabaseFormatLine", "[Database]: {0}"), Fields!Database.Value) + Chr(13) + Chr(10) +
+Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.ServerFormatLine", "[Server]: {0}"), Fields!ServerName.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>InstanceName</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox25">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <DataElementStyle>Element</DataElementStyle>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!TotalItemSizeMB.Value</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>4</ZIndex>
+                          <DataElementName>Count</DataElementName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="TotalItemSizeGrowthMB">
+                          <CanGrow>true</CanGrow>
+                          <DataElementStyle>Element</DataElementStyle>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!TotalItemSizeGrowthMB.Value</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>TotalItemSizeGrowthMB</rd:DefaultName>
+                          <ZIndex>3</ZIndex>
+                          <DataElementName>Min</DataElementName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ItemCount">
+                          <CanGrow>true</CanGrow>
+                          <DataElementStyle>Element</DataElementStyle>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ItemCount.Value</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ItemCount</rd:DefaultName>
+                          <ZIndex>2</ZIndex>
+                          <DataElementName>Max</DataElementName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox24">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <DataElementStyle>Element</DataElementStyle>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ItemCountGrowth.Value</Value>
+                                  <Style>
+                                    <FontFamily>Tahoma</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <ZIndex>1</ZIndex>
+                          <DataElementName>Average</DataElementName>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <Style>
+                            <Border>
+                              <Color>DarkGray</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <FixedData>true</FixedData>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Table_Details_Group">
+                    <DataElementName>Detail</DataElementName>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!RowNo.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                  <DataElementName>Detail_Collection</DataElementName>
+                  <DataElementOutput>Output</DataElementOutput>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Exchange2013_Report_MailboxStatsTopReportDataGet</DataSetName>
+            <Top>0.38041in</Top>
+            <Height>0.6in</Height>
+            <Width>8.05in</Width>
+            <ZIndex>1</ZIndex>
+            <DataElementName>DataTable</DataElementName>
+            <DataElementOutput>Output</DataElementOutput>
+            <Style>
+              <FontFamily>Tahoma</FontFamily>
+              <FontSize>8pt</FontSize>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Top>11.3425in</Top>
+        <Left>0.155in</Left>
+        <Height>0.98041in</Height>
+        <Width>8.05in</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Rectangle>
+    </ReportItems>
+    <Height>12.40624in</Height>
+    <Style />
+  </Body>
+  <Width>8.4in</Width>
+  <Page>
+    <PageFooter>
+      <Height>0.35in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="textbox37">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.TimeZoneFormat", "{0}"), Parameters!TimeZoneName.Value)</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <Color>DimGray</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.1in</Top>
+          <Left>0.15in</Left>
+          <Height>0.1875in</Height>
+          <Width>6.15in</Width>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Code.FormatString(Code.GetLocTable("LT_Report").GetString("R.PageFormat", "{0}/{1}"), Globals!PageNumber, Globals!TotalPages)</Value>
+                  <Style>
+                    <FontFamily>Tahoma</FontFamily>
+                    <FontSize>8pt</FontSize>
+                    <Color>DimGray</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <Top>0.1in</Top>
+          <Left>6.45in</Left>
+          <Height>0.1875in</Height>
+          <Width>1.7in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style />
+    </PageFooter>
+    <InteractiveHeight>20in</InteractiveHeight>
+    <InteractiveWidth>8.5in</InteractiveWidth>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataWarehouseMain">
+      <DataSourceReference>Data Warehouse Main</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>e4235c51-407f-4065-8519-a1e57374bc45</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="DataWarehouseDS">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>=Parameters!ConnectionString.Value</ConnectString>
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>fed82e7a-ca4b-4b58-a68c-7db6942d75a9</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DateSetConnection">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementGroupGuid">
+            <Value>=Code.GetCallingManagementGroupId()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DatasetTypeId">
+            <Value>=Parameters!DataSetType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>DataRouteGet</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DatasetId">
+          <DataField>DatasetId</DataField>
+        </Field>
+        <Field Name="ServerName">
+          <DataField>ServerName</DataField>
+        </Field>
+        <Field Name="DatabaseName">
+          <DataField>DatabaseName</DataField>
+        </Field>
+        <Field Name="ConnectionString">
+          <Value>="Data Source=" + Fields!ServerName.Value + ";Initial Catalog=" + Fields!DatabaseName.Value + ";Integrated Security=SSPI"</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LT_Report_Query">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementGroupGuid">
+            <Value>=Code.GetCallingManagementGroupId()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ManagementPackSystemName">
+            <Value>Microsoft.Exchange.15.Reports</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReportSystemName">
+            <Value>Microsoft.Exchange.15.Reports.MailboxStatistics.Report</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Code.GetReportLocLanguageCode()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Scope">
+            <Value>R.%</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>ReportDisplayStringGet</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ValueXml">
+          <DataField>XML_F52E2B61-18A1-11d1-B105-00805F49916B</DataField>
+        </Field>
+        <Field Name="ValueName">
+          <Value>="LT"</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="LT_Table_Query">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementGroupGuid">
+            <Value>=Code.GetCallingManagementGroupId()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ManagementPackSystemName">
+            <Value>Microsoft.Exchange.15.Reports</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReportSystemName">
+            <Value>Microsoft.Exchange.15.Reports.MailboxStatistics.Report</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Code.GetReportLocLanguageCode()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Scope">
+            <Value>RT.%</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>ReportDisplayStringGet</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ValueXml">
+          <DataField>XML_F52E2B61-18A1-11d1-B105-00805F49916B</DataField>
+        </Field>
+        <Field Name="ValueName">
+          <Value>="LT"</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="NeighborManagementGroups">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementGroupGuid">
+            <Value>=Code.GetCallingManagementGroupId()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DatasetTypeId">
+            <Value>=Parameters!DataSetType.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>DataRouteGetNeighbors</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ManagementGroupGuid">
+          <DataField>ManagementGroupGuid</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="ManagementGroupName">
+          <DataField>ManagementGroupName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DataSetType">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementPackSystemName">
+            <Value>Microsoft.Exchange.15</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DatasetTypeSystemName">
+            <Value>Microsoft.Exchange.15.MailboxStatsCollection.Dataset</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>DatasetTypeIdGet</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="DatasetTypeId">
+          <DataField>DatasetTypeId</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="GroupProperties">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementGroupId">
+            <Value>=Parameters!ManagementGroupId.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>SELECT     ManagementGroupGuid, ManagementGroupDefaultName
+FROM         vManagementGroup
+WHERE     (ManagementGroupGuid = @ManagementGroupId)</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ManagementGroupGuid">
+          <DataField>ManagementGroupGuid</DataField>
+          <rd:TypeName>System.Guid</rd:TypeName>
+        </Field>
+        <Field Name="ManagementGroupDefaultName">
+          <DataField>ManagementGroupDefaultName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Exchange2013_Report_MailboxStatsTopReportDataGet">
+      <Query>
+        <DataSourceName>DataWarehouseMain</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@StartDate">
+            <Value>=Code.ToDbDate(Code.GetReportStartDate())</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@EndDate">
+            <Value>=Code.ToDbDate(Code.GetReportEndDate())</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@ObjectList">
+            <Value>=Parameters!ObjectList.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@ManagementGroup">
+            <Value>=Code.BuildXmlValueList(Parameters!ManagementGroupId.Value)</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@SortOrder">
+            <Value>=Parameters!SortOrder.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@TopCount">
+            <Value>=Parameters!TopCount.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@OUFilter">
+            <Value>=Parameters!OUFilter.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@Mode">
+            <Value>=Parameters!Mode.Value</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Code.GetReportLocLanguageCode()</Value>
+            <rd:UserDefined>true</rd:UserDefined>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>Exchange2013_Report_MailboxStatsTopReportDataGet</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="MailboxRowId">
+          <DataField>MailboxRowId</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="ExchangeGuid">
+          <DataField>ExchangeGuid</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="ItemCount">
+          <DataField>ItemCount</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="DeletedItemCount">
+          <DataField>DeletedItemCount</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="LastLogonTime">
+          <DataField>LastLogonTime</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="TotalItemSizeMB">
+          <DataField>TotalItemSizeMB</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="ItemCountGrowth">
+          <DataField>ItemCountGrowth</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="TotalItemSizeGrowthMB">
+          <DataField>TotalItemSizeGrowthMB</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="ServerName">
+          <DataField>ServerName</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="Database">
+          <DataField>Database</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="RecipientType">
+          <DataField>RecipientType</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="OrganizationalUnit">
+          <DataField>OrganizationalUnit</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="Name">
+          <DataField>Name</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="UserPrincipalName">
+          <DataField>UserPrincipalName</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="EmailAddresses">
+          <DataField>EmailAddresses</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="IsMailboxEnabled">
+          <DataField>IsMailboxEnabled</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="IsResource">
+          <DataField>IsResource</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="IsShared">
+          <DataField>IsShared</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="RowNo">
+          <DataField>RowNo</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="DataSetType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DataSetType</DataSetName>
+          <ValueField>DatasetTypeId</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DataSetType</DataSetName>
+          <ValueField>DatasetTypeId</ValueField>
+          <LabelField>DatasetTypeId</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ManagementGroupId">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>NeighborManagementGroups</DataSetName>
+          <ValueField>ManagementGroupGuid</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Prompt>[Management Group]</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>NeighborManagementGroups</DataSetName>
+          <ValueField>ManagementGroupGuid</ValueField>
+          <LabelField>ManagementGroupName</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+      <UsedInQuery>True</UsedInQuery>
+    </ReportParameter>
+    <ReportParameter Name="ConnectionString">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DateSetConnection</DataSetName>
+          <ValueField>ConnectionString</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DateSetConnection</DataSetName>
+          <ValueField>ConnectionString</ValueField>
+          <LabelField>ConnectionString</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="LT_Report">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LT_Report_Query</DataSetName>
+          <ValueField>ValueXml</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>LT_Report_Query</DataSetName>
+          <ValueField>ValueXml</ValueField>
+          <LabelField>ValueName</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="LT_Table">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>LT_Table_Query</DataSetName>
+          <ValueField>ValueXml</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>LT_Table_Query</DataSetName>
+          <ValueField>ValueXml</ValueField>
+          <LabelField>ValueName</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="SortOrder">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>[Algorithm]</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>-1</Value>
+            <Label>=Code.GetLocTable("LT_Report").GetString("R.AlgParamTop", "[Top N]")</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>1</Value>
+            <Label>=Code.GetLocTable("LT_Report").GetString("R.AlgParamBottom", "[Bottom N]")</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+      <UsedInQuery>False</UsedInQuery>
+      <cl:ComponentMetadata xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition">
+        <cl:HideUpdateNotifications>true</cl:HideUpdateNotifications>
+      </cl:ComponentMetadata>
+    </ReportParameter>
+    <ReportParameter Name="TopCount">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>20</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>[N]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_BaseType">
+      <DataType>String</DataType>
+      <Prompt>[Start Date Base]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_BaseValue">
+      <DataType>DateTime</DataType>
+      <Prompt>[From]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_OffsetType">
+      <DataType>String</DataType>
+      <Prompt>[Start Date Offset Type]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_OffsetValue">
+      <DataType>Integer</DataType>
+      <Prompt>[Start Date Offset]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_BaseType">
+      <DataType>String</DataType>
+      <Prompt>[End Date Base]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_BaseValue">
+      <DataType>DateTime</DataType>
+      <Prompt>[To]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_OffsetType">
+      <DataType>String</DataType>
+      <Prompt>[End Date Offset Type]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_OffsetValue">
+      <DataType>Integer</DataType>
+      <Prompt>[End Date Offset]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeZone">
+      <DataType>String</DataType>
+      <Prompt>[Time Zone]</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>Time Zone Name</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="Interactive">
+      <DataType>Boolean</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>=False</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Interactive</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="ObjectList">
+      <DataType>String</DataType>
+      <Prompt>ObjectList</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Mode">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>LS</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Mode</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>LS</Value>
+            <Label>Biggest mailboxes (used space)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>GS</Value>
+            <Label>Mailboxes with most intensive growth (used space)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>LI</Value>
+            <Label>Biggest mailboxes (number of items)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>GI</Value>
+            <Label>Mailboxes with most intensive growth (number of items)</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="OUFilter">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=String.Empty</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>OUFilter</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>
+Const LocTableStringQuery As String = "R/S[@N='{0}']/text()"
+
+Const TimeZoneParameterName As String = "TimeZone"
+Const SD_BaseTypeParameterName As String = "StartDate_BaseType"
+Const SD_BaseValueParameterName As String = "StartDate_BaseValue"
+Const SD_OffsetTypeParameterName As String = "StartDate_OffsetType"
+Const SD_OffsetValueParameterName As String = "StartDate_OffsetValue"
+Const ED_BaseTypeParameterName As String = "EndDate_BaseType"
+Const ED_BaseValueParameterName As String = "EndDate_BaseValue"
+Const ED_OffsetTypeParameterName As String = "EndDate_OffsetType"
+Const ED_OffsetValueParameterName As String = "EndDate_OffsetValue"
+Const IsRelativeTimeSupported As Boolean = False
+Const TimeTypeParameterName As String = "TimeType"
+Const TimeWeekMapParameterName As String = "TimeWeekMap"
+
+Dim LocTables As System.Collections.Generic.Dictionary(Of String, Microsoft.EnterpriseManagement.Reporting.XmlStringTable)
+Dim ReportTimeZone As Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation
+Dim ReportStartDate As DateTime
+Dim ReportEndDate As DateTime
+Dim ReportTime As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime
+Dim ReportCulture As System.Globalization.CultureInfo
+Dim ParameterProcessor As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor
+
+Protected Overrides Sub OnInit()
+  LocTables = new System.Collections.Generic.Dictionary(Of String, Microsoft.EnterpriseManagement.Reporting.XmlStringTable)()
+  ReportTimeZone = Nothing
+  ReportStartDate = DateTime.MinValue
+  ReportEndDate = DateTime.MinValue
+  ReportTime = Nothing
+  ReportCulture = System.Globalization.CultureInfo.GetCultureInfo(Report.User("Language"))
+  ParameterProcessor = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor(ReportCulture)
+End Sub
+
+Public Function GetCallingManagementGroupId() As String
+   Return Microsoft.EnterpriseManagement.Reporting.ReportingConfiguration.ManagementGroupId
+End Function
+
+Public Function GetReportLocLanguageCode() As String
+   Return ReportCulture.ThreeLetterWindowsLanguageName
+End Function
+
+Public Function GetLocTable(Name As String) As Microsoft.EnterpriseManagement.Reporting.XmlStringTable
+   Dim LocTable As Microsoft.EnterpriseManagement.Reporting.XmlStringTable
+
+   If Not LocTables.TryGetValue(Name, LocTable) Then
+      LocTable = New Microsoft.EnterpriseManagement.Reporting.XmlStringTable(LocTableStringQuery, Report.Parameters(Name).Value)
+      LocTables.Add(Name, LocTable)
+   End If
+
+   Return LocTable
+End Function
+
+Public Function GetReportTimeZone() As Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation
+   If IsNothing(ReportTimeZone) Then ReportTimeZone = Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation.FromValueString(Report.Parameters(TimeZoneParameterName).Value)
+   Return ReportTimeZone
+End Function
+
+Public Function ToDbDate(ByVal DateValue As DateTime) As DateTime
+   return GetReportTimeZone.ToUniversalTime(DateValue)
+End Function
+
+Public Function ToReportDate(ByVal DateValue As DateTime) As DateTime
+   return GetReportTimeZone.ToLocalTime(DateValue)
+End Function
+
+Public Function GetReportStartDate() As DateTime
+  If (ReportStartDate = DateTime.MinValue) Then
+    If (IsRelativeTimeSupported) Then
+      ReportStartDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(SD_BaseTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(SD_OffsetTypeParameterName).Value, Report.Parameters(SD_OffsetValueParameterName).Value, Report.Parameters(TimeTypeParameterName).Value)
+    Else
+      ReportStartDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(SD_BaseTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(SD_OffsetTypeParameterName).Value, Report.Parameters(SD_OffsetValueParameterName).Value)
+    End if
+  End If
+  return ReportStartDate.Date
+End Function
+
+Public Function GetReportEndDate() As DateTime
+  If (ReportEndDate = DateTime.MinValue) Then
+    If (IsRelativeTimeSupported) Then
+      ReportEndDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(ED_BaseTypeParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, Report.Parameters(ED_OffsetTypeParameterName).Value, Report.Parameters(ED_OffsetValueParameterName).Value, Report.Parameters(TimeTypeParameterName).Value)
+      If IsBusinessHours(GetReportTimeFilter()) Then ReportEndDate = ReportCulture.Calendar.AddDays(ReportEndDate, 1)
+    Else
+      ReportEndDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(ED_BaseTypeParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, Report.Parameters(ED_OffsetTypeParameterName).Value, Report.Parameters(ED_OffsetValueParameterName).Value)
+    End if
+  End If
+  return ReportEndDate.Date
+End Function
+
+Public Function GetReportTimeFilter() As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime
+  If IsNothing(ReportTime) Then ReportTime = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime(Report.Parameters(TimeTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, CStr(Join(Report.Parameters(TimeWeekMapParameterName).Value, ",")))
+  return ReportTime
+End Function
+
+Public Function IsBusinessHours(Value As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime) As Boolean
+  return (Not IsNothing(Value)) And (Value.TimeType = Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTimeType.Business)
+End Function
+
+Public Function FormatDateTime(Format As String, Value As DateTime) As String
+  return Value.ToString(Format, ReportCulture)
+End Function
+
+Public Function FormatNumber(Format As String, Value As Decimal) As String
+  return Value.ToString(Format, ReportCulture)
+End Function
+
+Public Function FormatString(Format As String, ParamArray Values() as  Object) As String
+  return String.Format(ReportCulture, Format, Values)
+End Function
+
+Public Function NullFormatString(Format As String, Value as  String) As String
+  return IIF(String.IsNullOrEmpty(Value), String.Empty, String.Format(ReportCulture, Format, Value))
+End Function
+
+Public Function FormatBusinessHours(Format As String, Value As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime) As String
+  Dim result As String
+
+  If IsBusinessHours(Value) Then
+ 
+    Dim firstDay As DayOfWeek
+    Dim days As System.Collections.Generic.List(Of String)
+
+    firstDay = ReportCulture.DateTimeFormat.FirstDayOfWeek
+    days = new System.Collections.Generic.List(Of String)()
+
+    For loopDay As DayOfWeek = DayOfWeek.Sunday To DayOfWeek.Saturday
+      Dim day As DayOfWeek
+      day = CType((CInt(loopDay) + CInt(firstDay)) Mod 7, DayOfWeek)
+
+      If value.WeekMap.Contains(day) Then days.Add(ReportCulture.DateTimeFormat.GetAbbreviatedDayName(day))
+    Next loopDay
+
+     result = FormatString(Format, DateTime.Today.Add(Value.StartTime).ToString(ReportCulture.DateTimeFormat.ShortTimePattern), DateTime.Today.Add(Value.EndTime).ToString(ReportCulture.DateTimeFormat.ShortTimePattern), String.Join(",", days.ToArray()))
+
+  Else
+     result = String.Empty
+  End if
+  
+  return result
+End Function
+
+Public Function BuildXmlValueList(ByVal ValueList() As Object) As String
+    Return Microsoft.EnterpriseManagement.Reporting.MultiValueParameter.ToXml("Data", "Value", ValueList)
+End Function
+
+REM ----------------------------------------
+
+    Public Function Report_GetInstanceList(ByVal InstanceList As Object()) As String
+        Dim InstanceXmlList As String
+        InstanceXmlList = Microsoft.EnterpriseManagement.Reporting.MultiValueParameter.ToXml("Instance", InstanceList)
+        Return IIF(IsNothing(InstanceXmlList), String.Empty, InstanceXmlList)
+    End Function
+
+    Public Function Report_GetPerfObjectList(ByVal ObjectsXml As String, ByVal RuleId As String, ByVal InstanceList As Object()) As String
+        Dim Xml As System.Xml.XmlDocument
+
+        Xml = New System.Xml.XmlDocument()
+        Xml.LoadXml(ObjectsXml)
+
+        Dim Format As System.Text.StringBuilder
+        Format = New System.Text.StringBuilder("&lt;Value&gt;&lt;Object&gt;{0}&lt;/Object&gt;")
+        Format.AppendFormat("&lt;Rule&gt;{0}&lt;/Rule&gt;", RuleId)
+        Format.Append(Report_GetInstanceList(InstanceList))
+        Format.Append("&lt;/Value&gt;")
+
+        Dim Result As System.Text.StringBuilder
+        Result = New System.Text.StringBuilder()
+        For Each ObjectNode As System.Xml.XmlNode In Xml.DocumentElement.ChildNodes
+            Result.Append(String.Format(Format.ToString(), ObjectNode.InnerText))
+        Next
+
+        Return Result.ToString()
+    End Function
+
+    Public Function Report_GetObjectList(ByVal ObjectsXml As String) As String()
+        Dim Xml As System.Xml.XmlDocument
+        Xml = New System.Xml.XmlDocument()
+        Xml.LoadXml(ObjectsXml)
+
+        Dim Result As System.Collections.Generic.List(Of String)
+        Result = New System.Collections.Generic.List(Of String)
+        For Each ObjectNode As System.Xml.XmlNode In Xml.SelectNodes("/Value/Object")
+            Result.Add(ObjectNode.InnerText)
+        Next
+
+        Return Result.ToArray()
+    End Function
+
+REM ----------------------------------------
+
+Public Dim ReportObjectList As String
+
+    Public Function InitList(ByRef List As String) As String
+        List  = String.Empty
+        Return List
+    End Function
+
+    Public Function AddListItem(ByRef List As String, Item as String) As String
+        List = List + Item
+        Return List
+    End Function
+</Code>
+  <Language>en-US</Language>
+  <CodeModules>
+    <CodeModule>Microsoft.EnterpriseManagement.Reporting.Code, Version=6.0.0.0, Culture=neutral</CodeModule>
+    <CodeModule>System.Xml, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</CodeModule>
+  </CodeModules>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <DataElementStyle>Element</DataElementStyle>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>ab518a51-343d-46c4-b1f8-4ec65faafd95</rd:ReportID>
+</Report>

@@ -1,0 +1,2064 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="OperationsManagerDW">
+      <DataSourceReference>/Data Warehouse Main</DataSourceReference>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>4a5ef82a-960b-44a3-a7c3-649a493e6c4c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="TopNProcesses">
+      <Query>
+        <DataSourceName>OperationsManagerDW</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@cpuWeight">
+            <Value>=Parameters!cpuWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@memoryWeight">
+            <Value>=Parameters!memoryWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@handleCountWeight">
+            <Value>=Parameters!handleCountWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@threadCountWeight">
+            <Value>=Parameters!threadCountWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@pageFaultCountWeight">
+            <Value>=Parameters!pageFaultCountWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@cpuTimeWeight">
+            <Value>=Parameters!cpuTimeWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@totalProcessTimeWeight">
+            <Value>=Parameters!totalProcessTimeWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@readPerSecondWeight">
+            <Value>=Parameters!readPerSecondWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@writePerSecondWeight">
+            <Value>=Parameters!writePerSecondWeight.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@N">
+            <Value>=Parameters!N.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@startDate">
+            <Value>=Code.ToDbDate(Code.GetReportStartDate())</Value>
+          </QueryParameter>
+          <QueryParameter Name="@endDate">
+            <Value>=Code.ToDbDate(Code.GetReportEndDate())</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>
+          EXEC [sdk].[ProcessMonitoring_Microsoft_Window_Server_GetTopNProcesses]
+          @cpuWeight,
+          @memoryWeight,
+          @handleCountWeight,
+          @threadCountWeight,
+          @pageFaultCountWeight,
+          @cpuTimeWeight,
+          @totalProcessTimeWeight,
+          @readPerSecondWeight,
+          @writePerSecondWeight,
+          @N,
+          @startDate,
+          @endDate
+        </CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="ComputerName">
+          <DataField>ComputerName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProcessName">
+          <DataField>ProcessName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CpuUsage">
+          <DataField>CpuUsage</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="MemoryUsage">
+          <DataField>MemoryUsage</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="HandleCount">
+          <DataField>HandleCount</DataField>
+          <rd:TypeName>System.Integer</rd:TypeName>
+        </Field>
+        <Field Name="ThreadCount">
+          <DataField>ThreadCount</DataField>
+          <rd:TypeName>System.Integer</rd:TypeName>
+        </Field>
+        <Field Name="PageFaultCount">
+          <DataField>PageFaultCount</DataField>
+          <rd:TypeName>System.Integer</rd:TypeName>
+        </Field>
+        <Field Name="CpuTime">
+          <DataField>CpuTime</DataField>
+          <rd:TypeName>System.Integer</rd:TypeName>
+        </Field>
+        <Field Name="TotalProcessTime">
+          <DataField>TotalProcessTime</DataField>
+          <rd:TypeName>System.Integer</rd:TypeName>
+        </Field>
+        <Field Name="ReadPerSecond">
+          <DataField>IOReadPerSecond</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="WritePerSecond">
+          <DataField>IOWritePerSecond</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DisplayStrings">
+      <Query>
+        <DataSourceName>OperationsManagerDW</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ManagementGroupGuid">
+            <Value>=Code.GetCallingManagementGroupId()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ManagementPackSystemName">
+            <Value>Microsoft.Windows.Server.10.0.ProcessMonitoring</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ReportSystemName">
+            <Value>Microsoft.Windows.Server.10.0.ProcessMonitoring.Views.Report.TopNProcesses</Value>
+          </QueryParameter>
+          <QueryParameter Name="@LanguageCode">
+            <Value>=Code.GetReportLocLanguageCode()</Value>
+          </QueryParameter>
+          <QueryParameter Name="@Scope">
+            <Value>R.%</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>ReportDisplayStringGet</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="LT">
+          <DataField>XML_F52E2B61-18A1-11d1-B105-00805F49916B</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Rectangle Name="ReportHeaderRectangle">
+            <ReportItems>
+          <Image Name="ImageFooter">
+            <Source>External</Source>
+            <Value>../banner_portrait.jpg</Value>
+            <MIMEType>image/png</MIMEType>
+            <Sizing>Fit</Sizing>
+            <Height>0.52364in</Height>
+            <Width>7.5in</Width>
+            <Style />
+          </Image>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.1in</Top>
+            <Height>0.54364in</Height>
+            <Width>19.78542in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>Gainsboro</BackgroundColor>
+            </Style>
+          </Rectangle>
+
+          <Tablix Name="table1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.63542in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>3.25in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.5in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.7in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.7in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.26167in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox19">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.ComputerName", "Computer Name")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!ComputerName.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.ProcessName", "Process Name")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!ProcessName.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxCpuUsage", "MAX CPU Usage")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!CpuUsage.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox4</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxMemoryUsage", "MAX Memory Usage")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!MemoryUsage.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxHandleCount", "MAX Handle Count Usage")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!HandleCount.Value</SortExpression>
+                          </UserSort>                          
+                          <rd:DefaultName>textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxThreadCount", "MAX Thread Count Usage")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!ThreadCount.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox7</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxPageFaultCount", "MAX Page Fault Count")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!PageFaultCount.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxCpuTime", "CPU Time")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!CpuTime.Value</SortExpression>
+                          </UserSort>                          
+                          <rd:DefaultName>textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxTotalProcessTime", "Total Process time")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!TotalProcessTime.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox10</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxReadPerSecond", "IO Read per second")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!ReadPerSecond.Value</SortExpression>
+                          </UserSort>
+                          <rd:DefaultName>textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="textbox12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Code.GetLocTable("LT_Report").GetString("R.MaxWritePerSecond", "IO Write per second")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <UserSort>
+                            <SortExpression>=Fields!WritePerSecond.Value</SortExpression>
+                          </UserSort>                          
+                          <rd:DefaultName>textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>#6b696b</Color>
+                            </Border>
+                            <TopBorder>
+                              <Style>Solid</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
+                            <BackgroundColor>#848284</BackgroundColor>
+                            <VerticalAlign>Top</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25167in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ComputerName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ComputerName.Value</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ComputerName</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ProcessName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ProcessName.Value</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ProcessName</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="CpuUsage">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!CpuUsage.Value, "F2")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>CpuUsage</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="MemoryUsage">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!MemoryUsage.Value, "F2")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>MemoryUsage</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="HandleCount">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!HandleCount.Value</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>HandleCount</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ThreadCount">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ThreadCount.Value</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ThreadCount</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="PageFaultCount">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!PageFaultCount.Value</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>PageFaultCount</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="CpuTime">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=TimeSpan.FromTicks(Fields!CpuTime.Value)</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>CpuTime</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="TotalProcessTime">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=TimeSpan.FromSeconds(Fields!TotalProcessTime.Value)</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>TotalProcessTime</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ReadPerSecond">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!ReadPerSecond.Value, "F2")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ReadPerSecond</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="WritePerSecond">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!WritePerSecond.Value, "F2")</Value>
+                                  <Style>
+                                    <FontFamily />
+                                    <Color>#333333</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <FontFamily />
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>WritePerSecond</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                            </Border>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <FontFamily />
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="table1_ProcessName" />
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!CpuUsage.Value * Parameters!cpuWeight.Value + Fields!MemoryUsage.Value * Parameters!memoryWeight.Value + Fields!HandleCount.Value * Parameters!handleCountWeight.Value + Fields!ThreadCount.Value * Parameters!threadCountWeight.Value + Fields!PageFaultCount.Value * Parameters!pageFaultCountWeight.Value + Fields!CpuTime.Value * Parameters!cpuTimeWeight.Value + Fields!TotalProcessTime.Value * Parameters!totalProcessTimeWeight.Value + Fields!ReadPerSecond.Value * Parameters!readPerSecondWeight.Value + Fields!WritePerSecond.Value * Parameters!writePerSecondWeight.Value</Value>
+                      <Direction>Descending</Direction>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>TopNProcesses</DataSetName>
+            <Top>2.51044in</Top>
+            <Height>0.51334in</Height>
+            <Width>19.78542in</Width>
+            <Style>
+              <FontFamily />
+            </Style>
+          </Tablix>
+          <Rectangle Name="ReportTitleRectangle">
+            <ReportItems>
+              <Textbox Name="reportTitleLabel">
+                <CanGrow>true</CanGrow>
+                <DataElementStyle>Element</DataElementStyle>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Code.GetTopNString(Parameters!N.Value.ToString(),"Top ##(N)## Processes")</Value>
+                        <Style>
+                          <FontFamily>Tahoma</FontFamily>
+                          <FontSize>24pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <Top>0.04167in</Top>
+                <Left>0.125in</Left>
+                <Height>0.4375in</Height>
+                <Width>11.73958in</Width>
+                <DataElementName>Title</DataElementName>
+                <DataElementOutput>Output</DataElementOutput>
+                <Style>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="ReportOrderLabel">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Code.GetOrderByString(Parameters!OrderBy.Label,"Order by ##(OrderBy)##")</Value>
+                        <Style>
+                          <FontFamily />
+                          <FontSize>18pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>ReportOrderLabel</rd:DefaultName>
+                <Top>0.85334in</Top>
+                <Left>0.125in</Left>
+                <Height>0.4375in</Height>
+                <Width>11.73958in</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.51392in</Top>
+            <Height>0.9650in</Height>
+            <Width>19.78542in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>Gainsboro</BackgroundColor>
+            </Style>
+          </Rectangle>
+          <Line Name="ReportNameLineDelimiter">
+            <Top>1.48627in</Top>
+            <Height>0in</Height>
+            <Width>19.78542in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Color>#adaaad</Color>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="ReportTimeLabelText">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Report Time:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ReportTimeLabelText</rd:DefaultName>
+            <Top>1.53419in</Top>
+            <Left>0.125in</Left>
+            <Height>0.2in</Height>
+            <Width>1.24965in</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ReportTimeLabelValue">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatDateTime("g", Code.ToReportDate(DateTime.UtcNow))</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ReportTimeLabelValue</rd:DefaultName>
+            <Top>1.53419in</Top>
+            <Left>1.62465in</Left>
+            <Height>0.2in</Height>
+            <Width>3.875in</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>          
+          <Textbox Name="ReportDurationLabelText">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Report Duration:</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ReportDurationLabelText</rd:DefaultName>
+            <Top>1.73419in</Top>
+            <Left>0.12465in</Left>
+            <Height>0.2in</Height>
+            <Width>1.25in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ReportDurationValue">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Code.FormatString("From {0} to {1}", Code.FormatDateTime("g", Code.GetReportStartDate()), Code.FormatDateTime("g", Code.GetReportEndDate()))</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>1.73419in</Top>
+            <Left>1.62465in</Left>
+            <Height>0.2in</Height>
+            <Width>3.75in</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Rectangle Name="ReportHeaderDelimiter">
+            <DataElementOutput>ContentsOnly</DataElementOutput>
+            <Top>1.95419in</Top>
+            <Height>0.04in</Height>
+            <Width>19.78542in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <BackgroundImage>
+                <Source>Embedded</Source>
+                <Value>bgtopline</Value>
+                <BackgroundRepeat>RepeatX</BackgroundRepeat>
+              </BackgroundImage>
+            </Style>
+          </Rectangle>
+        </ReportItems>
+        <Height>1.85417in</Height>
+        <Style />
+      </Body>
+      <Width>23.86456in</Width>
+      <Page>
+        <PageFooter>
+          <Height>2.08139in</Height>
+          <PrintOnFirstPage>false</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="textboxHeader">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetTopNString(Parameters!N.Value.ToString(),"Top ##(N)## Processes")</Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>textboxHeader</rd:DefaultName>
+              <Top>0.5in</Top>
+              <Height>0.2in</Height>
+              <Width>5.155in</Width>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="textboxHeader2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Report Duration: </Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Code.FormatString("From {0} to {1}", Code.FormatDateTime("g", Code.GetReportStartDate()), Code.FormatDateTime("g", Code.GetReportEndDate()))</Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>textboxHeader</rd:DefaultName>
+              <Top>0.72in</Top>
+              <Height>0.2in</Height>
+              <Width>5.155in</Width>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+
+            <Textbox Name="textboxFooter">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>All dates and times are shown in (UTC) Coordinated Universal Time.</Value>
+                      <Style>
+                        <FontFamily>Tahoma</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>textboxFooter</rd:DefaultName>
+              <Top>0.94in</Top>
+              <Height>0.2in</Height>
+              <Width>5.155in</Width>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="OrderBy">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CpuUsage</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Order By</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>CpuUsage</Value>
+            <Label>CPU Usage</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>MemUsage</Value>
+            <Label>Memory Usage</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>HandleCount</Value>
+            <Label>Handle Count Usage</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>ThreadCount</Value>
+            <Label>Thread Count</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>PageFaultCount</Value>
+            <Label>Page Fault Count</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>CpuTime</Value>
+            <Label>CPU Time</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>TotalProcessTime</Value>
+            <Label>Total Process Time</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>ReadPerSecond</Value>
+            <Label>IO Read (KiloBytes/s)</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>WritePerSecond</Value>
+            <Label>IO Write (KiloBytes/s)</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="N">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>10</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>N</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="LT_Report">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>DisplayStrings</DataSetName>
+          <ValueField>LT</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_BaseType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Today</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>StartDate_BaseType</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_BaseValue">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>From</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_OffsetType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Day</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>StartDate_OffsetType</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="StartDate_OffsetValue">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>-1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>StartDate_OffsetValue</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_BaseType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Today</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EndDate_BaseType</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_BaseValue">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=Now</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>To</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_OffsetType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Day</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EndDate_OffsetType</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate_OffsetValue">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>0</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>EndDate_OffsetValue</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeType">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Regular</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+    </ReportParameter>
+    <ReportParameter Name="TimeWeekMap">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Monday</Value>
+          <Value>Tuesday</Value>
+          <Value>Wednesday</Value>
+          <Value>Thursday</Value>
+          <Value>Friday</Value>
+        </Values>
+      </DefaultValue>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="cpuWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "CpuUsage", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="memoryWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "MemUsage", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="handleCountWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "HandleCount", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="threadCountWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "ThreadCount", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="pageFaultCountWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "PageFaultCount", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="cpuTimeWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "CpuTime", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="totalProcessTimeWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "TotalProcessTime", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="readPerSecondWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "ReadPerSecond", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="writePerSecondWeight">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=IIF(Parameters!OrderBy.Value = "WritePerSecond", "0.5", "0")</Value>
+        </Values>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="TimeZone">
+      <DataType>String</DataType>
+      <Prompt>Time Zone</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TimeZoneName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>TimeZoneName</Prompt>
+    </ReportParameter>
+
+  </ReportParameters>
+  <Code>
+    Const LocTableStringQuery As String = "R/S[@N='{0}']/text()"
+
+    Const TimeZoneParameterName As String = "TimeZone"
+    Const SD_BaseTypeParameterName As String = "StartDate_BaseType"
+    Const SD_BaseValueParameterName As String = "StartDate_BaseValue"
+    Const SD_OffsetTypeParameterName As String = "StartDate_OffsetType"
+    Const SD_OffsetValueParameterName As String = "StartDate_OffsetValue"
+    Const ED_BaseTypeParameterName As String = "EndDate_BaseType"
+    Const ED_BaseValueParameterName As String = "EndDate_BaseValue"
+    Const ED_OffsetTypeParameterName As String = "EndDate_OffsetType"
+    Const ED_OffsetValueParameterName As String = "EndDate_OffsetValue"
+    Const IsRelativeTimeSupported As Boolean = True
+    Const TimeTypeParameterName As String = "TimeType"
+    Const TimeWeekMapParameterName As String = "TimeWeekMap"
+
+    Dim LocTables As System.Collections.Generic.Dictionary(Of String, Microsoft.EnterpriseManagement.Reporting.XmlStringTable)
+    Dim ReportTimeZone As Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation
+    Dim ReportStartDate As DateTime
+    Dim ReportEndDate As DateTime
+    Dim ReportTime As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime
+    Dim ReportCulture As System.Globalization.CultureInfo
+    Dim ParameterProcessor As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor
+
+    Protected Overrides Sub OnInit()
+    LocTables = New System.Collections.Generic.Dictionary(Of String, Microsoft.EnterpriseManagement.Reporting.XmlStringTable)()
+    ReportCulture = System.Globalization.CultureInfo.GetCultureInfo(Report.User("Language"))
+    ParameterProcessor = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor(ReportCulture)
+    ReportTimeZone = Nothing
+    ReportStartDate = DateTime.MinValue
+    ReportEndDate = DateTime.MinValue
+    ReportTime = Nothing
+    End Sub
+
+    Public Function GetLocTable(Name As String) As Microsoft.EnterpriseManagement.Reporting.XmlStringTable
+    Dim LocTable As Microsoft.EnterpriseManagement.Reporting.XmlStringTable
+
+    If Not LocTables.TryGetValue(Name, LocTable) Then
+    LocTable = New Microsoft.EnterpriseManagement.Reporting.XmlStringTable(LocTableStringQuery, Report.Parameters(Name).Value)
+    LocTables.Add(Name, LocTable)
+    End If
+
+    Return LocTable
+    End Function
+
+    Public Function GetCallingManagementGroupId() As String
+    Return Microsoft.EnterpriseManagement.Reporting.ReportingConfiguration.ManagementGroupId
+    End Function
+
+    Public Function GetReportLocLanguageCode() As String
+    GetParamProcessor()
+    Return ReportCulture.ThreeLetterWindowsLanguageName
+    End Function
+
+    Public Function GetReportStartDate() As DateTime
+    GetParamProcessor()
+
+    If (ReportStartDate = DateTime.MinValue) Then
+    If (IsRelativeTimeSupported) Then
+    ReportStartDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(SD_BaseTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(SD_OffsetTypeParameterName).Value, Report.Parameters(SD_OffsetValueParameterName).Value, Report.Parameters(TimeTypeParameterName).Value)
+    Else
+    ReportStartDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(SD_BaseTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(SD_OffsetTypeParameterName).Value, Report.Parameters(SD_OffsetValueParameterName).Value)
+    End If
+
+    ReportStartDate = TruncateTimeWhenNoAggregation(ReportStartDate)
+
+    End If
+    Return ReportStartDate
+    End Function
+
+    Public Function GetReportEndDate() As DateTime
+    GetParamProcessor()
+
+    If (ReportEndDate = DateTime.MinValue) Then
+    If (IsRelativeTimeSupported) Then
+    ReportEndDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(ED_BaseTypeParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, Report.Parameters(ED_OffsetTypeParameterName).Value, Report.Parameters(ED_OffsetValueParameterName).Value, Report.Parameters(TimeTypeParameterName).Value)
+    If IsBusinessHours(GetReportTimeFilter()) Then ReportEndDate = ReportCulture.Calendar.AddDays(ReportEndDate, 1)
+    Else
+    ReportEndDate = ParameterProcessor.GetDateTime(ToReportDate(DateTime.UtcNow), Report.Parameters(ED_BaseTypeParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, Report.Parameters(ED_OffsetTypeParameterName).Value, Report.Parameters(ED_OffsetValueParameterName).Value)
+    End If
+
+    ReportEndDate = TruncateTimeWhenNoAggregation(ReportEndDate)
+
+    End If
+    Return ReportEndDate
+    End Function
+
+    Public Function GetReportTimeZone() As Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation
+    If IsNothing(ReportTimeZone) Then ReportTimeZone = Microsoft.EnterpriseManagement.Reporting.TimeZoneCoreInformation.FromValueString(Report.Parameters(TimeZoneParameterName).Value)
+    Return ReportTimeZone
+    End Function
+
+    Public Sub GetParamProcessor()
+    If ParameterProcessor Is Nothing Then
+    ReportCulture = System.Globalization.CultureInfo.GetCultureInfo(Report.User("Language"))
+    ParameterProcessor = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor(ReportCulture)
+    End If
+    End Sub
+
+    Public Function ToDbDate(ByVal DateValue As DateTime) As DateTime
+    Return GetReportTimeZone.ToUniversalTime(DateValue)
+    End Function
+
+    Public Function FormatDateTime(ByVal Format As String, ByVal Value As DateTime) As String
+    GetParamProcessor()
+    Return Value.ToString(Format, ReportCulture)
+    End Function
+
+    Public Function FormatString(Format As String, ParamArray Values() as  Object) As String
+    Return String.Format(ReportCulture, Format, Values)
+    End Function
+
+    Public Function NullFormatString(Format As String, Value as  String) As String
+    return IIF(String.IsNullOrEmpty(Value), String.Empty, String.Format(ReportCulture, Format, Value))
+    End Function
+
+    Public Function ToReportDate(ByVal DateValue As DateTime) As DateTime
+    Return GetReportTimeZone.ToLocalTime(DateValue)
+    End Function
+
+    Public Function TruncateTimeWhenNoAggregation(dt As DateTime)
+    Return dt
+    End Function
+
+    Public Function GetReportTimeFilter() As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime
+    GetParamProcessor()
+
+    If IsNothing(ReportTime) Then
+    ReportTime = New Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime(Report.Parameters(TimeTypeParameterName).Value, Report.Parameters(SD_BaseValueParameterName).Value, Report.Parameters(ED_BaseValueParameterName).Value, CStr(Join(Report.Parameters(TimeWeekMapParameterName).Value, ",")))
+    End If
+    Return ReportTime
+    End Function
+
+    Public Function IsBusinessHours(Value As Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTime) As Boolean
+    Return (Not IsNothing(Value)) And (Value.TimeType = Microsoft.EnterpriseManagement.Reporting.ParameterProcessor.RelativeTimeType.Business)
+    End Function
+
+    Public Function GetOrderByString(OrderList As String, DefaultTemplate AS String) As String
+    Dim LocString As String
+    LocString = GetLocTable("LT_Report").GetString("R.OrderBy", DefaultTemplate)
+    Return LocString.Replace("##(OrderBy)##", OrderList)
+    End Function
+
+    Public Function GetTopNString(N As String, DefaultTemplate AS String) As String
+    Dim LocString As String
+    LocString = GetLocTable("LT_Report").GetString("R.TopNProcesses", DefaultTemplate)
+    Return LocString.Replace("##(N)##", N)
+    End Function
+  </Code>
+  <EmbeddedImages>
+    <EmbeddedImage Name="bgtopline">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>iVBORw0KGgoAAAANSUhEUgAAAAIAAAAECAIAAAArjXluAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACdJREFUeNpiPHb4GAMDB4uigiIDAwMLBw8HBwMH4//v/38w/AAIMABZUAfVDf46ZAAAAABJRU5ErkJggg==</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <Language>en-US</Language>
+  <CodeModules>
+    <CodeModule>Microsoft.EnterpriseManagement.Reporting.Code, Version=6.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35</CodeModule>
+  </CodeModules>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>de4142b6-6282-475b-82b4-9a5ee5e97c63</rd:ReportID>
+</Report>
