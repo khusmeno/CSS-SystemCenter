@@ -1,4 +1,4 @@
-import * as Functions from './functions.js';
+﻿import * as Functions from './functions.js';
 
 const mainContent = document.getElementById('mpList');
 const loading = document.getElementById('loading');
@@ -65,6 +65,34 @@ function displayMPs(mps) {
 
         cell = row.insertCell();
         cell.textContent = mpDescription;
+    });
+
+    const filterBox = document.getElementById('filterByText');
+    if (filterBox) {
+        filterBox.focus();
+    }
+
+    // Add a floating "Back to Top" button
+    const backToTopButton = document.createElement('button');
+    backToTopButton.id = 'backToTop';
+    backToTopButton.title = 'Back to Top';
+    backToTopButton.innerHTML = `⬆`; // Unicode up arrow
+    backToTopButton.style.fontSize = '30px'; // Adjust size
+
+    document.body.appendChild(backToTopButton);
+
+    // Add scroll event listener to show/hide the button
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 200) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    // Add click event listener to scroll to the top
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
 }

@@ -36,8 +36,6 @@ async function displayMP(xmlDoc, filename) {
 
     const sections = [];
 
-    sections.push(`<a href="../MP_data/${filename}/${mpVersion}/MP.xml" target="_blank">Show MP XML</a>`);
-
     // Fetch available versions and populate the <select> element
     const versionsXml = await Functions.getAvailableMPVersions(filename);
     const versions = Array.from(versionsXml.getElementsByTagName('MPVersion'))
@@ -52,7 +50,11 @@ async function displayMP(xmlDoc, filename) {
                    ${versions.map(version => `<option value="${version}" ${version === mpVersion ? 'selected' : ''}>${version}</option>`).join('')}
                </select>`
             : `<span class="versionText">Version: ${versions[0]}</span>`}
+        <a href="../MP_data/${filename}/${mpVersion}/MP.xml" download="${filename}.xml" class="download-link">
+            Download MP XML
+        </a>
     </div>`;
+
     sections.push(combinedHeader);
 
     if (description) {
@@ -248,6 +250,12 @@ async function displayMP(xmlDoc, filename) {
     backToTopButton.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Focus on the filter box when the page loads
+    const filterBox = document.getElementById('filterByText');
+    if (filterBox) {
+        filterBox.focus();
+    }
 
 }
 

@@ -13,17 +13,6 @@ if (!file || !mpVersion || !elementID || !elementType) {
     loading.textContent = "Missing parameters.";
 } else {
     Functions.loadMP(file, mpVersion)
-        //.then(async (xmlDoc) => {
-        //    const manifest = xmlDoc.querySelector('Manifest Identity');
-        //    const loadedVersion = manifest?.querySelector('Version')?.textContent;
-
-        //    if (loadedVersion && loadedVersion !== mpVersion) {
-        //        console.warn(`Loaded version (${loadedVersion}) does not match requested version (${mpVersion}). Reloading...`);
-        //        return Functions.loadMP(file, loadedVersion);   // todo : it's incorrect to call loadMP, instead (optionally) redirect to the new version
-        //    }
-
-        //    return xmlDoc; // Return the original document if versions match        // todo  ?????????? what is this ???
-        //})
         .then((xmlDoc) => {
             loading.style.display = 'none';
             mainContent.style.display = 'block';
