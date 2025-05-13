@@ -60,7 +60,7 @@ async function displayMP(xmlDoc, filename) {
     if (description) {
         sections.push(`
         <div id="mpDetailsLine">
-            <h3 title="The English (ENU) Name of the MP. Fallback is the Name element in the MP Manifest." style="margin: 0;">${displayName}</h3>
+            <h3 title="The English (ENU) DisplayName of the MP. Fallback is the Name element in the MP Manifest." style="margin: 0;">${displayName}</h3>
             <p title="The English (ENU) Description of the MP." style="margin: 0;">${description}</p>
         </div>
     `);

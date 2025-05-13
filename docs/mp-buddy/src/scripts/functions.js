@@ -16,6 +16,7 @@ export function createHeader() {
     document.body.prepend(header); // Add the header at the top of the body
 }
 
+
 export function createFooter() {
     const footer = document.createElement('footer');
     footer.innerHTML = `

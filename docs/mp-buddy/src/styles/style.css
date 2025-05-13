@@ -22,13 +22,27 @@ header, footer {
 }
 
 #filterByText {
-    font-size: 1.1em; /* Increase the font size slightly */
-    padding: 0.6em; /* Adjust padding for better spacing */
+    font-size: 1.5em; /* Adjust font size for readability */
+    padding: 0.6em 1em; /* Add padding for better spacing */
     width: 50%; /* Keep the width consistent */
-    display: block;
-    margin: 0.5em auto; /* Add some vertical spacing */
+    margin: 0.5em auto; /* Center the filter box */
+    display: block; /* Ensure it behaves like a block element */
+    border: 1px solid #ccc; /* Add a subtle border */
+    border-radius: 8px; /* Round the corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover and focus effects */
 }
 
+    #filterByText:focus {
+        outline: none; /* Remove the default outline */
+        border-color: #0056a3; /* Change border color on focus */
+        box-shadow: 0 4px 6px rgba(0, 86, 163, 0.2); /* Add a more pronounced shadow */
+    }
+
+    #filterByText:hover {
+        border-color: #007bff; /* Change border color on hover */
+        box-shadow: 0 3px 5px rgba(0, 123, 255, 0.2); /* Add a subtle shadow on hover */
+    }
 
 main {
     padding: 1em;
@@ -280,6 +294,15 @@ caption .back-to-top {
         margin: 0; /* Keep margins consistent */
     }
 
+    #mpDetailsLine h3, #mpDetailsLine p {
+        border: 1px solid #ccc; /* Light gray border */
+        border-radius: 8px; /* Rounded corners */
+        padding: 0.5em; /* Add padding inside the border */
+        margin: 0.5em 0; /* Add vertical spacing between elements */
+        background-color: #f9f9f9; /* Light background for better contrast */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
 table tr {
     font-family: Verdana, sans-serif, Arial; /* Set the font family */
     font-size: 11px; /* Set the font size */
@@ -403,8 +426,8 @@ a {
     text-decoration: none; /* Remove underline */
     color: #ffffff; /* Set text color to white */
     font-size: 0.9em; /* Adjust font size */
-    font-weight: bold; /* Make the text bold */
-    padding: 0.5em 1em; /* Add padding for better spacing */
+    font-weight: lighter; /* Make the text bold */
+    padding: 0.4em; /* Add padding for better spacing */
     border-radius: 8px; /* Round the corners */
     background: linear-gradient(90deg, #0056a3, #007bff); /* Add a gradient background */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
@@ -419,3 +442,14 @@ a {
         transform: scale(1.05); /* Slightly enlarge the link */
     }
 
+@keyframes highlight {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+        border-color: #007bff;
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(0, 123, 255, 0);
+        border-color: #ccc;
+    }
+}
