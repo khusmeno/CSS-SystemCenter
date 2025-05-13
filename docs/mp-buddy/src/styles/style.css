@@ -162,7 +162,9 @@ tbody tr:nth-child(odd) {
 }
 
 .table-section {
-    width: auto; /* Keep the table width flexible */
+    table-layout: fixed; /* Fix the layout of the table */
+    width: 400%;  /*Ensure the table spans the full width of the container */
+   /* width: auto;  Keep the table width flexible */
     margin-top: 1.5em; /* Add vertical space before each table */
     font-size: 0.9em; /* Ensure consistent font size */
     border-collapse: collapse; /* Remove double borders */
@@ -344,7 +346,7 @@ a {
             font-weight: bold;
             color: #003d7a;
             margin-bottom: 0.2em;
-            display: none;            
+            display: none;
         }
 
         .tree-view li a {
@@ -380,3 +382,17 @@ a {
                 text-decoration: underline;
                 color: #003d7a;
             }
+
+.id-column {
+   /* max-width: 400px;  Set a maximum width for the column */
+    word-wrap: break-word; /* Break long words to fit within the column */
+    white-space: normal; /* Allow text to wrap to the next line */
+    overflow: visible; /* Ensure no content is hidden */
+    text-overflow: clip; /* Disable ellipsis (...) */
+}
+
+.description-column {
+    width: auto; /* Allow the column to expand freely */
+    white-space: normal; /* Allow text to wrap to the next line */
+    overflow: visible; /* Ensure no content is hidden */
+}

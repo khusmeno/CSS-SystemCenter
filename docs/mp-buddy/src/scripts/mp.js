@@ -273,9 +273,16 @@ function parseSection(xmlDoc, tagName, title, type) {
         });
     });
 
-    const attributeList = ['ID', 'DisplayName', 'Description', ...Array.from(allAttributes).filter(attr => attr !== 'ID')];
+    const attributeList = ['ID', 'DisplayName', ...Array.from(allAttributes).filter(attr => attr !== 'ID'), 'Description'];
     attributeList.forEach(attr => {
-        html += `<th>${attr}</th>`;
+        if (attr === 'ID') {
+            html += `<th class="id-column">${attr}</th>`;
+        }
+        else if (attr === 'Description') {
+            html += `<th class="description-column">${attr}</th>`;
+        } else {
+            html += `<th>${attr}</th>`;
+        }
     });
     html += `</tr></thead><tbody>`;
 
@@ -311,9 +318,8 @@ function parseSection(xmlDoc, tagName, title, type) {
             }
         }
 
-        html += `<td><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
+        html += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
         html += `<td>${displayName}</td>`;
-        html += `<td>${description}</td>`;
 
         Array.from(allAttributes)
             .filter(attr => attr !== 'ID')
@@ -330,15 +336,16 @@ function parseSection(xmlDoc, tagName, title, type) {
                     ).singleNodeValue;
 
                     if (referenceNode) {
-                        html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a> in ${referenceNode.querySelector("ID").textContent}(${referenceNode.querySelector("Version").textContent})</td>`;
+                        //html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a> in ${referenceNode.querySelector("ID").textContent}(${referenceNode.querySelector("Version").textContent})</td>`;
+                        html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a></td>`;
                     } else {
                         html += `<td>${value}</td>`;
                     }
                 } else {
                     html += `<td>${value}</td>`;
                 }
-            });
-
+            });        
+        html += `<td class="description-column">${description}</td>`;
         html += `</tr>`;
     });
 
