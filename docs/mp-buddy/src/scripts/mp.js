@@ -295,37 +295,39 @@ function parseSection(xmlDoc, tagName, title, type) {
     html += `</tr></thead><tbody>`;
 
     // Populate table rows with attribute values
+
+    // Pre-select the base path for DisplayStrings for the selected language, e.g. ENU
+    let displayStringsBase = xmlDoc.evaluate(
+        `/ManagementPack/LanguagePacks/LanguagePack[@ID='ENU']/DisplayStrings`,
+        xmlDoc,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+    ).singleNodeValue;
+    // If not found, fallback to the "default" language pack
+    if (!displayStringsBase) {
+        displayStringsBase = xmlDoc.evaluate(
+            `/ManagementPack/LanguagePacks/LanguagePack[@IsDefault='true']/DisplayStrings`,
+            xmlDoc,
+            null,
+            XPathResult.FIRST_ORDERED_NODE_TYPE,
+            null
+        ).singleNodeValue;
+    }
+
     nodes.forEach(node => {
         html += `<tr>`;
         const idValue = node.getAttribute('ID') || '';
         let displayName = '';
         let description = '';
 
-        if (idValue) {
-            let displayNode = xmlDoc.evaluate(
-                `/ManagementPack/LanguagePacks/LanguagePack[@ID='ENU']/DisplayStrings/DisplayString[@ElementID='${idValue}']`,
-                xmlDoc,
-                null,
-                XPathResult.FIRST_ORDERED_NODE_TYPE,
-                null
-            ).singleNodeValue;
-
-            if (!displayNode) {
-                displayNode = xmlDoc.evaluate(
-                    `/ManagementPack/LanguagePacks/LanguagePack[@IsDefault='true']/DisplayStrings/DisplayString[@ElementID='${idValue}']`,
-                    xmlDoc,
-                    null,
-                    XPathResult.FIRST_ORDERED_NODE_TYPE,
-                    null
-                ).singleNodeValue;
-            }
-
+        if (idValue && displayStringsBase) {
+            const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);            
             if (displayNode) {
                 displayName = displayNode.querySelector('Name')?.textContent || '';
                 description = displayNode.querySelector('Description')?.textContent || '';
             }
         }
-
         html += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
         html += `<td>${displayName}</td>`;
 
@@ -352,7 +354,7 @@ function parseSection(xmlDoc, tagName, title, type) {
                 } else {
                     html += `<td>${value}</td>`;
                 }
-            });        
+            });
         html += `<td class="description-column">${description}</td>`;
         html += `</tr>`;
     });

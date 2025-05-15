@@ -1,0 +1,23 @@
+<MpElementReferences>
+	<MpElementReference SourceType="Category" SourceProperty="Target" TargetType="Element"/>
+	<MpElementReference SourceType="Category" SourceProperty="Value" TargetType="EnumerationValue"/>
+	<MpElementReference SourceType="ClassType" SourceProperty="Base" TargetType="ClassType"/>
+	<MpElementReference SourceType="EnumerationValue" SourceProperty="Parent" TargetType="EnumerationValue"/>
+	<MpElementReference SourceType="RelationshipType" SourceProperty="Base" TargetType="RelationshipType"/>
+	<MpElementReference SourceType="TypeProjection" SourceProperty="Type" TargetType="ClassType"/>
+	<MpElementReference SourceType="ConditionDetectionModuleType" SourceProperty="RunAs" TargetType="SecureReference"/>
+	<MpElementReference SourceType="DataSourceModuleType" SourceProperty="RunAs" TargetType="SecureReference"/>
+	<MpElementReference SourceType="DataType" SourceProperty="Base" TargetType="DataType"/>
+	<MpElementReference SourceType="ProbeActionModuleType" SourceProperty="RunAs" TargetType="SecureReference"/>
+	<MpElementReference SourceType="WriteActionModuleType" SourceProperty="RunAs" TargetType="SecureReference"/>
+	<MpElementReference SourceType="Folder" SourceProperty="ParentFolder" TargetType="Folder"/>
+	<MpElementReference SourceType="Form" SourceProperty="Target" TargetType="Element"/>
+	<MpElementReference SourceType="Form" SourceProperty="Assembly" TargetType="Assembly"/>
+	<MpElementReference SourceType="Form" SourceProperty="BaseForm" TargetType="Form"/>
+	<MpElementReference SourceType="ImageReference" SourceProperty="ImageID" TargetType="Image"/>
+	<MpElementReference SourceType="View" SourceProperty="Target" TargetType="ClassType"/>
+	<MpElementReference SourceType="View" SourceProperty="TypeID" TargetType="ViewType"/>
+	<MpElementReference SourceType="ConsoleTask" SourceProperty="Target" TargetType="Element"/>
+	<MpElementReference SourceType="ConsoleTask" SourceProperty="Assembly" TargetType="Assembly"/>
+	<MpElementReference SourceType="ModuleType" SourceProperty="RunAs" TargetType="SecureReference"/>
+</MpElementReferences>
