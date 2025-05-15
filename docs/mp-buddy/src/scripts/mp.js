@@ -265,7 +265,7 @@ async function parseSection(xmlDoc, tagName, title, type) {
     if (nodes.length === 0) return '';
 
     // Generate a unique id for the table based on the title
-    const tableId = title.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with dashes and convert to lowercase
+    const tableId = Functions.generateElementId(title);
 
     // Create table headers dynamically based on the attributes
     let html = `<table id="${tableId}" class="table-section">
@@ -337,25 +337,37 @@ async function parseSection(xmlDoc, tagName, title, type) {
                     description = displayNode.querySelector('Description')?.textContent || '';
                 }
             }
+
             rowHtml += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
             rowHtml += `<td>${displayName}</td>`;
 
             for (const attr of Array.from(allAttributes).filter(attr => attr !== 'ID')) {
                 const value = node.getAttribute(attr) || '';
-                if (mpRefs && value.includes('!')) {
-                    const [alias, elementName] = value.split('!');
-                    const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
+                const isRefElem = await Functions.getTargetElementType(type, attr) != ''
+                if (isRefElem) {
+                    let referencedFile = file;
+                    let referencedVersion = mpVersion;
+                    const targetElementType = await Functions.getTargetElementType(type, attr);
+                    let referencedElementId = value;
 
-                    if (referenceNode) {
-                        const targetElementType = await Functions.getTargetElementType(type, attr);
-                        rowHtml += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${targetElementType}&id=${elementName}">${elementName}</a></td>`;
-                    } else {
-                        rowHtml += `<td>${value}</td>`;
+                    if (mpRefs && value.includes('!')) {
+                        const [alias, elementName] = value.split('!');
+                        const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
+
+                        if (referenceNode) {
+                            
+                            referencedFile = referenceNode.querySelector("ID").textContent;
+                            referencedVersion = referenceNode.querySelector("Version").textContent;
+                            referencedElementId = elementName;
+                            //rowHtml += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${targetElementType}&id=${elementName}">${elementName}</a></td>`;
+                        }
                     }
+                    rowHtml += `<td><a target="_blank" href="element.html?file=${referencedFile}&version=${referencedVersion}&type=${targetElementType}&id=${referencedElementId}">${referencedElementId}</a></td>`;
                 } else {
                     rowHtml += `<td>${value}</td>`;
                 }
             }
+
             rowHtml += `<td class="description-column">${description}</td>`;
             rowHtml += `</tr>`;
             return rowHtml;

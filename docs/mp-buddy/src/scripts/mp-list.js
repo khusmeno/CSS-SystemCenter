@@ -2,6 +2,7 @@
 
 const mainContent = document.getElementById('mpList');
 const loading = document.getElementById('loading');
+Functions.setupHeaderFooterStyleTitleSearch(mainContent);
 
 async function fetchMPs() {
     try {
@@ -99,4 +100,3 @@ function displayMPs(mps) {
 
 fetchMPs();
 
-Functions.setupHeaderFooterStyleTitleSearch(mainContent);

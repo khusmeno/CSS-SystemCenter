@@ -52,7 +52,7 @@ export async function loadXMLfile(relativePath) {
         return parser.parseFromString(xmlText, "application/xml");
     } catch (err) {
         console.error('Failed to load XML file:', err);
-        throw new Error("Error loading XML file.");
+        throw new Error("Error loading XML file " + filePath);
     }
 }
 
@@ -198,6 +198,9 @@ export async function getAvailableMPVersions(filename) {
 let cachedMpElementReferences = null; // Cache for the parsed XML document
 export async function getTargetElementType(sourceType, sourceProperty) {
     try {
+        // Acquire the lock before entering the critical section
+        await targetElementTypeLock.acquire();
+
         // Check if the XML document is already cached
         if (!cachedMpElementReferences) {
             // Load and parse MpElementReferences.xml only once
@@ -207,6 +210,9 @@ export async function getTargetElementType(sourceType, sourceProperty) {
             cachedMpElementReferences = parser.parseFromString(xmlText, 'application/xml');
         }
 
+        // Release the lock after the critical section
+        targetElementTypeLock.release();
+
         // Find the matching element in the cached XML document
         const referenceNode = cachedMpElementReferences.querySelector(
             `MpElementReference[SourceType="${sourceType}"][SourceProperty="${sourceProperty}"]`
@@ -215,7 +221,48 @@ export async function getTargetElementType(sourceType, sourceProperty) {
         // Return the TargetType if found, otherwise return an empty string
         return referenceNode?.getAttribute('TargetType') || '';
     } catch (error) {
+        // Ensure the lock is released even if an error occurs
+        targetElementTypeLock.release();
         console.error('Error loading or parsing MpElementReferences.xml:', error);
         return '';
     }
 }
+
+
+/**
+ * Converts a string into a valid element ID for linking purposes.
+ * @param {string} input - The string to convert.
+ * @returns {string} - A valid element ID.
+ */
+export function generateElementId(input) {
+    return input
+        .trim() // Remove leading and trailing whitespace
+        .replace(/\s+/g, '-') // Replace spaces with dashes
+        .replace(/\./g, '-') // Replace dots with dashes
+        .replace(/[^a-zA-Z0-9-_]/g, '') // Remove invalid characters
+        .toLowerCase(); // Convert to lowercase
+}
+
+
+class AsyncLock {
+    constructor() {
+        this._locked = false;
+        this._waiting = [];
+    }
+
+    async acquire() {
+        while (this._locked) {
+            await new Promise(resolve => this._waiting.push(resolve));
+        }
+        this._locked = true;
+    }
+
+    release() {
+        this._locked = false;
+        if (this._waiting.length > 0) {
+            const resolve = this._waiting.shift();
+            resolve();
+        }
+    }
+}
+const targetElementTypeLock = new AsyncLock();
