@@ -322,49 +322,6 @@ async function parseSection(xmlDoc, tagName, title, type) {
         null
     ).singleNodeValue;
 
-    //nodes.forEach(node => {
-    //    html += `<tr>`;
-    //    const idValue = node.getAttribute('ID') || '';
-    //    let displayName = '';
-    //    let description = '';
-
-    //    if (idValue && displayStringsBase) {
-    //        const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);
-    //        if (displayNode) {
-    //            displayName = displayNode.querySelector('Name')?.textContent || '';
-    //            description = displayNode.querySelector('Description')?.textContent || '';
-    //        }
-    //    }
-    //    html += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
-    //    html += `<td>${displayName}</td>`;
-
-    //    Array.from(allAttributes)
-    //        .filter(attr => attr !== 'ID')
-    //        .forEach(attr => {
-    //            const value = node.getAttribute(attr) || '';
-
-    //            if (mpRefs && value.includes('!')) {
-    //                const [alias, elementName] = value.split('!');
-    //                const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
-
-    //                if (referenceNode) {
-    //                    Functions.getTargetElementType(type, attr).then((targetElementType) => {
-    //                        //console.log(`Target Element Type for ${type} and ${attr}: ${targetElementType}`);
-    //                        html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${targetElementType}&id=${elementName}">${elementName}</a></td>`;
-    //                    });
-    //                } else {
-    //                    //console.warn(`1Reference not found for alias: ${alias}. value:${value}`);
-    //                    html += `<td>${value}</td>`; // this can happen, keep it
-    //                }
-    //            } else
-    //            {
-    //               // console.warn(`2Reference not found for alias: ${value}. value:${value}`);
-    //                html += `<td>${value}</td>`;
-    //            }
-    //        });
-    //    html += `<td class="description-column">${description}</td>`;
-    //    html += `</tr>`;
-    //});
     // Process rows asynchronously
     const rows = await Promise.all(
         Array.from(nodes).map(async (node) => {

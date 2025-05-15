@@ -54,7 +54,7 @@ const params = new URLSearchParams(window.location.search);
 const file = params.get('file');
 const mpVersion = params.get('version');
 const elementID = params.get('id');
-const elementType = params.get('type');
+let elementType = params.get('type');
 
 if (!file || !mpVersion || !elementID || !elementType) {
     loading.textContent = "Missing parameters.";
@@ -63,6 +63,10 @@ if (!file || !mpVersion || !elementID || !elementType) {
         .then((xmlDoc) => {
             loading.style.display = 'none';
             mainContent.style.display = 'block';
+
+            if (elementType === "Element") {
+                elementType = xmlDoc.querySelector(`[ID="${elementID}"]`)?.tagName;
+            }
 
             const scriptUrl = `../scripts/${elementType}.js`;
             Functions.loadDynamicScript(scriptUrl, () => {
