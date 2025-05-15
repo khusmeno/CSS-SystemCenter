@@ -204,15 +204,14 @@ if (!file || !mpVersion || !elementID || !elementType) {
             mainContent.innerHTML += displayElement(xmlDoc, file, mpVersion, elementType, elementID); // Call the function to display the element details
 
             // Load the specific script for the element type
-            //const scriptUrl = `../scripts/${elementType}.js`;
-            //Functions.loadDynamicScript(scriptUrl, () => {
-            //    if (typeof displayElement === 'function') {
-            //        displayElement(xmlDoc, file, mpVersion, elementID); // Call the function from the loaded script
-
-            //    } else {
-            //        console.error('displayElement is not defined in the loaded script.');
-            //    }
-            //});
+            const scriptUrl = `../scripts/${elementType}.js`;
+            Functions.loadDynamicScript(scriptUrl, () => {
+                if (typeof displayElement === 'function') {
+                    displayElement(xmlDoc, file, mpVersion, elementID); // Call the function from the loaded script
+                } else {
+                    console.warn('displayElement is not defined in the loaded script.');
+                }
+            });
 
             // At the bottom, extract and display the XML fragment for the given elementID
             const xmlFragment = xmlDoc.querySelector(`${elementType}[ID="${elementID}"]`);  //todo                    

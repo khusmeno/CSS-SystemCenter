@@ -154,11 +154,11 @@ export function loadDynamicScript(scriptUrl, onLoad) {
         script.type = 'text/javascript';
         script.onload = onLoad; // Call the provided callback when the script is loaded
         script.onerror = () => {
-            console.error(`Failed to load script: ${scriptUrl}`);
+            console.warn(`Failed to load script: ${scriptUrl}`);
         };
         document.head.appendChild(script);
     } catch (err) {
-        console.error('Unexpected error while loading script:', err);
+        console.warn('Unexpected error while loading script:', err);
     }
 }
 
