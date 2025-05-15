@@ -315,6 +315,14 @@ function parseSection(xmlDoc, tagName, title, type) {
         ).singleNodeValue;
     }
 
+    const mpRefs = xmlDoc.evaluate(
+        `/ManagementPack/Manifest/References`,
+        xmlDoc,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+    ).singleNodeValue;
+
     nodes.forEach(node => {
         html += `<tr>`;
         const idValue = node.getAttribute('ID') || '';
@@ -322,7 +330,7 @@ function parseSection(xmlDoc, tagName, title, type) {
         let description = '';
 
         if (idValue && displayStringsBase) {
-            const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);            
+            const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);
             if (displayNode) {
                 displayName = displayNode.querySelector('Name')?.textContent || '';
                 description = displayNode.querySelector('Description')?.textContent || '';
@@ -335,18 +343,11 @@ function parseSection(xmlDoc, tagName, title, type) {
             .filter(attr => attr !== 'ID')
             .forEach(attr => {
                 const value = node.getAttribute(attr) || '';
-                if (value.includes('!')) {
+                if (mpRefs && value.includes('!')) {
                     const [alias, elementName] = value.split('!');
-                    const referenceNode = xmlDoc.evaluate(
-                        `/ManagementPack/Manifest/References/Reference[@Alias='${alias}']`,
-                        xmlDoc,
-                        null,
-                        XPathResult.FIRST_ORDERED_NODE_TYPE,
-                        null
-                    ).singleNodeValue;
+                    const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
 
                     if (referenceNode) {
-                        //html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a> in ${referenceNode.querySelector("ID").textContent}(${referenceNode.querySelector("Version").textContent})</td>`;
                         html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a></td>`;
                     } else {
                         html += `<td>${value}</td>`;
