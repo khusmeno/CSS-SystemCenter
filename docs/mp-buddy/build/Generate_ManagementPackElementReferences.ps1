@@ -20,12 +20,13 @@ $types = $core.GetTypes()
 foreach($type in $types) {
     if ($type.FullName.StartsWith("Microsoft.EnterpriseManagement.Configuration.ManagementPack")) {
         foreach($prop in $type.GetProperties()) {
-            if ($type.Name -like "*DependencyMonitor*") {
+            if ($type.Name -like "*Class*") {
                 $x=0
             }
 
-            if ($prop.PropertyType.Name -eq 'ManagementPackElementReference`1') {#                -and $prop.CustomAttributes.AttributeType -eq [Microsoft.EnterpriseManagement.Configuration.CriteriaPropertyMappingAttribute] `#                -and $prop.CustomAttributes.ConstructorArguments.Value -eq $prop.Name)
-#            {
+            if ($prop.PropertyType.Name -eq 'ManagementPackElementReference`1' -and $type -eq $prop.DeclaringType) #                -and $prop.CustomAttributes.AttributeType -eq [Microsoft.EnterpriseManagement.Configuration.CriteriaPropertyMappingAttribute] `#                -and $prop.CustomAttributes.ConstructorArguments.Value -eq $prop.Name)
+               
+            {
                 $SourceType = $type.Name
                 $SourceProperty = $prop.Name
                 $TargetType = $prop.PropertyType.GenericTypeArguments[0].Name
