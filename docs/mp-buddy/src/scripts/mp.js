@@ -74,8 +74,8 @@ async function displayMP(xmlDoc, filename) {
 
     const sectionTitles = []; // Track titles of sections that are successfully added
     const sectionGroups = {}; // Object to group sections by category
-    const addSection = (tagName, title, type) => {
-        const section = parseSection(xmlDoc, tagName, title, type);
+    const addSection = async (tagName, title, type) => {
+        const section = await parseSection(xmlDoc, tagName, title, type); // Await the result of parseSection
         if (section) {
             sections.push(section);
             sectionTitles.push(title); // Track the title of the successfully added section
@@ -89,98 +89,97 @@ async function displayMP(xmlDoc, filename) {
         }
     };
 
-
     //ManagementPack Schema v2.0  https://learn.microsoft.com/en-us/system-center/scsm/work-mps-xml?#changes-to-the-system-center-common-schema
-    addSection('TypeDefinitions EntityTypes ClassTypes ClassType', 'ClassTypes', 'ClassType');
-    addSection('TypeDefinitions EntityTypes RelationshipTypes RelationshipType', 'RelationshipTypes', 'RelationshipType');
-    addSection('TypeDefinitions EnumerationTypes EnumerationValue', 'EnumerationTypes', 'EnumerationValue');
-    addSection('TypeDefinitions TypeProjections TypeProjection', 'TypeProjections', 'TypeProjection');
-    addSection('TypeDefinitions DataTypes DataType', 'DataTypes', 'DataType');
-    addSection('TypeDefinitions SchemaTypes SchemaType', 'SchemaTypes', 'SchemaType');
-    addSection('TypeDefinitions SecureReferences SecureReference', 'SecureReferences', 'SecureReference');
-    addSection('TypeDefinitions ModuleTypes DataSourceModuleType', 'DataSourceModuleTypes', 'DataSourceModuleType');
-    addSection('TypeDefinitions ModuleTypes ProbeActionModuleType', 'ProbeActionModuleTypes', 'ProbeActionModuleType');
-    addSection('TypeDefinitions ModuleTypes ConditionDetectionModuleType', 'ConditionDetectionModuleTypes', 'ConditionDetectionModuleType');
-    addSection('TypeDefinitions ModuleTypes WriteActionModuleType', 'WriteActionModuleTypes', 'WriteActionModuleType');
-    addSection('TypeDefinitions MonitorTypes UnitMonitorType', 'UnitMonitorTypes', 'UnitMonitorType');
-    //addSection('TypeDefinitions Extensions', 'Extensions?', 'Extension?');  //todo ?
+    await addSection('TypeDefinitions EntityTypes ClassTypes ClassType', 'ClassTypes', 'ClassType');
+    await addSection('TypeDefinitions EntityTypes RelationshipTypes RelationshipType', 'RelationshipTypes', 'RelationshipType');
+    await addSection('TypeDefinitions EnumerationTypes EnumerationValue', 'EnumerationTypes', 'EnumerationValue');
+    await addSection('TypeDefinitions TypeProjections TypeProjection', 'TypeProjections', 'TypeProjection');
+    await addSection('TypeDefinitions DataTypes DataType', 'DataTypes', 'DataType');
+    await addSection('TypeDefinitions SchemaTypes SchemaType', 'SchemaTypes', 'SchemaType');
+    await addSection('TypeDefinitions SecureReferences SecureReference', 'SecureReferences', 'SecureReference');
+    await addSection('TypeDefinitions ModuleTypes DataSourceModuleType', 'DataSourceModuleTypes', 'DataSourceModuleType');
+    await addSection('TypeDefinitions ModuleTypes ProbeActionModuleType', 'ProbeActionModuleTypes', 'ProbeActionModuleType');
+    await addSection('TypeDefinitions ModuleTypes ConditionDetectionModuleType', 'ConditionDetectionModuleTypes', 'ConditionDetectionModuleType');
+    await addSection('TypeDefinitions ModuleTypes WriteActionModuleType', 'WriteActionModuleTypes', 'WriteActionModuleType');
+    await addSection('TypeDefinitions MonitorTypes UnitMonitorType', 'UnitMonitorTypes', 'UnitMonitorType');
+    //await addSection('TypeDefinitions Extensions', 'Extensions?', 'Extension?');  //todo ?
 
-    addSection('Categories Category', 'Categories', 'Category');
+    await addSection('Categories Category', 'Categories', 'Category');
 
-    addSection('Monitoring Discoveries Discovery', 'Discoveries', 'Discovery');
-    addSection('Monitoring Rules Rule', 'Rules', 'Rule');
-    addSection('Monitoring Tasks Rule', 'Tasks', 'Task');
-    addSection('Monitoring Monitors AggregateMonitor', 'AggregateMonitors', 'AggregateMonitor');
-    addSection('Monitoring Monitors UnitMonitor', 'UnitMonitors', 'UnitMonitor');
-    addSection('Monitoring Monitors DependencyMonitor', 'DependencyMonitors', 'DependencyMonitor');
-    addSection('Monitoring Diagnostics Diagnostic', 'Diagnostics', 'Diagnostic');
-    addSection('Monitoring Recoveries Diagnostic', 'Recoveries', 'Recovery');
-    addSection('Monitoring Overrides CategoryOverride', 'CategoryOverrides', 'CategoryOverride');
-    addSection('Monitoring Overrides MonitoringOverride', 'MonitoringOverrides', 'MonitoringOverride');
-    addSection('Monitoring Overrides RuleConfigurationOverride', 'RuleConfigurationOverrides', 'RuleConfigurationOverride');
-    addSection('Monitoring Overrides RulePropertyOverride', 'RulePropertyOverrides', 'RulePropertyOverride');
-    addSection('Monitoring Overrides MonitorConfigurationOverride', 'MonitorConfigurationOverrides', 'MonitorConfigurationOverride');
-    addSection('Monitoring Overrides MonitorPropertyOverride', 'MonitorPropertyOverrides', 'MonitorPropertyOverride');
-    addSection('Monitoring Overrides DiagnosticConfigurationOverride', 'DiagnosticConfigurationOverrides', 'DiagnosticConfigurationOverride');
-    addSection('Monitoring Overrides DiagnosticPropertyOverride', 'DiagnosticPropertyOverrides', 'DiagnosticPropertyOverride');
-    addSection('Monitoring Overrides RecoveryConfigurationOverride', 'RecoveryConfigurationOverrides', 'RecoveryConfigurationOverride');
-    addSection('Monitoring Overrides RecoveryPropertyOverride', 'RecoveryPropertyOverrides', 'RecoveryPropertyOverride');
-    addSection('Monitoring Overrides DiscoveryConfigurationOverride', 'DiscoveryConfigurationOverrides', 'DiscoveryConfigurationOverride');
-    addSection('Monitoring Overrides DiscoveryPropertyOverride', 'DiscoveryPropertyOverrides', 'DiscoveryPropertyOverride');
-    addSection('Monitoring Overrides SecureReferenceOverride', 'SecureReferenceOverrides', 'SecureReferenceOverride');
-    addSection('Monitoring ServiceLevelObjectives MonitorSLO', 'MonitorSLOs', 'MonitorSLO');
-    addSection('Monitoring ServiceLevelObjectives PerformanceCounterSLO', 'PerformanceCounterSLOs', 'PerformanceCounterSLO');
-    //addSection('Monitoring Extensions', 'Extensions?', 'Extension?');  //todo ?
+    await addSection('Monitoring Discoveries Discovery', 'Discoveries', 'Discovery');
+    await addSection('Monitoring Rules Rule', 'Rules', 'Rule');
+    await addSection('Monitoring Tasks Rule', 'Tasks', 'Task');
+    await addSection('Monitoring Monitors AggregateMonitor', 'AggregateMonitors', 'AggregateMonitor');
+    await addSection('Monitoring Monitors UnitMonitor', 'UnitMonitors', 'UnitMonitor');
+    await addSection('Monitoring Monitors DependencyMonitor', 'DependencyMonitors', 'DependencyMonitor');
+    await addSection('Monitoring Diagnostics Diagnostic', 'Diagnostics', 'Diagnostic');
+    await addSection('Monitoring Recoveries Diagnostic', 'Recoveries', 'Recovery');
+    await addSection('Monitoring Overrides CategoryOverride', 'CategoryOverrides', 'CategoryOverride');
+    await addSection('Monitoring Overrides MonitoringOverride', 'MonitoringOverrides', 'MonitoringOverride');
+    await addSection('Monitoring Overrides RuleConfigurationOverride', 'RuleConfigurationOverrides', 'RuleConfigurationOverride');
+    await addSection('Monitoring Overrides RulePropertyOverride', 'RulePropertyOverrides', 'RulePropertyOverride');
+    await addSection('Monitoring Overrides MonitorConfigurationOverride', 'MonitorConfigurationOverrides', 'MonitorConfigurationOverride');
+    await addSection('Monitoring Overrides MonitorPropertyOverride', 'MonitorPropertyOverrides', 'MonitorPropertyOverride');
+    await addSection('Monitoring Overrides DiagnosticConfigurationOverride', 'DiagnosticConfigurationOverrides', 'DiagnosticConfigurationOverride');
+    await addSection('Monitoring Overrides DiagnosticPropertyOverride', 'DiagnosticPropertyOverrides', 'DiagnosticPropertyOverride');
+    await addSection('Monitoring Overrides RecoveryConfigurationOverride', 'RecoveryConfigurationOverrides', 'RecoveryConfigurationOverride');
+    await addSection('Monitoring Overrides RecoveryPropertyOverride', 'RecoveryPropertyOverrides', 'RecoveryPropertyOverride');
+    await addSection('Monitoring Overrides DiscoveryConfigurationOverride', 'DiscoveryConfigurationOverrides', 'DiscoveryConfigurationOverride');
+    await addSection('Monitoring Overrides DiscoveryPropertyOverride', 'DiscoveryPropertyOverrides', 'DiscoveryPropertyOverride');
+    await addSection('Monitoring Overrides SecureReferenceOverride', 'SecureReferenceOverrides', 'SecureReferenceOverride');
+    await addSection('Monitoring ServiceLevelObjectives MonitorSLO', 'MonitorSLOs', 'MonitorSLO');
+    await addSection('Monitoring ServiceLevelObjectives PerformanceCounterSLO', 'PerformanceCounterSLOs', 'PerformanceCounterSLO');
+    //await addSection('Monitoring Extensions', 'Extensions?', 'Extension?');  //todo ?
 
-    addSection('ConfigurationGroups ConfigurationGroup', 'ConfigurationGroups', 'ConfigurationGroup');
+    await addSection('ConfigurationGroups ConfigurationGroup', 'ConfigurationGroups', 'ConfigurationGroup');
 
-    addSection('Templates Template', 'Templates', 'Template');
-    addSection('Templates ObjectTemplate', 'ObjectTemplates', 'ObjectTemplate');
+    await addSection('Templates Template', 'Templates', 'Template');
+    await addSection('Templates ObjectTemplate', 'ObjectTemplates', 'ObjectTemplate');
 
-    addSection('PresentationTypes ViewTypes ViewType', 'ViewTypes', 'ViewType');
-    addSection('PresentationTypes UIPages UIPage', 'UIPages', 'UIPage');
-    addSection('PresentationTypes UIPageSets UIPageSet', 'UIPageSets', 'UIPageSet');
-    //addSection('PresentationTypes Extensions', 'Extensions?', 'Extension?');  //todo ?
+    await addSection('PresentationTypes ViewTypes ViewType', 'ViewTypes', 'ViewType');
+    await addSection('PresentationTypes UIPages UIPage', 'UIPages', 'UIPage');
+    await addSection('PresentationTypes UIPageSets UIPageSet', 'UIPageSets', 'UIPageSet');
+    //await addSection('PresentationTypes Extensions', 'Extensions?', 'Extension?');  //todo ?
 
-    addSection('Presentation Forms Form', 'Forms', 'Form');
-    addSection('Presentation ConsoleTasks ConsoleTask', 'ConsoleTasks', 'ConsoleTask');
-    addSection('Presentation Views View', 'Views', 'View');
-    addSection('Presentation Folders Folder', 'Folders', 'Folder');
-    addSection('Presentation FolderItems FolderItem', 'FolderItems', 'FolderItem');
-    addSection('Presentation ImageReferences ImageReference', 'ImageReferences', 'ImageReference');
-    addSection('Presentation StringResources StringResource', 'StringResources', 'StringResource');
-    addSection('Presentation ComponentTypes ComponentType', 'ComponentTypes', 'ComponentType');
-    addSection('Presentation ComponentReferences ComponentReference', 'ComponentReferences', 'ComponentReference');
-    addSection('Presentation ComponentOverrides ComponentOverride', 'ComponentOverrides', 'ComponentOverride');
-    addSection('Presentation ComponentImplementations ComponentImplementation', 'ComponentImplementations', 'ComponentImplementation');
-    addSection('Presentation ComponentBehaviors ComponentBehavior', 'ComponentBehaviors', 'ComponentBehavior');
-    addSection('Presentation BehaviorTypes BehaviorType', 'BehaviorTypes', 'BehaviorType');
-    addSection('Presentation BehaviorImplementations BehaviorImplementation', 'BehaviorImplementations', 'BehaviorImplementationComponentType');
-    //addSection('Presentation Extensions', 'Extensions?', 'Extension?');  //todo ?
+    await addSection('Presentation Forms Form', 'Forms', 'Form');
+    await addSection('Presentation ConsoleTasks ConsoleTask', 'ConsoleTasks', 'ConsoleTask');
+    await addSection('Presentation Views View', 'Views', 'View');
+    await addSection('Presentation Folders Folder', 'Folders', 'Folder');
+    await addSection('Presentation FolderItems FolderItem', 'FolderItems', 'FolderItem');
+    await addSection('Presentation ImageReferences ImageReference', 'ImageReferences', 'ImageReference');
+    await addSection('Presentation StringResources StringResource', 'StringResources', 'StringResource');
+    await addSection('Presentation ComponentTypes ComponentType', 'ComponentTypes', 'ComponentType');
+    await addSection('Presentation ComponentReferences ComponentReference', 'ComponentReferences', 'ComponentReference');
+    await addSection('Presentation ComponentOverrides ComponentOverride', 'ComponentOverrides', 'ComponentOverride');
+    await addSection('Presentation ComponentImplementations ComponentImplementation', 'ComponentImplementations', 'ComponentImplementation');
+    await addSection('Presentation ComponentBehaviors ComponentBehavior', 'ComponentBehaviors', 'ComponentBehavior');
+    await addSection('Presentation BehaviorTypes BehaviorType', 'BehaviorTypes', 'BehaviorType');
+    await addSection('Presentation BehaviorImplementations BehaviorImplementation', 'BehaviorImplementations', 'BehaviorImplementationComponentType');
+    //await addSection('Presentation Extensions', 'Extensions?', 'Extension?');  //todo ?
 
-    addSection('Warehouse Outriggers Outrigger', 'Outriggers', 'Outrigger');
-    addSection('Warehouse Dimensions Dimension', 'Dimensions', 'Dimension');
-    addSection('Warehouse Measures Measure', 'Measures', 'Measure');
-    addSection('Warehouse Facts Fact', 'Facts', 'Fact');
-    addSection('Warehouse Facts RelationshipFact', 'RelationshipFacts', 'RelationshipFact');
-    addSection('Warehouse WarehouseModules WarehouseModule', 'WarehouseModules', 'WarehouseModule');
-    //addSection('Warehouse Extensions', 'Extensions?', 'Extension?');  //todo ?
+    await addSection('Warehouse Outriggers Outrigger', 'Outriggers', 'Outrigger');
+    await addSection('Warehouse Dimensions Dimension', 'Dimensions', 'Dimension');
+    await addSection('Warehouse Measures Measure', 'Measures', 'Measure');
+    await addSection('Warehouse Facts Fact', 'Facts', 'Fact');
+    await addSection('Warehouse Facts RelationshipFact', 'RelationshipFacts', 'RelationshipFact');
+    await addSection('Warehouse WarehouseModules WarehouseModule', 'WarehouseModules', 'WarehouseModule');
+    //await addSection('Warehouse Extensions', 'Extensions?', 'Extension?');  //todo ?
 
-    addSection('Reporting DataWarehouseScripts DataWarehouseScript', 'DataWarehouseScripts', 'DataWarehouseScript');
-    addSection('Reporting DataWarehouseDataSets DataWarehouseDataSet', 'DataWarehouseDataSets', 'DataWarehouseDataSet');
-    addSection('Reporting Reports Report', 'Reports', 'Report');
-    addSection('Reporting LinkedReports LinkedReport', 'LinkedReports', 'LinkedReport');
-    addSection('Reporting ReportParameterControls ReportParameterControl', 'ReportParameterControls', 'ReportParameterControl');
-    //addSection('Reporting Extensions', 'Extensions?', 'Extension?');  //todo ?
+    await addSection('Reporting DataWarehouseScripts DataWarehouseScript', 'DataWarehouseScripts', 'DataWarehouseScript');
+    await addSection('Reporting DataWarehouseDataSets DataWarehouseDataSet', 'DataWarehouseDataSets', 'DataWarehouseDataSet');
+    await addSection('Reporting Reports Report', 'Reports', 'Report');
+    await addSection('Reporting LinkedReports LinkedReport', 'LinkedReports', 'LinkedReport');
+    await addSection('Reporting ReportParameterControls ReportParameterControl', 'ReportParameterControls', 'ReportParameterControl');
+    //await addSection('Reporting Extensions', 'Extensions?', 'Extension?');  //todo ?
 
-    addSection('LanguagePacks LanguagePack', 'LanguagePacks', 'LanguagePack'); // todo: ???
+    await addSection('LanguagePacks LanguagePack', 'LanguagePacks', 'LanguagePack'); // todo: ???
 
-    addSection('Resources Resource', 'Resources', 'Resource');
-    addSection('Resources Assembly', 'Assemblies', 'Assembly');
-    addSection('Resources ReportResource', 'ReportResources', 'ReportResource');
-    addSection('Resources Image', 'Images', 'Image');
-    addSection('Resources DeployableResource', 'DeployableResources', 'DeployableResource');
-    addSection('Resources DeployableAssembly', 'DeployableAssemblies', 'DeployableAssembly');
+    await addSection('Resources Resource', 'Resources', 'Resource');
+    await addSection('Resources Assembly', 'Assemblies', 'Assembly');
+    await addSection('Resources ReportResource', 'ReportResources', 'ReportResource');
+    await addSection('Resources Image', 'Images', 'Image');
+    await addSection('Resources DeployableResource', 'DeployableResources', 'DeployableResource');
+    await addSection('Resources DeployableAssembly', 'DeployableAssemblies', 'DeployableAssembly');
 
     // addSection('Extensions ?', 'Extensions?', 'Extension?'); //todo: e.g. ServiceOffering, RequestOffering ...
 
@@ -261,7 +260,7 @@ async function displayMP(xmlDoc, filename) {
 
 /// Function to parse sections of the XML and generate HTML
 /// This function takes the XML document, the tag name to search for, the title for the section, and the type of element to be passed to element.html
-function parseSection(xmlDoc, tagName, title, type) {
+async function parseSection(xmlDoc, tagName, title, type) {
     const nodes = xmlDoc.querySelectorAll(tagName);
     if (nodes.length === 0) return '';
 
@@ -323,46 +322,96 @@ function parseSection(xmlDoc, tagName, title, type) {
         null
     ).singleNodeValue;
 
-    nodes.forEach(node => {
-        html += `<tr>`;
-        const idValue = node.getAttribute('ID') || '';
-        let displayName = '';
-        let description = '';
+    //nodes.forEach(node => {
+    //    html += `<tr>`;
+    //    const idValue = node.getAttribute('ID') || '';
+    //    let displayName = '';
+    //    let description = '';
 
-        if (idValue && displayStringsBase) {
-            const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);
-            if (displayNode) {
-                displayName = displayNode.querySelector('Name')?.textContent || '';
-                description = displayNode.querySelector('Description')?.textContent || '';
+    //    if (idValue && displayStringsBase) {
+    //        const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);
+    //        if (displayNode) {
+    //            displayName = displayNode.querySelector('Name')?.textContent || '';
+    //            description = displayNode.querySelector('Description')?.textContent || '';
+    //        }
+    //    }
+    //    html += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
+    //    html += `<td>${displayName}</td>`;
+
+    //    Array.from(allAttributes)
+    //        .filter(attr => attr !== 'ID')
+    //        .forEach(attr => {
+    //            const value = node.getAttribute(attr) || '';
+
+    //            if (mpRefs && value.includes('!')) {
+    //                const [alias, elementName] = value.split('!');
+    //                const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
+
+    //                if (referenceNode) {
+    //                    Functions.getTargetElementType(type, attr).then((targetElementType) => {
+    //                        //console.log(`Target Element Type for ${type} and ${attr}: ${targetElementType}`);
+    //                        html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${targetElementType}&id=${elementName}">${elementName}</a></td>`;
+    //                    });
+    //                } else {
+    //                    //console.warn(`1Reference not found for alias: ${alias}. value:${value}`);
+    //                    html += `<td>${value}</td>`; // this can happen, keep it
+    //                }
+    //            } else
+    //            {
+    //               // console.warn(`2Reference not found for alias: ${value}. value:${value}`);
+    //                html += `<td>${value}</td>`;
+    //            }
+    //        });
+    //    html += `<td class="description-column">${description}</td>`;
+    //    html += `</tr>`;
+    //});
+    // Process rows asynchronously
+    const rows = await Promise.all(
+        Array.from(nodes).map(async (node) => {
+            let rowHtml = `<tr>`;
+            const idValue = node.getAttribute('ID') || '';
+            let displayName = '';
+            let description = '';
+
+            if (idValue && displayStringsBase) {
+                const displayNode = displayStringsBase.querySelector(`DisplayString[ElementID="${idValue}"]`);
+                if (displayNode) {
+                    displayName = displayNode.querySelector('Name')?.textContent || '';
+                    description = displayNode.querySelector('Description')?.textContent || '';
+                }
             }
-        }
-        html += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
-        html += `<td>${displayName}</td>`;
+            rowHtml += `<td class="id-column"><a href="element.html?file=${file}&version=${mpVersion}&type=${type}&id=${idValue}">${idValue}</a></td>`;
+            rowHtml += `<td>${displayName}</td>`;
 
-        Array.from(allAttributes)
-            .filter(attr => attr !== 'ID')
-            .forEach(attr => {
+            for (const attr of Array.from(allAttributes).filter(attr => attr !== 'ID')) {
                 const value = node.getAttribute(attr) || '';
                 if (mpRefs && value.includes('!')) {
                     const [alias, elementName] = value.split('!');
                     const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
 
                     if (referenceNode) {
-                        html += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${type}&id=${elementName}">${elementName}</a></td>`;
+                        const targetElementType = await Functions.getTargetElementType(type, attr);
+                        rowHtml += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${targetElementType}&id=${elementName}">${elementName}</a></td>`;
                     } else {
-                        html += `<td>${value}</td>`;
+                        rowHtml += `<td>${value}</td>`;
                     }
                 } else {
-                    html += `<td>${value}</td>`;
+                    rowHtml += `<td>${value}</td>`;
                 }
-            });
-        html += `<td class="description-column">${description}</td>`;
-        html += `</tr>`;
-    });
+            }
+            rowHtml += `<td class="description-column">${description}</td>`;
+            rowHtml += `</tr>`;
+            return rowHtml;
+        })
+    );
+    // Append all rows to the table
+    html += rows.join('');
 
     html += `</tbody></table>`;
     return html; // Removed the "Back to Top" button
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const waitForNav = setInterval(() => {

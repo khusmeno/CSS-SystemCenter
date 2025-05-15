@@ -194,3 +194,28 @@ export async function getAvailableMPVersions(filename) {
     }
 }
 
+
+let cachedMpElementReferences = null; // Cache for the parsed XML document
+export async function getTargetElementType(sourceType, sourceProperty) {
+    try {
+        // Check if the XML document is already cached
+        if (!cachedMpElementReferences) {
+            // Load and parse MpElementReferences.xml only once
+            const response = await fetch('../assets/MpElementReferences.xml');
+            const xmlText = await response.text();
+            const parser = new DOMParser();
+            cachedMpElementReferences = parser.parseFromString(xmlText, 'application/xml');
+        }
+
+        // Find the matching element in the cached XML document
+        const referenceNode = cachedMpElementReferences.querySelector(
+            `MpElementReference[SourceType="${sourceType}"][SourceProperty="${sourceProperty}"]`
+        );
+
+        // Return the TargetType if found, otherwise return an empty string
+        return referenceNode?.getAttribute('TargetType') || '';
+    } catch (error) {
+        console.error('Error loading or parsing MpElementReferences.xml:', error);
+        return '';
+    }
+}
