@@ -552,6 +552,7 @@ a {
     margin: 0 auto; /* Center horizontally in flex container */
     min-width: auto; /* Optional: ensure it's wide enough to look centered */
     box-sizing: border-box;
+    margin-left: 40px; 
 }
 
 .attributes-table th {

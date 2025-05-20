@@ -268,6 +268,9 @@ if (!file || !mpVersion || !elementID || !elementType) {
             // Insert before the filter input
             container.insertBefore(typeSpan, filterInput);
 
+            // Hide the filter input in element.js
+            filterInput.style.display = 'none';
+
             mainContent.innerHTML += displayElement(xmlDoc, file, mpVersion, elementType, elementID); // Call the function to display the element details
 
             // After rendering, call the async function and insert the result
