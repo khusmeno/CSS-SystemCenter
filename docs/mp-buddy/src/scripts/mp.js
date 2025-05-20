@@ -413,12 +413,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const textColor = brightness > 125 ? '#000000' : '#ffffff';
                 link.style.setProperty('color', textColor, 'important');
 
-                // Apply the gradient and text color to the <caption> of the corresponding table section
-                const caption = tableSections[index]?.querySelector('caption');
-                if (caption) {
-                    caption.style.setProperty('background', `linear-gradient(to right, ${hexColor}, #ffffff)`, 'important');
-                    caption.style.setProperty('color', textColor, 'important');
+                // Find the table section by id (from the href of the link)
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const tableId = href.substring(1);
+                    const table = document.getElementById(tableId);
+                    const caption = table?.querySelector('caption');
+                    if (caption) {
+                        caption.style.setProperty('background', `linear-gradient(to right, ${hexColor}, #ffffff)`, 'important');
+                        caption.style.setProperty('color', textColor, 'important');
+                    }
                 }
+
             });
         }
     }, 100); // Check every 100ms

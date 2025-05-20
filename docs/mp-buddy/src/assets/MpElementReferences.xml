@@ -1,122 +1,125 @@
 <MpElementReferences>
-<MpElementReference SourceType="MeasureGroupType" SourceProperty="Fact" TargetType="BaseFactType" />
-<MpElementReference SourceType="CubeSubstitutionType" SourceProperty="TargetDimension" TargetType="DimensionType" />
-<MpElementReference SourceType="CubeSubstitutionType" SourceProperty="ReplacementDimension" TargetType="DimensionType" />
-<MpElementReference SourceType="CubeSubstitutionType" SourceProperty="Relationship" TargetType="RelationshipType" />
-<MpElementReference SourceType="Cube" SourceProperty="CustomMDX" TargetType="Resource" />
-<MpElementReference SourceType="CustomMeasureType" SourceProperty="Target" TargetType="DimensionType" />
-<MpElementReference SourceType="NamedCalculationType" SourceProperty="Target" TargetType="DimensionType" />
-<MpElementReference SourceType="CubeExtension" SourceProperty="Target" TargetType="Cube" />
-<MpElementReference SourceType="CubeExtension" SourceProperty="CustomMDX" TargetType="Resource" />
-<MpElementReference SourceType="BehaviorImplementation" SourceProperty="TypeId" TargetType="Element" />
-<MpElementReference SourceType="BehaviorType" SourceProperty="Base" TargetType="Element" />
-<MpElementReference SourceType="ComponentBehavior" SourceProperty="BehaviorTypeId" TargetType="Element" />
-<MpElementReference SourceType="ComponentBehavior" SourceProperty="ComponentTypeId" TargetType="Element" />
-<MpElementReference SourceType="ComponentImplementation" SourceProperty="TypeId" TargetType="Element" />
-<MpElementReference SourceType="ComponentOverride" SourceProperty="TypeID" TargetType="Element" />
-<MpElementReference SourceType="ComponentReference" SourceProperty="TypeID" TargetType="Element" />
-<MpElementReference SourceType="ComponentReference" SourceProperty="Parent" TargetType="Element" />
-<MpElementReference SourceType="ComponentType" SourceProperty="Base" TargetType="Element" />
-<MpElementReference SourceType="WarehouseRelationalEntityType" SourceProperty="Template" TargetType="EnumerationValue" />
-<MpElementReference SourceType="DimensionType" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="DimensionType" SourceProperty="Extends" TargetType="DimensionType" />
-<MpElementReference SourceType="RelationshipFactType" SourceProperty="SourceType" TargetType="ClassType" />
-<MpElementReference SourceType="RelationshipFactType" SourceProperty="SourceDimension" TargetType="DimensionType" />
-<MpElementReference SourceType="RelationshipFactTypeRelationships" SourceProperty="RelationshipType" TargetType="RelationshipType" />
-<MpElementReference SourceType="RelationshipFactTypeRelationships" SourceProperty="TargetDimension" TargetType="DimensionType" />
-<MpElementReference SourceType="WarehouseModuleType" SourceProperty="EtlModule" TargetType="DataWarehouseScript" />
-<MpElementReference SourceType="WarehouseModuleType" SourceProperty="TargetWarehouseEntity" TargetType="WarehouseRelationalEntityType" />
-<MpElementReference SourceType="BaseFactType" SourceProperty="Domain" TargetType="EnumerationValue" />
-<MpElementReference SourceType="Category" SourceProperty="Target" TargetType="Element" />
-<MpElementReference SourceType="Category" SourceProperty="Value" TargetType="EnumerationValue" />
-<MpElementReference SourceType="ClassType" SourceProperty="Base" TargetType="ClassType" />
-<MpElementReference SourceType="ClassProperty" SourceProperty="EnumType" TargetType="EnumerationValue" />
-<MpElementReference SourceType="EnumerationValue" SourceProperty="Parent" TargetType="EnumerationValue" />
-<MpElementReference SourceType="Property" SourceProperty="EnumType" TargetType="EnumerationValue" />
-<MpElementReference SourceType="RelationshipType" SourceProperty="Base" TargetType="RelationshipType" />
-<MpElementReference SourceType="RelationshipEndpoint" SourceProperty="Type" TargetType="ClassType" />
-<MpElementReference SourceType="RelationshipProperty" SourceProperty="EnumType" TargetType="EnumerationValue" />
-<MpElementReference SourceType="SearchablePropertyReference" SourceProperty="ClassID" TargetType="ClassType" />
-<MpElementReference SourceType="Type" SourceProperty="Base" TargetType="Type" />
-<MpElementReference SourceType="TypeProjection" SourceProperty="Type" TargetType="ClassType" />
-<MpElementReference SourceType="ConditionDetectionModule" SourceProperty="TypeID" TargetType="ConditionDetectionModuleType" />
-<MpElementReference SourceType="ConditionDetectionModuleType" SourceProperty="OutputType" TargetType="DataType" />
-<MpElementReference SourceType="DataSourceModule" SourceProperty="TypeID" TargetType="DataSourceModuleType" />
-<MpElementReference SourceType="DataSourceModuleType" SourceProperty="OutputType" TargetType="DataType" />
-<MpElementReference SourceType="DataType" SourceProperty="DescriptionFormatString" TargetType="StringResource" />
-<MpElementReference SourceType="DataType" SourceProperty="Base" TargetType="DataType" />
-<MpElementReference SourceType="DataType" SourceProperty="Assembly" TargetType="Assembly" />
-<MpElementReference SourceType="DependencyMonitor" SourceProperty="RelationshipType" TargetType="RelationshipType" />
-<MpElementReference SourceType="DependencyMonitor" SourceProperty="MemberMonitor" TargetType="Monitor" />
-<MpElementReference SourceType="Diagnostic" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="Diagnostic" SourceProperty="Monitor" TargetType="Monitor" />
-<MpElementReference SourceType="Discovery" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="DiscoveryClass" SourceProperty="TypeID" TargetType="ClassType" />
-<MpElementReference SourceType="DiscoveryClassProperty" SourceProperty="TypeID" TargetType="ClassType" />
-<MpElementReference SourceType="DiscoveryRelationship" SourceProperty="TypeID" TargetType="RelationshipType" />
-<MpElementReference SourceType="DiscoveryRelationshipProperty" SourceProperty="TypeID" TargetType="RelationshipType" />
-<MpElementReference SourceType="Module" SourceProperty="RunAs" TargetType="SecureReference" />
-<MpElementReference SourceType="ModuleTypeReference" SourceProperty="TypeID" TargetType="ModuleType" />
-<MpElementReference SourceType="Monitor" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="Monitor" SourceProperty="ParentMonitorID" TargetType="AggregateMonitor" />
-<MpElementReference SourceType="Monitor" SourceProperty="RunAs" TargetType="SecureReference" />
-<MpElementReference SourceType="ProbeActionModule" SourceProperty="TypeID" TargetType="ProbeActionModuleType" />
-<MpElementReference SourceType="ProbeActionModuleType" SourceProperty="OutputType" TargetType="DataType" />
-<MpElementReference SourceType="ProbeActionModuleType" SourceProperty="InputType" TargetType="DataType" />
-<MpElementReference SourceType="Recovery" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="Recovery" SourceProperty="Monitor" TargetType="Monitor" />
-<MpElementReference SourceType="Recovery" SourceProperty="ExecuteOnDiagnostic" TargetType="Diagnostic" />
-<MpElementReference SourceType="Rule" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="UnitMonitor" SourceProperty="TypeID" TargetType="UnitMonitorType" />
-<MpElementReference SourceType="UnitMonitorType" SourceProperty="RunAs" TargetType="SecureReference" />
-<MpElementReference SourceType="WriteActionModule" SourceProperty="TypeID" TargetType="WriteActionModuleType" />
-<MpElementReference SourceType="WriteActionModule" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="WriteActionModuleType" SourceProperty="OutputType" TargetType="DataType" />
-<MpElementReference SourceType="WriteActionModuleType" SourceProperty="InputType" TargetType="DataType" />
-<MpElementReference SourceType="SecureReferenceOverride" SourceProperty="SecureReference" TargetType="SecureReference" />
-<MpElementReference SourceType="Folder" SourceProperty="ParentFolder" TargetType="Folder" />
-<MpElementReference SourceType="Form" SourceProperty="Target" TargetType="Element" />
-<MpElementReference SourceType="Form" SourceProperty="Assembly" TargetType="Assembly" />
-<MpElementReference SourceType="Form" SourceProperty="BaseForm" TargetType="Form" />
-<MpElementReference SourceType="ImageReference" SourceProperty="ImageID" TargetType="Image" />
-<MpElementReference SourceType="UIPageReference" SourceProperty="PageID" TargetType="UIPage" />
-<MpElementReference SourceType="UIPageSet" SourceProperty="TypeDefinitionID" TargetType="Element" />
-<MpElementReference SourceType="View" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="View" SourceProperty="TypeID" TargetType="ViewType" />
-<MpElementReference SourceType="DataWarehouseScript" SourceProperty="DataWarehouseDataSet" TargetType="DataWarehouseDataSet" />
-<MpElementReference SourceType="DataWarehouseScript" SourceProperty="InstallScript" TargetType="Resource" />
-<MpElementReference SourceType="DataWarehouseScript" SourceProperty="UninstallScript" TargetType="Resource" />
-<MpElementReference SourceType="DataWarehouseScript" SourceProperty="UpgradeScript" TargetType="Resource" />
-<MpElementReference SourceType="LinkedReport" SourceProperty="Base" TargetType="Report" />
-<MpElementReference SourceType="LinkedReport" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="Report" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="Report" SourceProperty="ReportDefinition" TargetType="ReportResource" />
-<MpElementReference SourceType="ReportDataWarehouseScript" SourceProperty="Domain" TargetType="EnumerationValue" />
-<MpElementReference SourceType="AssemblyResourceDependency" SourceProperty="ID" TargetType="Assembly" />
-<MpElementReference SourceType="SecureReference" SourceProperty="Context" TargetType="ClassType" />
-<MpElementReference SourceType="ConfigurationGroup" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="ConfigurationGroup" SourceProperty="Context" TargetType="ClassType" />
-<MpElementReference SourceType="MonitorSLO" SourceProperty="MonitorId" TargetType="Monitor" />
-<MpElementReference SourceType="PerformanceCounterSLO" SourceProperty="RuleId" TargetType="Rule" />
-<MpElementReference SourceType="SLO" SourceProperty="ConfigurationGroupId" TargetType="ConfigurationGroup" />
-<MpElementReference SourceType="SLO" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="ConsoleTask" SourceProperty="Target" TargetType="Element" />
-<MpElementReference SourceType="ConsoleTask" SourceProperty="Assembly" TargetType="Assembly" />
-<MpElementReference SourceType="Task" SourceProperty="Target" TargetType="ClassType" />
-<MpElementReference SourceType="Task" SourceProperty="RunLocation" TargetType="ClassType" />
-<MpElementReference SourceType="ObjectTemplate" SourceProperty="TypeID" TargetType="Element" />
-<MpElementReference SourceType="ObjectTemplate" SourceProperty="TypeConstraint" TargetType="ClassType" />
-<MpElementReference SourceType="ElementInfo" SourceProperty="ElementReference" TargetType="Element" />
-<MpElementReference SourceType="ManagedImplementation" SourceProperty="Assembly" TargetType="Assembly" />
-<MpElementReference SourceType="ModuleType" SourceProperty="RunAs" TargetType="SecureReference" />
-<MpElementReference SourceType="MonitorAlertSettings" SourceProperty="AlertMessage" TargetType="StringResource" />
-<MpElementReference SourceType="Override" SourceProperty="Context" TargetType="ClassType" />
-<MpElementReference SourceType="RuleOverride" SourceProperty="Rule" TargetType="Rule" />
-<MpElementReference SourceType="MonitorOverride" SourceProperty="Monitor" TargetType="Monitor" />
-<MpElementReference SourceType="DiagnosticOverride" SourceProperty="Diagnostic" TargetType="Diagnostic" />
-<MpElementReference SourceType="RecoveryOverride" SourceProperty="Recovery" TargetType="Recovery" />
-<MpElementReference SourceType="DiscoveryOverride" SourceProperty="Discovery" TargetType="Discovery" />
-<MpElementReference SourceType="ComponentTypeReference" SourceProperty="TypeId" TargetType="Element" />
-<MpElementReference SourceType="FolderItem" SourceProperty="Folder" TargetType="Folder" />
-<MpElementReference SourceType="SubElementReference`2" SourceProperty="ElementReference" TargetType="T" />
+  <MpElementReference SourceType="MeasureGroupType" SourceProperty="Fact" TargetType="BaseFactType" />
+  <MpElementReference SourceType="CubeSubstitutionType" SourceProperty="TargetDimension" TargetType="DimensionType" />
+  <MpElementReference SourceType="CubeSubstitutionType" SourceProperty="ReplacementDimension" TargetType="DimensionType" />
+  <MpElementReference SourceType="CubeSubstitutionType" SourceProperty="Relationship" TargetType="RelationshipType" />
+  <MpElementReference SourceType="Cube" SourceProperty="CustomMDX" TargetType="Resource" />
+  <MpElementReference SourceType="CustomMeasureType" SourceProperty="Target" TargetType="DimensionType" />
+  <MpElementReference SourceType="NamedCalculationType" SourceProperty="Target" TargetType="DimensionType" />
+  <MpElementReference SourceType="CubeExtension" SourceProperty="Target" TargetType="Cube" />
+  <MpElementReference SourceType="CubeExtension" SourceProperty="CustomMDX" TargetType="Resource" />
+  <MpElementReference SourceType="BehaviorImplementation" SourceProperty="TypeId" TargetType="Element" />
+  <MpElementReference SourceType="BehaviorType" SourceProperty="Base" TargetType="Element" />
+  <MpElementReference SourceType="ComponentBehavior" SourceProperty="BehaviorTypeId" TargetType="Element" />
+  <MpElementReference SourceType="ComponentBehavior" SourceProperty="ComponentTypeId" TargetType="Element" />
+  <MpElementReference SourceType="ComponentImplementation" SourceProperty="TypeId" TargetType="Element" />
+  <MpElementReference SourceType="ComponentOverride" SourceProperty="TypeID" TargetType="Element" />
+  <MpElementReference SourceType="ComponentReference" SourceProperty="TypeID" TargetType="Element" />
+  <MpElementReference SourceType="ComponentReference" SourceProperty="Parent" TargetType="Element" />
+  <MpElementReference SourceType="ComponentType" SourceProperty="Base" TargetType="Element" />
+  <MpElementReference SourceType="WarehouseRelationalEntityType" SourceProperty="Template" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="DimensionType" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="DimensionType" SourceProperty="Extends" TargetType="DimensionType" />
+  <MpElementReference SourceType="RelationshipFactType" SourceProperty="SourceType" TargetType="ClassType" />
+  <MpElementReference SourceType="RelationshipFactType" SourceProperty="SourceDimension" TargetType="DimensionType" />
+  <MpElementReference SourceType="RelationshipFactTypeRelationships" SourceProperty="RelationshipType" TargetType="RelationshipType" />
+  <MpElementReference SourceType="RelationshipFactTypeRelationships" SourceProperty="TargetDimension" TargetType="DimensionType" />
+  <MpElementReference SourceType="WarehouseModuleType" SourceProperty="EtlModule" TargetType="DataWarehouseScript" />
+  <MpElementReference SourceType="WarehouseModuleType" SourceProperty="TargetWarehouseEntity" TargetType="WarehouseRelationalEntityType" />
+  <MpElementReference SourceType="BaseFactType" SourceProperty="Domain" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="Category" SourceProperty="Target" TargetType="Element" />
+  <MpElementReference SourceType="Category" SourceProperty="Value" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="ClassType" SourceProperty="Base" TargetType="ClassType" />
+  <MpElementReference SourceType="ClassProperty" SourceProperty="EnumType" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="EnumerationValue" SourceProperty="Parent" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="Property" SourceProperty="EnumType" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="RelationshipType" SourceProperty="Base" TargetType="RelationshipType" />
+  <MpElementReference SourceType="RelationshipEndpoint" SourceProperty="Type" TargetType="ClassType" />
+  <MpElementReference SourceType="RelationshipProperty" SourceProperty="EnumType" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="SearchablePropertyReference" SourceProperty="ClassID" TargetType="ClassType" />
+  <MpElementReference SourceType="Type" SourceProperty="Base" TargetType="Type" />
+  <MpElementReference SourceType="TypeProjection" SourceProperty="Type" TargetType="ClassType" />
+  <MpElementReference SourceType="ConditionDetectionModule" SourceProperty="TypeID" TargetType="ConditionDetectionModuleType" />
+  <MpElementReference SourceType="ConditionDetectionModuleType" SourceProperty="OutputType" TargetType="DataType" />
+  <MpElementReference SourceType="DataSourceModule" SourceProperty="TypeID" TargetType="DataSourceModuleType" />
+  <MpElementReference SourceType="DataSourceModuleType" SourceProperty="OutputType" TargetType="DataType" />
+  <MpElementReference SourceType="DataType" SourceProperty="DescriptionFormatString" TargetType="StringResource" />
+  <MpElementReference SourceType="DataType" SourceProperty="Base" TargetType="DataType" />
+  <MpElementReference SourceType="DataType" SourceProperty="Assembly" TargetType="Assembly" />
+  <MpElementReference SourceType="DependencyMonitor" SourceProperty="RelationshipType" TargetType="RelationshipType" />
+  <MpElementReference SourceType="DependencyMonitor" SourceProperty="MemberMonitor" TargetType="Monitor" />
+  <MpElementReference SourceType="DependencyMonitor" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="DependencyMonitor" SourceProperty="ParentMonitorID" TargetType="AggregateMonitor" />
+  <MpElementReference SourceType="DataSourceModuleType" SourceProperty="RunAs" TargetType="SecureReference" />
+  <MpElementReference SourceType="Diagnostic" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="Diagnostic" SourceProperty="Monitor" TargetType="Monitor" />
+  <MpElementReference SourceType="Discovery" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="DiscoveryClass" SourceProperty="TypeID" TargetType="ClassType" />
+  <MpElementReference SourceType="DiscoveryClassProperty" SourceProperty="TypeID" TargetType="ClassType" />
+  <MpElementReference SourceType="DiscoveryRelationship" SourceProperty="TypeID" TargetType="RelationshipType" />
+  <MpElementReference SourceType="DiscoveryRelationshipProperty" SourceProperty="TypeID" TargetType="RelationshipType" />
+  <MpElementReference SourceType="Module" SourceProperty="RunAs" TargetType="SecureReference" />
+  <MpElementReference SourceType="ModuleTypeReference" SourceProperty="TypeID" TargetType="ModuleType" />
+  <MpElementReference SourceType="Monitor" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="Monitor" SourceProperty="ParentMonitorID" TargetType="AggregateMonitor" />
+  <MpElementReference SourceType="Monitor" SourceProperty="RunAs" TargetType="SecureReference" />
+  <MpElementReference SourceType="ProbeActionModule" SourceProperty="TypeID" TargetType="ProbeActionModuleType" />
+  <MpElementReference SourceType="ProbeActionModuleType" SourceProperty="OutputType" TargetType="DataType" />
+  <MpElementReference SourceType="ProbeActionModuleType" SourceProperty="InputType" TargetType="DataType" />
+  <MpElementReference SourceType="Recovery" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="Recovery" SourceProperty="Monitor" TargetType="Monitor" />
+  <MpElementReference SourceType="Recovery" SourceProperty="ExecuteOnDiagnostic" TargetType="Diagnostic" />
+  <MpElementReference SourceType="Rule" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="UnitMonitor" SourceProperty="TypeID" TargetType="UnitMonitorType" />
+  <MpElementReference SourceType="UnitMonitorType" SourceProperty="RunAs" TargetType="SecureReference" />
+  <MpElementReference SourceType="WriteActionModule" SourceProperty="TypeID" TargetType="WriteActionModuleType" />
+  <MpElementReference SourceType="WriteActionModule" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="WriteActionModuleType" SourceProperty="OutputType" TargetType="DataType" />
+  <MpElementReference SourceType="WriteActionModuleType" SourceProperty="InputType" TargetType="DataType" />
+  <MpElementReference SourceType="SecureReferenceOverride" SourceProperty="SecureReference" TargetType="SecureReference" />
+  <MpElementReference SourceType="Folder" SourceProperty="ParentFolder" TargetType="Folder" />
+  <MpElementReference SourceType="Form" SourceProperty="Target" TargetType="Element" />
+  <MpElementReference SourceType="Form" SourceProperty="Assembly" TargetType="Assembly" />
+  <MpElementReference SourceType="Form" SourceProperty="BaseForm" TargetType="Form" />
+  <MpElementReference SourceType="ImageReference" SourceProperty="ImageID" TargetType="Image" />
+  <MpElementReference SourceType="UIPageReference" SourceProperty="PageID" TargetType="UIPage" />
+  <MpElementReference SourceType="UIPageSet" SourceProperty="TypeDefinitionID" TargetType="Element" />
+  <MpElementReference SourceType="View" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="View" SourceProperty="TypeID" TargetType="ViewType" />
+  <MpElementReference SourceType="DataWarehouseScript" SourceProperty="DataWarehouseDataSet" TargetType="DataWarehouseDataSet" />
+  <MpElementReference SourceType="DataWarehouseScript" SourceProperty="InstallScript" TargetType="Resource" />
+  <MpElementReference SourceType="DataWarehouseScript" SourceProperty="UninstallScript" TargetType="Resource" />
+  <MpElementReference SourceType="DataWarehouseScript" SourceProperty="UpgradeScript" TargetType="Resource" />
+  <MpElementReference SourceType="LinkedReport" SourceProperty="Base" TargetType="Report" />
+  <MpElementReference SourceType="LinkedReport" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="Report" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="Report" SourceProperty="ReportDefinition" TargetType="ReportResource" />
+  <MpElementReference SourceType="ReportDataWarehouseScript" SourceProperty="Domain" TargetType="EnumerationValue" />
+  <MpElementReference SourceType="AssemblyResourceDependency" SourceProperty="ID" TargetType="Assembly" />
+  <MpElementReference SourceType="SecureReference" SourceProperty="Context" TargetType="ClassType" />
+  <MpElementReference SourceType="ConfigurationGroup" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="ConfigurationGroup" SourceProperty="Context" TargetType="ClassType" />
+  <MpElementReference SourceType="MonitorSLO" SourceProperty="MonitorId" TargetType="Monitor" />
+  <MpElementReference SourceType="PerformanceCounterSLO" SourceProperty="RuleId" TargetType="Rule" />
+  <MpElementReference SourceType="SLO" SourceProperty="ConfigurationGroupId" TargetType="ConfigurationGroup" />
+  <MpElementReference SourceType="SLO" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="ConsoleTask" SourceProperty="Target" TargetType="Element" />
+  <MpElementReference SourceType="ConsoleTask" SourceProperty="Assembly" TargetType="Assembly" />
+  <MpElementReference SourceType="Task" SourceProperty="Target" TargetType="ClassType" />
+  <MpElementReference SourceType="Task" SourceProperty="RunLocation" TargetType="ClassType" />
+  <MpElementReference SourceType="ObjectTemplate" SourceProperty="TypeID" TargetType="Element" />
+  <MpElementReference SourceType="ObjectTemplate" SourceProperty="TypeConstraint" TargetType="ClassType" />
+  <MpElementReference SourceType="ElementInfo" SourceProperty="ElementReference" TargetType="Element" />
+  <MpElementReference SourceType="ManagedImplementation" SourceProperty="Assembly" TargetType="Assembly" />
+  <MpElementReference SourceType="ModuleType" SourceProperty="RunAs" TargetType="SecureReference" />
+  <MpElementReference SourceType="MonitorAlertSettings" SourceProperty="AlertMessage" TargetType="StringResource" />
+  <MpElementReference SourceType="Override" SourceProperty="Context" TargetType="ClassType" />
+  <MpElementReference SourceType="RuleOverride" SourceProperty="Rule" TargetType="Rule" />
+  <MpElementReference SourceType="MonitorOverride" SourceProperty="Monitor" TargetType="Monitor" />
+  <MpElementReference SourceType="DiagnosticOverride" SourceProperty="Diagnostic" TargetType="Diagnostic" />
+  <MpElementReference SourceType="RecoveryOverride" SourceProperty="Recovery" TargetType="Recovery" />
+  <MpElementReference SourceType="DiscoveryOverride" SourceProperty="Discovery" TargetType="Discovery" />
+  <MpElementReference SourceType="ComponentTypeReference" SourceProperty="TypeId" TargetType="Element" />
+  <MpElementReference SourceType="FolderItem" SourceProperty="Folder" TargetType="Folder" />
+  <MpElementReference SourceType="SubElementReference`2" SourceProperty="ElementReference" TargetType="T" />
 </MpElementReferences>
