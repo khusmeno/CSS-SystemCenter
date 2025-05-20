@@ -259,7 +259,7 @@ async function displayMP(xmlDoc, filename) {
 
     // Add click event listener to scroll to the top
     backToTopButton.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     });
 
     // Focus on the filter box when the page loads
