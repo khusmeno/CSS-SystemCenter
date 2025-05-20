@@ -281,33 +281,6 @@ caption .back-to-top {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
         }
 
-#mpDetailsLine {
-    margin-top: 0.3em; /* Reduce vertical spacing */
-    gap: 0.5em; /* Reduce spacing between elements */
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Vertically align items */
-    font-size: 0.9em; /*Reduce font size */
-}
-
-    #mpDetailsLine h3 {
-        font-size: 1em; /*Reduce font size */
-        margin: 0; /* Keep margins consistent */
-    }
-
-    #mpDetailsLine p {
-        font-size: 0.9em; /* Reduce font size */
-        margin: 0; /* Keep margins consistent */
-    }
-
-    #mpDetailsLine h3, #mpDetailsLine p {
-        border: 1px solid #ccc; /* Light gray border */
-        border-radius: 8px; /* Rounded corners */
-        padding: 0.5em; /* Add padding inside the border */
-        margin: 0.5em 0; /* Add vertical spacing between elements */
-        background-color: #f9f9f9; /* Light background for better contrast */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    }
-
 table tr {
     font-family: Verdana, sans-serif, Arial; /* Set the font family */
     font-size: 11px; /* Set the font size */
@@ -522,3 +495,23 @@ a {
             text-decoration: none;
             color: #003d7a;
         }
+
+.detailsLine {
+    margin-top: 0.3em;
+    gap: 0.5em;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+    .detailsLine h3,
+    .detailsLine p {
+        font-size: 1em;
+        margin: 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 0.5em;
+        margin: 0.5em 0;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }

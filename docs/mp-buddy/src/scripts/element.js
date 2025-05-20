@@ -89,14 +89,14 @@ function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
     // Add description if available
     if (description) {
         sections.push(`
-        <div id="elementDetailsLine">
+        <div id="elementDetailsLine" class="detailsLine">
             <h3 title="The DisplayName of the Element">${displayName}</h3>
             <p title="The Description of the Element">${description}</p>
         </div>
     `);
     } else {
         sections.push(`
-        <div id="elementDetailsLine">
+        <div id="elementDetailsLine" class="detailsLine">
             <h3 title="The DisplayName of the Element">${displayName}</h3>
         </div>
     `);
