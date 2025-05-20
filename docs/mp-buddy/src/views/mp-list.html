@@ -7,7 +7,12 @@
 <body>
     <main>
         <div id="loading">Loading Management Pack list...</div>
-        <div id="mpHeader">Select a System Center Management Pack to start exploring.</div>
+        <div class="mp-header-row">
+            <div id="mpHeader">Select a System Center Management Pack to start exploring.</div>
+            <div id="mpAddMissing">
+                Missing MP? <a href="https://github.com/microsoft/CSS-SystemCenter/blob/main/docs/mp-buddy/README.md#how-to-add-missing-management-packs-or-newer-versions" target="_blank" rel="noopener">Click to add</a>
+            </div>
+        </div>
         <div id="mpList"></div>
     </main>
     <script src="../scripts/mp-list.js" type="module"></script>
