@@ -211,6 +211,18 @@ async function displayMP(xmlDoc, filename) {
 
     mainContent.innerHTML = sections.join('');
 
+    // --- Fix: Scroll to hash anchor if present ---
+    if (window.location.hash) {
+        // Use setTimeout to ensure DOM is updated
+        setTimeout(() => {
+            const id = window.location.hash.substring(1);
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 0);
+    }
+
     // Add event listener for version change
     const versionSelectElement = document.getElementById('versionSelect');
     if (versionSelectElement) {
