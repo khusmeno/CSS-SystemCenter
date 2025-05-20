@@ -9,13 +9,14 @@ export function createHeader() {
     const header = document.createElement('header');
     header.innerHTML = `
         <div class="container">
-            <a href="../index.html" style="text-decoration: none"><h1>${productNameInHeader}</h1></a>
+            <a href="../index.html" style="text-decoration: none">
+                <h1 title="Back to MP list">${productNameInHeader}</h1>
+            </a>
             <input type="text" id="filterByText" placeholder="Filter on any text..." />
         </div>
     `;
     document.body.prepend(header); // Add the header at the top of the body
 }
-
 
 export function createFooter() {
     const footer = document.createElement('footer');

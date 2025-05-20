@@ -7,7 +7,7 @@
 }
 
 header, footer {
-    padding: 0.2em; /* Reduce padding */
+    padding: 0.5em; /* Reduce padding */
     font-size: 0.5em; /* Reduce font size */
     background: #0056a3;
     color: white;
@@ -16,7 +16,7 @@ header, footer {
 
 footer {
     font-size: 0.8em;
-    padding: 0.1em;
+    padding: 0.2em 0.2em 0.2em 1em;
 }
 
 .container {
@@ -515,3 +515,41 @@ a {
         background-color: #f9f9f9;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+.back-to-mp-btn {
+    background: linear-gradient(90deg, #4a90e2 0%, #0056a3 100%);
+    color: #fff;
+    padding: 0.5em;
+    border-radius: 8px;
+    font-size: 0.9em;
+    /*font-weight: bold;*/
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    border: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    margin-right: 1em;
+}
+
+    .back-to-mp-btn:hover {
+        background: linear-gradient(90deg, #007bff, #0056a3);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+        text-decoration: none;
+    }
+
+.element-type-label {
+    font-size: 2em; /* Make it bigger */
+    color: black;
+    font-weight: bolder;
+    background: lightblue;
+    padding: 0.2em 0.5em;
+    border-radius: 18px;
+    border: 1px solid #b3d8f5;
+    display: flex; /* Use flex for centering */
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Center horizontally in flex container */
+    min-width: auto; /* Optional: ensure it's wide enough to look centered */
+    box-sizing: border-box;
+}

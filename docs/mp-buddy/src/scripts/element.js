@@ -1,5 +1,16 @@
 import * as Functions from './functions.js';
 
+const mainContent = document.getElementById('elementDetails');
+const loading = document.getElementById('loading');
+const params = new URLSearchParams(window.location.search);
+const file = params.get('file');
+const mpVersion = params.get('version');
+const elementID = params.get('id');
+let elementType = params.get('type');
+
+Functions.setupHeaderFooterStyleTitleSearch(mainContent);
+///////////////////////////
+
 function formatXmlNode(node, level) {
     const indent = '  '.repeat(level);
     let html = '';
@@ -50,13 +61,18 @@ function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
 
     const sections = [];
 
+    const backToMpUrl = `mp.html?file=${encodeURIComponent(filename)}&version=${encodeURIComponent(mpVersion)}`;
     // Add combinedHeader-like output
     const combinedHeader = `
     <div id="combinedHeader">
+        <a href="${backToMpUrl}" class="back-to-mp-btn" title="Back to Management Pack">
+            &#8592; Back to MP
+        </a>
         <h1 title="The ID of the Element">${elementID}</h1>
         <span class="versionText">Version: ${mpVersion}</span>        
     </div>`;
     sections.push(combinedHeader);
+
 
     // Pre-select the base path for DisplayStrings for the selected language, e.g. ENU
     let displayStringsBase = xmlDoc.evaluate(
@@ -86,19 +102,13 @@ function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
         }
     }
 
-    // Add description if available
-    if (description) {
+    // Only push if displayName or description has a value
+    if (displayName || description) {
         sections.push(`
-        <div id="elementDetailsLine" class="detailsLine">
-            <h3 title="The DisplayName of the Element">${displayName}</h3>
-            <p title="The Description of the Element">${description}</p>
-        </div>
-    `);
-    } else {
-        sections.push(`
-        <div id="elementDetailsLine" class="detailsLine">
-            <h3 title="The DisplayName of the Element">${displayName}</h3>
-        </div>
+    <div id="elementDetailsLine" class="detailsLine">
+        ${displayName ? `<h3 title="The DisplayName of the Element">${displayName}</h3>` : ''}
+        ${description ? `<p title="The Description of the Element">${description}</p>` : ''}
+    </div>
     `);
     }
 
@@ -174,16 +184,7 @@ function parseSection(xmlDoc, tagName, title) {
     return html;
 }
 
-const mainContent = document.getElementById('elementDetails');
-const loading = document.getElementById('loading');
-Functions.setupHeaderFooterStyleTitleSearch(mainContent);
 
-
-const params = new URLSearchParams(window.location.search);
-const file = params.get('file');
-const mpVersion = params.get('version');
-const elementID = params.get('id');
-let elementType = params.get('type');
 
 if (!file || !mpVersion || !elementID || !elementType) {
     loading.textContent = "Missing parameters.";
@@ -200,6 +201,14 @@ if (!file || !mpVersion || !elementID || !elementType) {
             if (elementType === "Element") {
                 elementType = xmlDoc.querySelector(`[ID="${elementID}"]`)?.tagName;
             }
+
+            const container = document.querySelector('header .container');
+            const filterInput = container.querySelector('#filterByText');
+            const typeSpan = document.createElement('span');
+            typeSpan.className = 'element-type-label';
+            typeSpan.textContent = elementType;
+            // Insert before the filter input
+            container.insertBefore(typeSpan, filterInput);
 
             mainContent.innerHTML += displayElement(xmlDoc, file, mpVersion, elementType, elementID); // Call the function to display the element details
 
