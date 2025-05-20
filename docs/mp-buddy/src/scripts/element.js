@@ -112,52 +112,110 @@ function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
     `);
     }
 
-    sections.push(showAttributesAsTable(elementIDNode));
+    //sections.push(showAttributesAsTable(elementIDNode));
+    sections.push('<div id="attributes-table-placeholder"></div>');
 
-    /*
-        sections.push(parseSection(elementIDNode, 'Property', 'Properties'));
-        sections.push(parseSection(xmlDoc, 'RelationshipType', 'RelationshipType')); 
-        sections.push(parseSection(xmlDoc, 'Rule', 'Rules'));
-        sections.push(parseSection(xmlDoc, 'Monitor', 'Monitors'));
-        sections.push(parseSection(xmlDoc, 'Discovery', 'Discoveries'));
-        sections.push(parseSection(xmlDoc, 'View', 'Views'));
-        sections.push(parseSection(xmlDoc, 'Override', 'Overrides'));
-        sections.push(parseSection(xmlDoc, 'SchemaTypes SchemaType', 'SchemaType'));
-    */
-
-    //elementDetails.innerHTML += sections.join('');
     return sections.join('');
 }
 
-function showAttributesAsTable(node) {
+//function showAttributesAsTable(node) {
+//    if (!node || !node.attributes || node.attributes.length === 0) {
+//        return '<p>No attributes available for this element.</p>';
+//    }
+
+//    // Start building the table
+//    let html = `
+//        <table class="attributes-table">
+//            <thead>
+//                <tr>
+//                    <th colspan="2">Attributes</th>
+//                </tr>
+//            </thead>
+//            <tbody>
+//    `;
+
+//    // Iterate over the attributes and add rows to the table, excluding the "ID" attribute
+//    for (let attr of node.attributes) {
+//        if (attr.name !== 'ID') {
+//            html += `
+//                <tr>
+//                    <td>${attr.name}</td>
+//                    <td>${attr.value}</td>
+//                </tr>
+//            `;
+//        }
+//    }
+
+//    // Close the table
+//    html += `
+//            </tbody>
+//        </table>
+//    `;
+
+//    return html;
+//}
+
+async function showAttributesAsTable(node) {
     if (!node || !node.attributes || node.attributes.length === 0) {
         return '<p>No attributes available for this element.</p>';
     }
 
-    // Start building the table
+    // Get context from URL for file, version, and type
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file');
+    const mpVersion = params.get('version');
+    const type = params.get('type');
+
+    // Load MP references for cross-MP links
+    const xmlDoc = await Functions.loadMP(file, mpVersion);
+    const mpRefs = xmlDoc.evaluate(
+        `/ManagementPack/Manifest/References`,
+        xmlDoc,
+        null,
+        XPathResult.FIRST_ORDERED_NODE_TYPE,
+        null
+    ).singleNodeValue;
+
     let html = `
         <table class="attributes-table">
             <thead>
                 <tr>
-                    <th colspan="2">Attributes</th>                    
+                    <th colspan="2">Attributes</th>
                 </tr>
             </thead>
             <tbody>
     `;
 
-    // Iterate over the attributes and add rows to the table, excluding the "ID" attribute
     for (let attr of node.attributes) {
         if (attr.name !== 'ID') {
+            // Check if this attribute is a reference
+            const targetElementType = await Functions.getTargetElementType(type, attr.name);
+            let valueHtml = attr.value;
+            if (targetElementType) {
+                let referencedFile = file;
+                let referencedVersion = mpVersion;
+                let referencedElementId = attr.value;
+
+                if (mpRefs && attr.value.includes('!')) {
+                    const [alias, elementName] = attr.value.split('!');
+                    const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
+                    if (referenceNode) {
+                        referencedFile = referenceNode.querySelector("ID").textContent;
+                        referencedVersion = referenceNode.querySelector("Version").textContent;
+                        referencedElementId = elementName;
+                    }
+                }
+                valueHtml = `<a href="element.html?file=${referencedFile}&version=${referencedVersion}&type=${targetElementType}&id=${referencedElementId}">${referencedElementId}</a>`;
+            }
             html += `
                 <tr>
                     <td>${attr.name}</td>
-                    <td>${attr.value}</td>
+                    <td>${valueHtml}</td>
                 </tr>
             `;
         }
     }
 
-    // Close the table
     html += `
             </tbody>
         </table>
@@ -165,6 +223,7 @@ function showAttributesAsTable(node) {
 
     return html;
 }
+
 
 function parseSection(xmlDoc, tagName, title) {
     const nodes = xmlDoc.querySelectorAll(tagName);
@@ -183,7 +242,6 @@ function parseSection(xmlDoc, tagName, title) {
     html += '</tbody></table>';
     return html;
 }
-
 
 
 if (!file || !mpVersion || !elementID || !elementType) {
@@ -211,6 +269,14 @@ if (!file || !mpVersion || !elementID || !elementType) {
             container.insertBefore(typeSpan, filterInput);
 
             mainContent.innerHTML += displayElement(xmlDoc, file, mpVersion, elementType, elementID); // Call the function to display the element details
+
+            // After rendering, call the async function and insert the result
+            showAttributesAsTable(elementIDNode).then(html => {
+                const placeholder = document.getElementById('attributes-table-placeholder');
+                if (placeholder) {
+                    placeholder.outerHTML = html;
+                }
+            });
 
             // Load the specific script for the element type
             const scriptUrl = `../scripts/${elementType}.js`;

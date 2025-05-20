@@ -553,3 +553,11 @@ a {
     min-width: auto; /* Optional: ensure it's wide enough to look centered */
     box-sizing: border-box;
 }
+
+.attributes-table th {
+    font-size: 1.5em;
+}
+
+.attributes-table td:first-child {
+    font-weight: bold;
+}
