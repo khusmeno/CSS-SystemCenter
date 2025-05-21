@@ -38,22 +38,25 @@ You may delete existing files if previously built and pushed.
 	- Add a title and description for your PR, then click on `Create pull request`.
 - Wait for the PR to be reviewed and merged by Microsoft. You will be notified via email when the PR is merged.
 - After the PR is merged, the changes will be automatically deployed to the [MP Buddy](https://aka.ms/MP-Budd) website. You can check the website to see if your changes are live.
-	- If still not there, check if the GitHub Action `pages-build-deployment` is still running at https://github.com/microsoft/CSS-SystemCenter/actions
+	- If still not there, check if the GitHub Action `pages-build-deployment` is still running at https://github.com/microsoft/CSS-SystemCenter/actions. This can take a few minutes.
 
 ## How to add missing links to other elements?
-You may see something like the below instead of a link:
+As an example, you may see something like the below in the _ParentMonitorID_ column instead of a link:  
+![image](https://github.com/user-attachments/assets/c51f6925-9d75-4a29-ac8c-219c5d5732d2)
 
-![Missing link](https://raw.githubusercontent.com/microsoft/CSS-SystemCenter/main/docs/mp-buddy/images/MP-Buddy-MissingLink.png)
+The same happens if you click the ID:  
+![image](https://github.com/user-attachments/assets/8a08aecc-5840-4164-a6bf-2691e1f76fb9)
 
-To fix this please submit a [GitHub Issue](https://github.com/microsoft/CSS-SystemCenter/issues).
+To fix this please submit a [GitHub Issue](https://github.com/microsoft/CSS-SystemCenter/issues) by providing the page address.
 
-If you want to fix by yourself, you need to add a line to the `assets/MpElementReferences.xml` file.
+If you want to fix it by yourself, you need to add a line to the `assets/MpElementReferences.xml` file.
 
 - [Fork/Clone](#how-to-add-missing-management-packs-or-newer-versions) the repository.
 - Navigate to the `docs/mp-buddy/src/assets` folder.
 - Open the `MpElementReferences.xml` file in a text editor and add a new line with the following format and correct values.
-	- If you don't know the exact value for the TaegetType attribute, set it to `Element` and it will be automatically detected.
+	- If you don't know the exact value for the `TargetType` attribute, set it to `Element` and it will be automatically detected.
 ```xml
-<MpElementReference SourceType="AggregateMonitor" SourceProperty="Target" TargetType="Element" />
+<MpElementReference SourceType="AggregateMonitor" SourceProperty="ParentMonitorID" TargetType="Element" />
 ```
+- Push & create PR (as mentioned before)
 
