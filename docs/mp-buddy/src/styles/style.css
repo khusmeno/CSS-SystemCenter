@@ -140,7 +140,7 @@ header a, footer a {
     font-size: 1.5em; /* Increase the font size for emphasis */
     font-weight: bold; /* Make the text bold */
     color: #0056a3; /* Set a nice blue color for the text */
-    background-color: #f0f8ff; /* Add a light background color */
+   /*  background-color: #f0f8ff; Add a light background color */
     padding: 0.5em; /* Add padding for spacing inside the element */
     text-align: left; /* Center-align the text */
   /*   border: 2px solid #0056a3; Add a border with the same blue color */
@@ -204,7 +204,7 @@ tbody tr:nth-child(odd) {
         border: 1px solid #ccc; /* Add a subtle border */
         border-radius: 5px 5px 0 0; /* Round the corners */
         margin: 0.5em 0 0; /* Reduce spacing above and below the caption */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */      
     }
 
 nav {

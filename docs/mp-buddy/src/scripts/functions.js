@@ -145,6 +145,18 @@ export function setupSearchFilter(tableSelector) {
 
             rows[i].style.display = match ? "" : "none";
         }
+
+        // Hide every <thead> if its <tbody> has no visible <tr> rows, otherwise make it visible
+        if (window.location.pathname.endsWith('mp.html')) {
+            document.querySelectorAll(`#${tableSelector.id} thead`).forEach(thead => {
+                const tbody = thead.nextElementSibling;
+                if (tbody && tbody.tagName.toLowerCase() === 'tbody') {
+                    const visibleRows = Array.from(tbody.querySelectorAll('tr')).filter(tr => tr.style.display !== 'none');
+                    thead.style.visibility = visibleRows.length === 0 ? 'collapse' : 'visible';
+                }
+            });
+        }
+
     });
 }
 
