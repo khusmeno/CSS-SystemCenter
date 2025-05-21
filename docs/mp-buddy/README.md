@@ -28,6 +28,7 @@ Please submit a [GitHub Issue](https://github.com/microsoft/CSS-SystemCenter/iss
 - Create a `staging` folder inside the `docs\mp-buddy` folder
 - Put your _new_ Management Pack(s) into the `staging` folder with XML, MP or MPB extensions. The name of the file does not matter. Subfolders are supported. 
 You may delete existing files if previously built and pushed.
+	>Tip: You can run the `PutMPs_FromDb_IntoStaging.ps1` in the `docs\mp-buddy\build` folder to get unsealed MP xml files from your database.
 
 - _Run_ the `build.ps1` script which is located in the `docs\mp-buddy\build` folder
 	- or open a PowerShell window, navigate to the `docs\mp-buddy\build` folder and run `build.ps1` script
