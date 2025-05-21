@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://khusmeno.github.io/CSS-SystemCenter/</loc>
+  </url>
+  <url>
+    <loc>https://khusmeno.github.io/CSS-SystemCenter/mp-buddy/src/views/mp-list.html</loc>
+  </url>
+  <!-- Templates for dynamic pages -->
+  <url>
+    <loc>https://khusmeno.github.io/CSS-SystemCenter/mp-buddy/src/views/mp.html?file={file}&amp;version={version}</loc>
+  </url>
+  <url>
+    <loc>https://khusmeno.github.io/CSS-SystemCenter/mp-buddy/src/views/element.html?file={file}&amp;version={version}&amp;type={type}&amp;id={id}</loc>
+  </url>
+</urlset>
