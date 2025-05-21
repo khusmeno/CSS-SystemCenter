@@ -2,6 +2,10 @@
 Web site to help SCEM support engineers in troubleshooting SCOM and SCSM cases. Easily find and navigate inside Management Packs.
 
 Just open https://aka.ms/MP-Buddy to start using it.
+## Table of Contents
+- [How to add missing Management Packs or newer versions?](#how-to-add-missing-management-packs-or-newer-versions)
+- [How to add missing links to other elements?](#how-to-add-missing-links-to-other-elements)
+
 
 ## How to add missing Management Packs or newer versions?
 ### Prerequisites:
@@ -35,3 +39,21 @@ You may delete existing files if previously built and pushed.
 - Wait for the PR to be reviewed and merged by Microsoft. You will be notified via email when the PR is merged.
 - After the PR is merged, the changes will be automatically deployed to the [MP Buddy](https://aka.ms/MP-Budd) website. You can check the website to see if your changes are live.
 	- If still not there, check if the GitHub Action `pages-build-deployment` is still running at https://github.com/microsoft/CSS-SystemCenter/actions
+
+## How to add missing links to other elements?
+You may see something like the below instead of a link:
+
+![Missing link](https://raw.githubusercontent.com/microsoft/CSS-SystemCenter/main/docs/mp-buddy/images/MP-Buddy-MissingLink.png)
+
+To fix this please submit a [GitHub Issue](https://github.com/microsoft/CSS-SystemCenter/issues).
+
+If you want to fix by yourself, you need to add a line to the `assets/MpElementReferences.xml` file.
+
+- [Fork/Clone](#how-to-add-missing-management-packs-or-newer-versions) the repository.
+- Navigate to the `docs/mp-buddy/src/assets` folder.
+- Open the `MpElementReferences.xml` file in a text editor and add a new line with the following format and correct values.
+	- If you don't know the exact value for the TaegetType attribute, set it to `Element` and it will be automatically detected.
+```xml
+<MpElementReference SourceType="AggregateMonitor" SourceProperty="Target" TargetType="Element" />
+```
+
