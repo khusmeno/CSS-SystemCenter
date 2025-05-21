@@ -8,13 +8,20 @@ Functions.setupHeaderFooterStyleTitleSearch(mainContent);
 ////////////////////////////////////////////
 
 const file = params.get('file');
-const mpVersion = params.get('version');
+let mpVersion = params.get('version');
 
 if (!file || !mpVersion) {
     loading.textContent = "Missing parameters.";
 } else {
     Functions.loadMP(file, mpVersion)
         .then(xmlDoc => {
+            // Check if the mpVersion is different from the version that was returned from LoadMP
+            const returnedVersion = xmlDoc.querySelector('Manifest Identity Version').textContent;
+            if (mpVersion !== returnedVersion) {
+                loading.textContent = `Warning: The version of the MP is different from the one specified in the URL.`;
+                console.warn(`MP version mismatch: requested ${mpVersion}, returned ${returnedVersion}`);
+                mpVersion = returnedVersion; // Update mpVersion to the one returned from LoadMP
+            }
             displayMP(xmlDoc, file);
         })
         .catch(err => {

@@ -4,7 +4,7 @@ const mainContent = document.getElementById('elementDetails');
 const loading = document.getElementById('loading');
 const params = new URLSearchParams(window.location.search);
 const file = params.get('file');
-const mpVersion = params.get('version');
+let mpVersion = params.get('version');
 const elementID = params.get('id');
 let elementType = params.get('type');
 
@@ -227,6 +227,14 @@ if (!file || !mpVersion || !elementID || !elementType) {
         .then((xmlDoc) => {
             loading.style.display = 'none';
             mainContent.style.display = 'block';
+
+            // Check if the mpVersion is different from the version that was returned from LoadMP
+            const returnedVersion = xmlDoc.querySelector('Manifest Identity Version').textContent;
+            if (mpVersion !== returnedVersion) {
+                loading.textContent = `Warning: The version of the MP is different from the one specified in the URL.`;
+                console.warn(`MP version mismatch: requested ${mpVersion}, returned ${returnedVersion}`);
+                mpVersion = returnedVersion; // Update mpVersion to the one returned from LoadMP
+            }
 
             let elementIDNode = xmlDoc.querySelector(`${elementType}[ID='${elementID}']`);
             if (!elementIDNode) {

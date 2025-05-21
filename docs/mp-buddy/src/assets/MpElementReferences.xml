@@ -122,4 +122,5 @@
   <MpElementReference SourceType="ComponentTypeReference" SourceProperty="TypeId" TargetType="Element" />
   <MpElementReference SourceType="FolderItem" SourceProperty="Folder" TargetType="Folder" />
   <MpElementReference SourceType="UnitMonitor" SourceProperty="ParentMonitorID" TargetType="Element" />
+  <MpElementReference SourceType="AggregateMonitor" SourceProperty="ParentMonitorID" TargetType="Element" />
 </MpElementReferences>
