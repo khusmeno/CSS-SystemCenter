@@ -377,12 +377,15 @@ async function parseSection(xmlDoc, tagName, title, type) {
                             referencedFile = referenceNode.querySelector("ID").textContent;
                             referencedVersion = referenceNode.querySelector("Version").textContent;
                             referencedElementId = elementName;
-                            //rowHtml += `<td><a target="_blank" href="element.html?file=${referenceNode.querySelector("ID").textContent}&version=${referenceNode.querySelector("Version").textContent}&type=${targetElementType}&id=${elementName}">${elementName}</a></td>`;
                         }
                     }
                     rowHtml += `<td><a target="_blank" href="element.html?file=${referencedFile}&version=${referencedVersion}&type=${targetElementType}&id=${referencedElementId}">${referencedElementId}</a></td>`;
                 } else {
-                    rowHtml += `<td>${value}</td>`;
+                    let cellContent = value;
+                    if (value.includes('!')) {
+                        cellContent = `<a title="Help" href="https://github.com/microsoft/CSS-SystemCenter/blob/main/docs/mp-buddy/README.md#how-to-add-missing-links-to-other-elements" target="_blank" rel="noopener">?? </a>${value}`
+                    }
+                    rowHtml += `<td>${cellContent}</td>`;
                 }
             }
 
