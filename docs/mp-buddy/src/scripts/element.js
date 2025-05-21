@@ -228,12 +228,13 @@ if (!file || !mpVersion || !elementID || !elementType) {
             loading.style.display = 'none';
             mainContent.style.display = 'block';
 
-            const elementIDNode = xmlDoc.querySelector(`${elementType}[ID='${elementID}']`);
+            let elementIDNode = xmlDoc.querySelector(`${elementType}[ID='${elementID}']`);
             if (!elementIDNode) {
                 elementType = "Element"
             }
             if (elementType === "Element") {
                 elementType = xmlDoc.querySelector(`[ID="${elementID}"]`)?.tagName;
+                elementIDNode = xmlDoc.querySelector(`${elementType}[ID='${elementID}']`);
             }
 
             const container = document.querySelector('header .container');
