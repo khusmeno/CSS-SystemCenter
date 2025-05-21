@@ -566,4 +566,10 @@ a {
 #mpList {
     white-space: nowrap;
 }
-
+form.gsc-search-box {
+    margin-top: -50px !important;
+    margin-bottom: -20px !important;
+}
+gsc-input {
+    border-style: none !important;
+}
