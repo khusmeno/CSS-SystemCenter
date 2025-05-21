@@ -186,8 +186,17 @@ export function loadCommonCSS() {
     loadCSS('../styles/style.css');
 }
 
-export function setDocumentTitle() {
-    document.title = productNameInTitle;
+export function setDocumentTitle(text) {    
+    document.title = text ?? productNameInTitle;
+}
+export function addToDocumentTitle(text) {
+    document.title += " - " + text;
+}
+export function addMetaDescription(text) {
+    const metaDescription = document.createElement('meta');
+    metaDescription.name = 'description';
+    metaDescription.content = text;
+    document.head.appendChild(metaDescription);
 }
 
 export function setupHeaderFooterStyleTitleSearch(mainContent) {

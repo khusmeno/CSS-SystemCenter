@@ -57,6 +57,7 @@ async function displayMP(xmlDoc, filename) {
 
     sections.push(combinedHeader);
 
+    let metaDesr = "";
     if (description) {
         sections.push(`
         <div id="mpDetailsLine" class="detailsLine">
@@ -64,13 +65,18 @@ async function displayMP(xmlDoc, filename) {
             <p title="The English (ENU) Description of the MP." style="margin: 0;">${description}</p>
         </div>
     `);
+        metaDesr = description.replace(/<[^>]+>/g, ' ').trim(); // Remove HTML tags and trim
     } else {
         sections.push(`
         <div id="mpDetailsLine" class="detailsLine">
             <h3 title="The English (ENU) Name of the MP. Fallback is the Name element in the MP Manifest." style="margin: 0;">${displayName}</h3>
         </div>
     `);
+        metaDesr = displayName.replace(/<[^>]+>/g, ' ').trim(); // Remove HTML tags and trim
     }
+
+    Functions.setDocumentTitle(file.replace(/<[^>]+>/g, ' ').trim());
+    Functions.addMetaDescription(metaDesr);
 
     const sectionTitles = []; // Track titles of sections that are successfully added
     const sectionGroups = {}; // Object to group sections by category
@@ -367,7 +373,7 @@ async function parseSection(xmlDoc, tagName, title, type) {
                         const referenceNode = mpRefs.querySelector(`Reference[Alias="${alias}"]`);
 
                         if (referenceNode) {
-                            
+
                             referencedFile = referenceNode.querySelector("ID").textContent;
                             referencedVersion = referenceNode.querySelector("Version").textContent;
                             referencedElementId = elementName;

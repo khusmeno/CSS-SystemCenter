@@ -102,58 +102,30 @@ function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
         }
     }
 
+    let metaDesr = "";
     // Only push if displayName or description has a value
     if (displayName || description) {
         sections.push(`
-    <div id="elementDetailsLine" class="detailsLine">
-        ${displayName ? `<h3 title="The DisplayName of the Element">${displayName}</h3>` : ''}
-        ${description ? `<p title="The Description of the Element">${description}</p>` : ''}
-    </div>
+        <div id="elementDetailsLine" class="detailsLine">
+            ${displayName ? `<h3 title="The DisplayName of the Element">${displayName}</h3>` : ''}
+            ${description ? `<p title="The Description of the Element">${description}</p>` : ''}
+        </div>
     `);
+        if (description) {
+            metaDesr = description;
+        }
+        else {
+            metaDesr = displayName;
+        }       
     }
 
-    //sections.push(showAttributesAsTable(elementIDNode));
+    Functions.setDocumentTitle(elementID.replace(/<[^>]+>/g, ' ').trim());
+    Functions.addMetaDescription(metaDesr.replace(/<[^>]+>/g, ' ').trim());
+
     sections.push('<div id="attributes-table-placeholder"></div>');
 
     return sections.join('');
 }
-
-//function showAttributesAsTable(node) {
-//    if (!node || !node.attributes || node.attributes.length === 0) {
-//        return '<p>No attributes available for this element.</p>';
-//    }
-
-//    // Start building the table
-//    let html = `
-//        <table class="attributes-table">
-//            <thead>
-//                <tr>
-//                    <th colspan="2">Attributes</th>
-//                </tr>
-//            </thead>
-//            <tbody>
-//    `;
-
-//    // Iterate over the attributes and add rows to the table, excluding the "ID" attribute
-//    for (let attr of node.attributes) {
-//        if (attr.name !== 'ID') {
-//            html += `
-//                <tr>
-//                    <td>${attr.name}</td>
-//                    <td>${attr.value}</td>
-//                </tr>
-//            `;
-//        }
-//    }
-
-//    // Close the table
-//    html += `
-//            </tbody>
-//        </table>
-//    `;
-
-//    return html;
-//}
 
 async function showAttributesAsTable(node) {
     if (!node || !node.attributes || node.attributes.length === 0) {
@@ -223,7 +195,6 @@ async function showAttributesAsTable(node) {
 
     return html;
 }
-
 
 function parseSection(xmlDoc, tagName, title) {
     const nodes = xmlDoc.querySelectorAll(tagName);
