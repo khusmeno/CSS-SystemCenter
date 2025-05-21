@@ -2,10 +2,14 @@
 Web site to help SCEM support engineers in troubleshooting SCOM and SCSM cases. Easily find and navigate inside Management Packs.
 
 Just open https://aka.ms/MP-Buddy to start using it.
-## Table of Contents
-- [How to add missing Management Packs or newer versions?](#how-to-add-missing-management-packs-or-newer-versions)
-- [How to add missing links to other elements?](#how-to-add-missing-links-to-other-elements)
 
+># Table of Contents
+>- [How to report a bug or request a feature?](#how-to-report-a-bug-or-request-a-feature)
+>- [How to add missing Management Packs or newer versions?](#how-to-add-missing-management-packs-or-newer-versions)
+>- [How to add missing links to other elements?](#how-to-add-missing-links-to-other-elements)
+
+## How to report a bug or request a feature?
+Please submit a [GitHub Issue](https://github.com/microsoft/CSS-SystemCenter/issues).
 
 ## How to add missing Management Packs or newer versions?
 ### Prerequisites:
