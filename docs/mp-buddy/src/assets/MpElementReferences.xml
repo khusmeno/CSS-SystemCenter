@@ -121,4 +121,5 @@
   <MpElementReference SourceType="DiscoveryOverride" SourceProperty="Discovery" TargetType="Discovery" />
   <MpElementReference SourceType="ComponentTypeReference" SourceProperty="TypeId" TargetType="Element" />
   <MpElementReference SourceType="FolderItem" SourceProperty="Folder" TargetType="Folder" />
+  <MpElementReference SourceType="UnitMonitor" SourceProperty="ParentMonitorID" TargetType="Element" />
 </MpElementReferences>

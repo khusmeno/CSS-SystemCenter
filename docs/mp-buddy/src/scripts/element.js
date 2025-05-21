@@ -179,6 +179,11 @@ async function showAttributesAsTable(node) {
                 }
                 valueHtml = `<a href="element.html?file=${referencedFile}&version=${referencedVersion}&type=${targetElementType}&id=${referencedElementId}">${referencedElementId}</a>`;
             }
+            else {                
+                if (valueHtml.includes('!')) {
+                    valueHtml = `<a title="Click to fix" href="https://github.com/microsoft/CSS-SystemCenter/blob/main/docs/mp-buddy/README.md#how-to-add-missing-links-to-other-elements" target="_blank" rel="noopener">?? </a>${valueHtml}`
+                }                
+            }
             html += `
                 <tr>
                     <td>${attr.name}</td>
