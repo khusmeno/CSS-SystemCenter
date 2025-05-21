@@ -3,6 +3,8 @@
 const mainContent = document.getElementById('mpList');
 const loading = document.getElementById('loading');
 Functions.setupHeaderFooterStyleTitleSearch(mainContent);
+Functions.setDocumentTitle('System Center Management Packs List');
+Functions.addMetaDescription('All System Center Management Packs');
 
 async function fetchMPs() {
     try {
