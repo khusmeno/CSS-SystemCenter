@@ -13,6 +13,12 @@ export function createHeader() {
                 <h1 title="Back to MP list">${productNameInHeader}</h1>
             </a>
             <input type="text" id="filterByText" placeholder="Filter on any text..." />
+            <a href="https://github.com/microsoft/CSS-SystemCenter/blob/main/docs/mp-buddy/README.md" title="Help" id="help-link" style="margin-left: 16px; vertical-align: middle; text-decoration: none;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;">
+                    <circle cx="12" cy="12" r="12" fill="#1976d2"/>
+                    <text x="12" y="17" text-anchor="middle" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="white" font-weight="bold">?</text>
+                </svg>
+            </a>
         </div>
     `;
     document.body.prepend(header); // Add the header at the top of the body
