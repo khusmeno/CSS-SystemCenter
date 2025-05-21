@@ -3,7 +3,8 @@
     margin: 0;
     padding: 0;
     background: #fff;
-    color: #222;
+    color: #222;    
+    overflow-x: auto;
 }
 
 header, footer {
@@ -85,7 +86,6 @@ table {
     border-collapse: collapse;
     margin-top: 1em;
     font-size: 1em;
-    overflow-x: auto; /* Enable horizontal scrolling */
     display: block; /* Make the table a block element */
 }
 
@@ -562,3 +562,8 @@ a {
 .attributes-table td:first-child {
     font-weight: bold;
 }
+
+#mpList {
+    white-space: nowrap;
+}
+   
