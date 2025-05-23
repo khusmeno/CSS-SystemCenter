@@ -56,23 +56,32 @@ function formatXmlNode(node, level) {
     return html;
 }
 
-function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
+async function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
     const elementIDNode = xmlDoc.querySelector(`${elementType}[ID='${elementID}']`) || {};
 
     const sections = [];
 
     const backToMpUrl = `mp.html?file=${encodeURIComponent(filename)}&version=${encodeURIComponent(mpVersion)}`;
-    // Add combinedHeader-like output
+
+    // Fetch available versions and populate the <select> element
+    const versionsXml = await Functions.getAvailableMPVersions(filename);
+    const versions = Array.from(versionsXml.getElementsByTagName('MPVersion'))
+        .map(versionNode => versionNode.getAttribute('Version'));
+
     const combinedHeader = `
     <div id="combinedHeader">
-        <a href="${backToMpUrl}" class="back-to-mp-btn" title="Back to Management Pack">
-            &#8592; Back to MP
+        <h1 title="The ID of the MP">${filename}</h1>
+        ${versions.length > 1
+            ? `<label for="versionSelect">Version:</label>
+               <select id="versionSelect" title="Other versions of this MP are available.">
+                   ${versions.map(version => `<option value="${version}" ${version === mpVersion ? 'selected' : ''}>${version}</option>`).join('')}
+               </select>`
+            : `<span class="versionText">Version: ${versions[0]}</span>`}
+        <a href="../MP_data/${filename}/${mpVersion}/MP.xml" download="${filename}.xml" class="download-link">
+            Download MP XML
         </a>
-        <h1 title="The ID of the Element">${elementID}</h1>
-        <span class="versionText">Version: ${mpVersion}</span>        
     </div>`;
     sections.push(combinedHeader);
-
 
     // Pre-select the base path for DisplayStrings for the selected language, e.g. ENU
     let displayStringsBase = xmlDoc.evaluate(
@@ -116,7 +125,7 @@ function displayElement(xmlDoc, filename, mpVersion, elementType, elementID) {
         }
         else {
             metaDesr = displayName;
-        }       
+        }
     }
 
     Functions.setDocumentTitle(elementID.replace(/<[^>]+>/g, ' ').trim());
@@ -135,8 +144,8 @@ async function showAttributesAsTable(node) {
     // Get context from URL for file, version, and type
     const params = new URLSearchParams(window.location.search);
     const file = params.get('file');
-    const mpVersion = params.get('version');
-    const type = params.get('type');
+    //const mpVersion = params.get('version');
+    const type = elementType;
 
     // Load MP references for cross-MP links
     const xmlDoc = await Functions.loadMP(file, mpVersion);
@@ -179,10 +188,10 @@ async function showAttributesAsTable(node) {
                 }
                 valueHtml = `<a href="element.html?file=${referencedFile}&version=${referencedVersion}&type=${targetElementType}&id=${referencedElementId}">${referencedElementId}</a>`;
             }
-            else {                
+            else {
                 if (valueHtml.includes('!')) {
                     valueHtml = `<a title="Click to fix" href="https://github.com/microsoft/CSS-SystemCenter/blob/main/docs/mp-buddy/README.md#how-to-add-missing-links-to-other-elements" target="_blank" rel="noopener">?? </a>${valueHtml}`
-                }                
+                }
             }
             html += `
                 <tr>
@@ -256,48 +265,65 @@ if (!file || !mpVersion || !elementID || !elementType) {
             // Hide the filter input in element.js
             filterInput.style.display = 'none';
 
-            mainContent.innerHTML += displayElement(xmlDoc, file, mpVersion, elementType, elementID); // Call the function to display the element details
+            displayElement(xmlDoc, file, mpVersion, elementType, elementID).then((html) => {
 
-            // After rendering, call the async function and insert the result
-            showAttributesAsTable(elementIDNode).then(html => {
-                const placeholder = document.getElementById('attributes-table-placeholder');
-                if (placeholder) {
-                    placeholder.outerHTML = html;
+                mainContent.innerHTML += html; // Append the HTML to the main content
+
+                // Add event listener for version change
+                const versionSelectElement = document.getElementById('versionSelect');
+                if (versionSelectElement) {
+                    versionSelectElement.addEventListener('change', (event) => {
+                        const selectedVersion = event.target.value;
+
+                        // Update the URL with the new version parameter
+                        const urlParams = new URLSearchParams(window.location.search);
+                        urlParams.set('version', selectedVersion);
+
+                        // Refresh the page with the updated URL
+                        window.location.search = urlParams.toString();
+                    });
                 }
-            });
 
-            // Load the specific script for the element type
-            const scriptUrl = `../scripts/${elementType}.js`;
-            Functions.loadDynamicScript(scriptUrl, () => {
-                if (typeof displayElement === 'function') {
-                    displayElement(xmlDoc, file, mpVersion, elementID); // Call the function from the loaded script
+                // After rendering, call the async function and insert the result
+                showAttributesAsTable(elementIDNode).then(html => {
+                    const placeholder = document.getElementById('attributes-table-placeholder');
+                    if (placeholder) {
+                        placeholder.outerHTML = html;
+                    }
+                });
+
+                // Load the specific script for the element type
+                const scriptUrl = `../scripts/${elementType}.js`;
+                Functions.loadDynamicScript(scriptUrl, () => {
+                    if (typeof displayElement === 'function') {
+                        displayElement(xmlDoc, file, mpVersion, elementID); // Call the function from the loaded script
+                    } else {
+                        console.warn('displayElement is not defined in the loaded script.');
+                    }
+                });
+
+                // At the bottom, extract and display the XML fragment for the given elementID
+                const xmlFragment = xmlDoc.querySelector(`${elementType}[ID="${elementID}"]`);  //todo                    
+                if (xmlFragment) {
+                    const highlightedXml = formatXmlNode(xmlFragment, 0); // Format the XML node for display)                       
+
+                    // Create a container to display the XML fragment
+                    const xmlContainer = document.createElement('pre');
+                    xmlContainer.style.backgroundColor = '#f9f9f9';
+                    xmlContainer.style.border = '1px solid #ccc';
+                    xmlContainer.style.padding = '1em';
+                    xmlContainer.style.marginTop = '1em';
+                    xmlContainer.style.overflowX = 'auto';
+                    xmlContainer.style.fontFamily = 'Courier New, Courier, monospace';
+                    xmlContainer.style.fontSize = '12px';
+                    xmlContainer.innerHTML = highlightedXml; // Use innerHTML to render highlighted XML
+
+                    // Append the XML container to the main content
+                    mainContent.appendChild(xmlContainer);
                 } else {
-                    console.warn('displayElement is not defined in the loaded script.');
+                    console.warn(`No XML fragment found for elementID: ${elementID}`);
                 }
             });
-
-            // At the bottom, extract and display the XML fragment for the given elementID
-            const xmlFragment = xmlDoc.querySelector(`${elementType}[ID="${elementID}"]`);  //todo                    
-            if (xmlFragment) {
-                const highlightedXml = formatXmlNode(xmlFragment, 0); // Format the XML node for display)                       
-
-                // Create a container to display the XML fragment
-                const xmlContainer = document.createElement('pre');
-                xmlContainer.style.backgroundColor = '#f9f9f9';
-                xmlContainer.style.border = '1px solid #ccc';
-                xmlContainer.style.padding = '1em';
-                xmlContainer.style.marginTop = '1em';
-                xmlContainer.style.overflowX = 'auto';
-                xmlContainer.style.fontFamily = 'Courier New, Courier, monospace';
-                xmlContainer.style.fontSize = '12px';
-                xmlContainer.innerHTML = highlightedXml; // Use innerHTML to render highlighted XML
-
-                // Append the XML container to the main content
-                mainContent.appendChild(xmlContainer);
-            } else {
-                console.warn(`No XML fragment found for elementID: ${elementID}`);
-            }
-
 
         })
         .catch((err) => {
