@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        async function loadXMLfile(relativePath) {
+            const filePath = `${relativePath}`;
+            try {
+                const response = await fetch(filePath);
+
+                // Check if the response status is OK (status code 200-299)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status} - ${response.statusText}`);
+                }
+
+                // Read the response as a Uint8Array
+                const buffer = await response.arrayBuffer();
+
+                // Decode the buffer using the appropriate encoding
+                const decoder = new TextDecoder("utf-16"); // Change "utf-8" to the desired encoding if needed
+                const xmlText = decoder.decode(buffer);
+
+                // Parse the XML text
+                const parser = new DOMParser();
+                return parser.parseFromString(xmlText, "application/xml");
+            } catch (err) {
+                console.error('Failed to load XML file:', err);
+                throw new Error("Error loading XML file " + filePath);
+            }
+        }
+
+        function getWords(xmlDoc) {
+            const words = new Set();
+
+            function traverse(node) {
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    // Tag name
+                    words.add(node.nodeName);
+
+                    // Attribute names and values
+                    for (let attr of node.attributes) {
+                        words.add(attr.name);
+                        words.add(attr.value);
+                    }
+                } else if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.nodeValue.trim();
+                    if (text) {
+                        words.add(text); // Add original text
+                        // Clean and split into words
+                        const cleaned = text.replace(/[^\p{L}\p{N}_]+/gu, ' ');
+                        for (const word of cleaned.split(/\s+/)) {
+                            if (word) words.add(word);
+                        }
+                    }
+                }
+                // Traverse child nodes
+                for (let child of node.childNodes) {
+                    traverse(child);
+                }
+            }
+
+            traverse(xmlDoc.documentElement);
+            return Array.from(words).sort();
+        }
+
+        async function main() {
+            // Load the list of management packs
+            const listDoc = await loadXMLfile("MP_data/List_MP.xml");
+
+            // Get all ManagementPack elements
+            const packs = Array.from(listDoc.getElementsByTagName("ManagementPack"));
+
+            const words = new Set();
+
+            for (const pack of packs) {
+                const id = pack.getAttribute("ID");
+                const version = pack.getAttribute("LatestVersion");
+                if (!id || !version) continue;
+
+                const filePath = `MP_data/${id}/${version}/MP.xml`;
+                try {
+                    const xmlDoc = await loadXMLfile(filePath);
+                    for (const word of getWords(xmlDoc)) {
+                        words.add(word);
+                    }
+                    console.log(filePath +  "-" + words.length);
+                } catch (err) {
+                    console.warn(`Failed to process ${filePath}:`, err);
+                }
+
+                // Process other files in the same folder (excluding MP.xml)
+                const folderPath = `MP_data/${id}/${version}/`;
+                try {
+                    // List files in the folder (requires a manifest or index file, or server-side support)
+                    // For static hosting, you may need to maintain a file list, e.g., "files.txt" in each folder
+                    const fileListResponse = await fetch(folderPath + "files.txt");
+                    if (fileListResponse.ok) {
+                        const fileListText = await fileListResponse.text();
+                        const fileNames = fileListText.split('\n').map(f => f.trim()).filter(f => f && f !== "MP.xml");
+                        for (const fileName of fileNames) {
+                            const fileUrl = folderPath + fileName;
+                            try {
+                                const fileResponse = await fetch(fileUrl);
+                                if (fileResponse.ok) {
+                                    const fileText = await fileResponse.text();
+                                    words.add(fileText); // Add original text
+                                    // Extract words: split on non-word characters, filter out empty strings
+                                    const fileWords = fileText.split(/[^\p{L}\p{N}_]+/gu).filter(Boolean);
+                                    for (const word of fileWords) {
+                                        words.add(word);
+                                    }
+                                    console.log(fileUrl + " - " + fileWords.length + " words added");
+                                }
+                            } catch (err) {
+                                console.warn(`Failed to process ${fileUrl}:`, err);
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.warn(`No file list found in ${folderPath}:`, err);
+                }
+
+            }
+            
+            const sortedWords = Array.from(words).sort();
+            console.log(sortedWords.length);
+            //do manually copy(sortedWords.join('\n'));
+            debugger;
+        }
+
+        main();
+    </script>
+</body>
+</html>

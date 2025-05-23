@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exact Match Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+        }
+
+        #searchBox {
+            width: 300px;
+            padding: 8px;
+        }
+
+        #searchMode {
+            padding: 8px;
+            margin-left: 8px;
+        }
+
+        #searchBtn {
+            padding: 8px 16px;
+            margin-left: 8px;
+        }
+
+        #prepTime {
+            margin-top: 1em;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        #results {
+            margin-top: 1em;
+        }
+
+        .item {
+            padding: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <h2>Search</h2>
+    <input type="text" id="searchBox" placeholder="Enter word..." />
+    <select id="searchMode">
+        <option value="exact">exact</option>
+        <option value="begins">begins with</option>
+        <option value="contains">contains</option>
+    </select>
+    <button id="searchBtn">Search</button>
+    <div id="prepTime"></div>
+    <div id="results"></div>
+
+    <script>
+        let items = [];
+
+        const searchBox = document.getElementById('searchBox');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchMode = document.getElementById('searchMode');
+        const resultsDiv = document.getElementById('results');
+        const prepTimeDiv = document.getElementById('prepTime');
+
+        function displayResults(filteredItems) {
+            resultsDiv.innerHTML = '';
+            if (filteredItems.length === 0) {
+                resultsDiv.textContent = 'No results found.';
+                return;
+            }
+            filteredItems.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.textContent = item;
+                resultsDiv.appendChild(div);
+            });
+        }
+
+        searchBtn.addEventListener('click', function () {
+            const query = searchBox.value.trim();
+            const mode = searchMode.value;
+            let filtered = [];
+            if (!query) {
+                displayResults([]);
+                return;
+            }
+            if (mode === 'exact') {
+                filtered = items.filter(item => item === query);
+            } else if (mode === 'begins') {
+                filtered = items.filter(item => item.startsWith(query));
+            } else if (mode === 'contains') {
+                filtered = items.filter(item => item.includes(query));
+            }
+            displayResults(filtered);
+        });
+
+        // Measure preparation time
+        const prepStart = performance.now();
+        fetch('MP_data/words.tsv')
+            .then(response => response.text())
+            .then(text => {
+                items = text.split('\n').map(line => line.split('\t')[0].trim()).filter(word => word);
+                const prepEnd = performance.now();
+                const elapsed = prepEnd - prepStart;
+                prepTimeDiv.textContent = `Loaded ${items.length} items in ${elapsed.toFixed(2)} ms.`;
+            })
+            .catch(error => {
+                resultsDiv.textContent = 'Failed to load words.tsv';
+                console.error(error);
+            });
+    </script>
+</body>
+</html>
